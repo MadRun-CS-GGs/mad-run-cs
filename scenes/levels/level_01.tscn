@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://hnt3m6pen3p0" path="res://resources/tilesets/dev_tileset.tres" id="2_i2aat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8w0r3"]
-size = Vector2(52, 59)
+size = Vector2(32, 64)
 
 [node name="Level" type="Node2D" unique_id=174878480]
 position = Vector2(126, -208)
@@ -21,20 +21,21 @@ tile_map_data = PackedByteArray("AAADAA4AAQAAAAEAAAAEAA4AAQAAAAEAAAAGAA8AAQAAAAE
 tile_set = ExtResource("2_i2aat")
 
 [node name="Markers" type="TileMapLayer" parent="TileMaps" unique_id=1636901984]
+tile_map_data = PackedByteArray("AAAYABAAAQACAAIAAAD+/xAAAQAAAAIAAAA=")
 tile_set = ExtResource("2_i2aat")
 
 [node name="Gameplay" type="Node2D" parent="." unique_id=2100626766]
 
 [node name="PlayerSpawn" type="Marker2D" parent="Gameplay" unique_id=1664584639]
-position = Vector2(-45, 469)
+position = Vector2(-45, 518)
 
 [node name="LevelExit" type="Area2D" parent="Gameplay" unique_id=1989834360]
-position = Vector2(359, 351)
+position = Vector2(798, 507)
 collision_layer = 32
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/LevelExit" unique_id=42591787]
-position = Vector2(2, -2)
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_8w0r3")
 
 [node name="Pickups" type="Node2D" parent="Gameplay" unique_id=604108404]

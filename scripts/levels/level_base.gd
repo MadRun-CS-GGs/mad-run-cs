@@ -16,7 +16,6 @@ var player: CharacterBody2D
 func _ready() -> void:
 	player = PLAYER_SCENE.instantiate()
 	entities.add_child(player)
-
 	player.global_position = spawn.global_position
 
 	exit_area.body_entered.connect(_on_exit_body_entered)
@@ -28,7 +27,7 @@ func _apply_limits() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 
-	var camera: Camera2D = player.get_node_or_null("Camera2D") as Camera2D
+	var camera := player.get_node_or_null("Camera2D") as Camera2D
 
 	if camera != null:
 		camera.limit_left = int(limit_top_left.global_position.x)
@@ -41,4 +40,4 @@ func _apply_limits() -> void:
 
 func _on_exit_body_entered(body: Node2D) -> void:
 	if body == player:
-		SceneLoader.next_level()
+		SceneLoader.call_deferred("next_level")

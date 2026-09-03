@@ -1,43 +1,54 @@
-[gd_scene format=3 uid="uid://cr4kb8p8uicte"]
+[gd_scene format=4 uid="uid://cr4kb8p8uicte"]
 
-[ext_resource type="Script" uid="uid://lf262d3wojx2" path="res://scripts/levels/level_base.gd" id="1_fvfhs"]
+[ext_resource type="Script" uid="uid://lf262d3wojx2" path="res://scripts/levels/level_base.gd" id="1_o4mod"]
+[ext_resource type="TileSet" uid="uid://hnt3m6pen3p0" path="res://resources/tilesets/dev_tileset.tres" id="2_4wrbh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8w0r3"]
 size = Vector2(32, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m802k"]
-size = Vector2(772, 364)
-
 [node name="Level" type="Node2D" unique_id=174878480]
-script = ExtResource("1_fvfhs")
+position = Vector2(126, -208)
+script = ExtResource("1_o4mod")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=656310248]
+[node name="TileMaps" type="Node2D" parent="." unique_id=1084982907]
 
-[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1664584639]
-position = Vector2(202, -76)
+[node name="Terrain" type="TileMapLayer" parent="TileMaps" unique_id=133861095]
+tile_map_data = PackedByteArray("AAD+/xEAAQAAAAAAAAD//xEAAQAAAAAAAAAAABEAAQAAAAAAAAABABEAAQAAAAAAAAACABEAAQAAAAAAAAADABEAAQAAAAAAAAAEABEAAQAAAAAAAAAFABEAAQAAAAAAAAAGABEAAQAAAAAAAAAHABEAAQAAAAAAAAAIABEAAQAAAAAAAAAJABEAAQAAAAAAAAAKABEAAQAAAAAAAAALABEAAQAAAAAAAAA=")
+tile_set = ExtResource("2_4wrbh")
 
-[node name="Entities" type="Node2D" parent="." unique_id=428637276]
+[node name="OneWayPlatforms" type="TileMapLayer" parent="TileMaps" unique_id=264062631]
+tile_set = ExtResource("2_4wrbh")
 
-[node name="Pickups" type="Node2D" parent="." unique_id=604108404]
+[node name="Markers" type="TileMapLayer" parent="TileMaps" unique_id=1636901984]
+tile_set = ExtResource("2_4wrbh")
 
-[node name="LevelExit" type="Area2D" parent="." unique_id=1989834360]
+[node name="Gameplay" type="Node2D" parent="." unique_id=2100626766]
+
+[node name="PlayerSpawn" type="Marker2D" parent="Gameplay" unique_id=1664584639]
+position = Vector2(-45, 518)
+
+[node name="LevelExit" type="Area2D" parent="Gameplay" unique_id=1989834360]
+position = Vector2(363, 488)
 collision_layer = 32
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=42591787]
-position = Vector2(514, -6)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/LevelExit" unique_id=42591787]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_8w0r3")
 
+[node name="Pickups" type="Node2D" parent="Gameplay" unique_id=604108404]
+position = Vector2(200, 133)
+
+[node name="Entities" type="Node2D" parent="Gameplay" unique_id=428637276]
+position = Vector2(253, 135)
+
 [node name="CameraLimits" type="Node2D" parent="." unique_id=1006121758]
+position = Vector2(-159, 163)
 
 [node name="TopLeft" type="Marker2D" parent="CameraLimits" unique_id=743993755]
-position = Vector2(-130, -113)
+position = Vector2(29, 44)
 
 [node name="BottomRight" type="Marker2D" parent="CameraLimits" unique_id=313011000]
-position = Vector2(640, 357)
+position = Vector2(669, 401)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=46232053]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=433677978]
-position = Vector2(246, 172)
-shape = SubResource("RectangleShape2D_m802k")
+[node name="Debug" type="Node2D" parent="." unique_id=908088984]
