@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://d4mhtyvd21ae"]
+
+[ext_resource type="Script" uid="uid://lf262d3wojx2" path="res://scripts/levels/level_base.gd" id="1_eyte8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8w0r3"]
+size = Vector2(32, 64)
+
+[node name="Level" type="Node2D" unique_id=174878480]
+script = ExtResource("1_eyte8")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=656310248]
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1664584639]
+
+[node name="Entities" type="Node2D" parent="." unique_id=428637276]
+
+[node name="Pickups" type="Node2D" parent="." unique_id=604108404]
+
+[node name="LevelExit" type="Area2D" parent="." unique_id=1989834360]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=1604127678]
+shape = SubResource("RectangleShape2D_8w0r3")
+
+[node name="CameraLimits" type="Node2D" parent="." unique_id=1006121758]
+
+[node name="TopLeft" type="Marker2D" parent="CameraLimits" unique_id=743993755]
+
+[node name="BottomRight" type="Marker2D" parent="CameraLimits" unique_id=313011000]
