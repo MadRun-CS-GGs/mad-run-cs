@@ -11,6 +11,19 @@ var s_active: bool = true
 var jump_active: bool = true
 var wjump_active: bool = true
 
+var checkpoint_position: Vector2
+
+func _ready() -> void:
+	add_to_group("player")
+	checkpoint_position = global_position
+
+func set_checkpoint(new_position: Vector2) -> void:
+	checkpoint_position = new_position
+
+func respawn() -> void:
+	global_position = checkpoint_position
+	velocity = Vector2.ZERO
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -62,3 +75,6 @@ func _physics_process(delta: float) -> void:
 		sprite.play("walk")
 	else:
 		sprite.stop()
+		
+func bounce(force: float) -> void:
+	velocity.y = force

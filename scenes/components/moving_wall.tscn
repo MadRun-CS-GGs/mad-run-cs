@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c7be30wumvrmk"]
+
+[ext_resource type="Script" uid="uid://bb2v7i6e3yk3b" path="res://scenes/components/moving_wall.gd" id="1_nx1im"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2fut"]
+size = Vector2(10, 80)
+
+[node name="MovingWall" type="AnimatableBody2D" unique_id=1440188068]
+script = ExtResource("1_nx1im")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1645647204]
+shape = SubResource("RectangleShape2D_x2fut")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1702232305]
+position = Vector2(57, -33)
+color = Color(0, 1, 1, 1)
+polygon = PackedVector2Array(-62, -7, -52, -7, -52, 73, -62, 73)
