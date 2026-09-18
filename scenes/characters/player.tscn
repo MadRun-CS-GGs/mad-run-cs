@@ -41,7 +41,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8w0r3"]
-size = Vector2(12, 16)
+size = Vector2(14, 44)
 
 [node name="Player" type="CharacterBody2D" unique_id=1019637794]
 collision_layer = 2
@@ -53,6 +53,7 @@ sprite_frames = SubResource("SpriteFrames_h4t55")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1205512350]
+position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_8w0r3")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1103953353]

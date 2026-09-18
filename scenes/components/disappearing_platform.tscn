@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://xs35ecly2iky"]
+
+[ext_resource type="Script" uid="uid://crcu5tbt0c1wq" path="res://scenes/components/disappearing_platform.gd" id="1_ua81f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2fut"]
+size = Vector2(80, 10)
+
+[node name="DisappearingPlatform" type="StaticBody2D" unique_id=1835266962]
+script = ExtResource("1_ua81f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1762843687]
+shape = SubResource("RectangleShape2D_x2fut")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2023015589]
+position = Vector2(87, -11)
+color = Color(1, 0.42745098, 0, 1)
+polygon = PackedVector2Array(-127, 16, -127, 6, -47, 6, -47, 16)
