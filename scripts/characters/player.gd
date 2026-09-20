@@ -10,12 +10,14 @@ extends CharacterBody2D
 var s_active: bool = true
 var jump_active: bool = true
 var wjump_active: bool = true
+var last_dir: float = 1.00
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		if is_on_wall() and velocity.y > 0:
 			velocity.y *= 0.85
+			jump_active = false
 			wjump_active = true
 		else:
 			wjump_active = false
@@ -31,8 +33,8 @@ func _physics_process(delta: float) -> void:
 		print(velocity)
 	elif Input.is_action_just_pressed("jump") and wjump_active:
 		velocity.y = -325
-		velocity.x = -direction * 375
-		wjump_active = false
+		velocity.x = -last_dir * 450
+
 
 	if direction != 0.0:
 		velocity.x = move_toward(
@@ -41,6 +43,7 @@ func _physics_process(delta: float) -> void:
 			acceleration * delta
 		)
 		sprite.flip_h = direction < 0.0
+		last_dir = direction
 	else:
 		velocity.x = move_toward(
 			velocity.x,
@@ -49,7 +52,7 @@ func _physics_process(delta: float) -> void:
 		)
 	
 	if Input.is_action_just_pressed("s_action") and s_active == true:
-		velocity.x = direction * 700.0
+		velocity.x = last_dir * 700.0
 		velocity.y = 0
 		print(velocity)
 		s_active = false
