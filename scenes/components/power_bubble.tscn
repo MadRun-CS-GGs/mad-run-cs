@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://doho8cbodkwp1"]
+
+[ext_resource type="Script" uid="uid://dueve2v0gmhb0" path="res://scripts/components/power_bubble.gd" id="1_5b6kx"]
+[ext_resource type="Texture2D" uid="uid://mgdmwacnrdyl" path="res://assets/bubble.png" id="2_h43ri"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8w0r3"]
+radius = 14.0
+
+[node name="PowerBubble" type="Area2D" unique_id=2076260628]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_5b6kx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2088608051]
+position = Vector2(-2.3841858e-07, 0)
+scale = Vector2(0.02731262, 0.027172558)
+texture = ExtResource("2_h43ri")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1034842318]
+shape = SubResource("CircleShape2D_8w0r3")

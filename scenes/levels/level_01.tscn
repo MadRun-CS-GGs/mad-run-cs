@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://cd01bgtpe5d0i"]
 
 [ext_resource type="Script" uid="uid://lf262d3wojx2" path="res://scripts/levels/level_base.gd" id="1_m802k"]
+[ext_resource type="PackedScene" uid="uid://doho8cbodkwp1" path="res://scenes/components/power_bubble.tscn" id="2_2djvx"]
 [ext_resource type="TileSet" uid="uid://hnt3m6pen3p0" path="res://resources/tilesets/dev_tileset.tres" id="2_i2aat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8w0r3"]
@@ -9,6 +10,9 @@ size = Vector2(32, 64)
 [node name="Level" type="Node2D" unique_id=174878480]
 position = Vector2(126, -208)
 script = ExtResource("1_m802k")
+
+[node name="PowerBubble" parent="." unique_id=2076260628 instance=ExtResource("2_2djvx")]
+position = Vector2(315, 476)
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=1084982907]
 

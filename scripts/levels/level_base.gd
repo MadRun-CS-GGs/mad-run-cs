@@ -54,7 +54,8 @@ func _create_player2() -> void:
 	player2.set("move_right_action", &"p2_move_right")
 	player2.set("jump_action", &"p2_jump")
 	player2.set("special_action", &"p2_s_action")
-
+	player2.set("use_power_action", &"p2_use_power")
+	
 	entities.add_child(player2)
 
 	player2.global_position = player2_spawn.global_position
