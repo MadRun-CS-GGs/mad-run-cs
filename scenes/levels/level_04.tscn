@@ -27,6 +27,15 @@ tile_set = ExtResource("2_31sm7")
 [node name="PlayerSpawn" type="Marker2D" parent="Gameplay" unique_id=1664584639]
 position = Vector2(-45, 518)
 
+[node name="Player2Spawn" type="Marker2D" parent="Gameplay" unique_id=878370016]
+position = Vector2(-11, 519)
+
+[node name="Entities" type="Node2D" parent="Gameplay" unique_id=428637276]
+position = Vector2(253, 135)
+
+[node name="Pickups" type="Node2D" parent="Gameplay" unique_id=604108404]
+position = Vector2(200, 133)
+
 [node name="LevelExit" type="Area2D" parent="Gameplay" unique_id=1989834360]
 position = Vector2(363, 488)
 collision_layer = 32
@@ -35,12 +44,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/LevelExit" unique_id=42591787]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_8w0r3")
-
-[node name="Pickups" type="Node2D" parent="Gameplay" unique_id=604108404]
-position = Vector2(200, 133)
-
-[node name="Entities" type="Node2D" parent="Gameplay" unique_id=428637276]
-position = Vector2(253, 135)
 
 [node name="CameraLimits" type="Node2D" parent="." unique_id=1006121758]
 position = Vector2(-159, 163)
@@ -52,3 +55,4 @@ position = Vector2(29, 44)
 position = Vector2(669, 401)
 
 [node name="Debug" type="Node2D" parent="." unique_id=908088984]
+position = Vector2(0, 4)

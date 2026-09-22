@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dldic627xq7dl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2fut"]
+size = Vector2(10, 80)
+
+[node name="One_Way_Wall" type="StaticBody2D" unique_id=2146761323]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1626770353]
+shape = SubResource("RectangleShape2D_x2fut")
+one_way_collision = true
+one_way_collision_margin = 10.0
+one_way_collision_direction = Vector2(-1, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=798567967]
+position = Vector2(54, 86)
+color = Color(0, 1, 0.5254902, 1)
+polygon = PackedVector2Array(-59, -126, -49, -126, -49, -46, -59, -46)

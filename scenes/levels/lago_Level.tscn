@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://ctkkdbitvxmsc"]
+
+[ext_resource type="PackedScene" uid="uid://dlstrn6m6027j" path="res://scenes/characters/player.tscn" id="1_xyb6k"]
+[ext_resource type="Texture2D" uid="uid://cgnemqe5ycskt" path="res://icon.svg" id="2_r0udl"]
+[ext_resource type="PackedScene" uid="uid://c0wtgnhhq1uow" path="res://scenes/components/static_wall.tscn" id="3_b6ms2"]
+[ext_resource type="PackedScene" uid="uid://besfl7d2phw21" path="res://scenes/components/static_platform.tscn" id="3_lxlq5"]
+[ext_resource type="PackedScene" uid="uid://dldic627xq7dl" path="res://scenes/components/one_way_wall.tscn" id="5_jw5hu"]
+[ext_resource type="PackedScene" uid="uid://sp0p4a23bpl4" path="res://scenes/components/one_way_platform.tscn" id="6_87p77"]
+[ext_resource type="PackedScene" uid="uid://bxj0i54ijwm30" path="res://scenes/components/water_hazard.tscn" id="7_87p77"]
+[ext_resource type="PackedScene" uid="uid://bqi0c782p2gu3" path="res://scenes/components/checkpoint.tscn" id="8_dwos0"]
+[ext_resource type="PackedScene" uid="uid://cb4rt66tgf3u" path="res://scenes/components/goal.tscn" id="9_0rwyd"]
+[ext_resource type="PackedScene" uid="uid://pbiqh2w7icjd" path="res://scenes/components/trampoline.tscn" id="10_kd1n6"]
+[ext_resource type="PackedScene" uid="uid://c1o4lmdx1hd33" path="res://scenes/components/moving_platform.tscn" id="11_b1b5a"]
+[ext_resource type="PackedScene" uid="uid://c7be30wumvrmk" path="res://scenes/components/moving_wall.tscn" id="12_larf0"]
+[ext_resource type="PackedScene" uid="uid://xs35ecly2iky" path="res://scenes/components/disappearing_platform.tscn" id="13_bc3j0"]
+[ext_resource type="PackedScene" uid="uid://bijn2j7la7dgc" path="res://scenes/components/disappearing_wall.tscn" id="14_j3d5s"]
+
+[sub_resource type="TileSet" id="TileSet_moax1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moax1"]
+size = Vector2(9497.5, 39)
+
+[node name="MatrizLago" type="Node2D" unique_id=145314678]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1045499802]
+tile_set = SubResource("TileSet_moax1")
+
+[node name="StaticBody2D_Resource" type="StaticBody2D" parent="." unique_id=897398007]
+
+[node name="Player" parent="StaticBody2D_Resource" unique_id=1019637794 instance=ExtResource("1_xyb6k")]
+position = Vector2(2, -38)
+collision_layer = 3
+
+[node name="Camera2D2" type="Camera2D" parent="StaticBody2D_Resource/Player" unique_id=87608274]
+position = Vector2(-2, 38)
+
+[node name="CollisionShape2D_Piso" type="CollisionShape2D" parent="StaticBody2D_Resource" unique_id=343681732]
+position = Vector2(4749.25, 22)
+shape = SubResource("RectangleShape2D_moax1")
+
+[node name="Icon" type="Sprite2D" parent="StaticBody2D_Resource" unique_id=986980021]
+position = Vector2(155, -100)
+texture = ExtResource("2_r0udl")
+
+[node name="Icon7" type="Sprite2D" parent="." unique_id=78681718]
+position = Vector2(9568, -65)
+texture = ExtResource("2_r0udl")
+
+[node name="StaticPlatform" parent="." unique_id=24034259 instance=ExtResource("3_lxlq5")]
+position = Vector2(-87, -29)
+
+[node name="StaticWall" parent="." unique_id=1375735958 instance=ExtResource("3_b6ms2")]
+position = Vector2(-147, -65)
+
+[node name="One_Way_Wall" parent="." unique_id=2146761323 instance=ExtResource("5_jw5hu")]
+position = Vector2(-94, -183)
+
+[node name="One_Way_Platform" parent="." unique_id=1016971854 instance=ExtResource("6_87p77")]
+position = Vector2(-148, -131)
+
+[node name="WaterHazard" parent="." unique_id=1927835633 instance=ExtResource("7_87p77")]
+position = Vector2(100, -14)
+
+[node name="Checkpoint" parent="." unique_id=548853422 instance=ExtResource("8_dwos0")]
+position = Vector2(196, -19)
+
+[node name="Goal" parent="." unique_id=155317017 instance=ExtResource("9_0rwyd")]
+position = Vector2(329, -29)
+
+[node name="Trampoline" parent="." unique_id=363516580 instance=ExtResource("10_kd1n6")]
+position = Vector2(-34, -208)
+
+[node name="MovingPlatform" parent="." unique_id=50198809 instance=ExtResource("11_b1b5a")]
+position = Vector2(0, -133)
+
+[node name="MovingWall" parent="." unique_id=1440188068 instance=ExtResource("12_larf0")]
+position = Vector2(81, -284)
+
+[node name="DisappearingPlatform" parent="." unique_id=1835266962 instance=ExtResource("13_bc3j0")]
+position = Vector2(188, -194)
+
+[node name="DisappearingWall" parent="." unique_id=1366774306 instance=ExtResource("14_j3d5s")]
+position = Vector2(244, -271)

@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://db5kld4mdxd03"]
+
+[ext_resource type="Script" uid="uid://b2tedengtbfp6" path="res://scripts/ui/character_select.gd" id="1_ci853"]
+
+[node name="CharacterSelect" type="Control" unique_id=337849237]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ci853")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=125283808]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1730349794]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1841897192]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "SELECCIONAR PERSONAJES"
+horizontal_alignment = 1
+
+[node name="PlayersContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1270812583]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Player1Panel" type="PanelContainer" parent="CenterContainer/VBoxContainer/PlayersContainer" unique_id=1061318834]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PlayersContainer/Player1Panel" unique_id=897616366]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PlayerTitle" type="Label" parent="CenterContainer/VBoxContainer/PlayersContainer/Player1Panel/VBoxContainer" unique_id=1691889023]
+layout_mode = 2
+text = "JUGADOR 1"
+horizontal_alignment = 1
+
+[node name="CharacterName" type="Label" parent="CenterContainer/VBoxContainer/PlayersContainer/Player1Panel/VBoxContainer" unique_id=1797693151]
+layout_mode = 2
+text = "PERSONAJE 1"
+horizontal_alignment = 1
+
+[node name="SelectionButtons" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PlayersContainer/Player1Panel/VBoxContainer" unique_id=361952914]
+layout_mode = 2
+alignment = 1
+
+[node name="PreviousButton" type="Button" parent="CenterContainer/VBoxContainer/PlayersContainer/Player1Panel/VBoxContainer/SelectionButtons" unique_id=745118399]
+custom_minimum_size = Vector2(50, 35)
+layout_mode = 2
+text = "<"
+
+[node name="NextButton" type="Button" parent="CenterContainer/VBoxContainer/PlayersContainer/Player1Panel/VBoxContainer/SelectionButtons" unique_id=955364182]
+custom_minimum_size = Vector2(50, 35)
+layout_mode = 2
+text = ">"
+
+[node name="RandomButton" type="Button" parent="CenterContainer/VBoxContainer/PlayersContainer/Player1Panel/VBoxContainer" unique_id=683268969]
+custom_minimum_size = Vector2(140, 35)
+layout_mode = 2
+text = "RANDOM"
+
+[node name="Player2Panel" type="PanelContainer" parent="CenterContainer/VBoxContainer/PlayersContainer" unique_id=365609262]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PlayersContainer/Player2Panel" unique_id=306416777]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PlayerTitle" type="Label" parent="CenterContainer/VBoxContainer/PlayersContainer/Player2Panel/VBoxContainer" unique_id=1397224424]
+layout_mode = 2
+text = "JUGADOR 2"
+horizontal_alignment = 1
+
+[node name="CharacterName" type="Label" parent="CenterContainer/VBoxContainer/PlayersContainer/Player2Panel/VBoxContainer" unique_id=269354351]
+layout_mode = 2
+text = "PERSONAJE 1"
+horizontal_alignment = 1
+
+[node name="SelectionButtons" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PlayersContainer/Player2Panel/VBoxContainer" unique_id=1750685421]
+layout_mode = 2
+alignment = 1
+
+[node name="PreviousButton" type="Button" parent="CenterContainer/VBoxContainer/PlayersContainer/Player2Panel/VBoxContainer/SelectionButtons" unique_id=1476842767]
+custom_minimum_size = Vector2(50, 35)
+layout_mode = 2
+text = "<"
+
+[node name="NextButton" type="Button" parent="CenterContainer/VBoxContainer/PlayersContainer/Player2Panel/VBoxContainer/SelectionButtons" unique_id=1581735334]
+custom_minimum_size = Vector2(50, 35)
+layout_mode = 2
+text = ">"
+
+[node name="RandomButton" type="Button" parent="CenterContainer/VBoxContainer/PlayersContainer/Player2Panel/VBoxContainer" unique_id=2055281074]
+custom_minimum_size = Vector2(140, 35)
+layout_mode = 2
+text = "RANDOM"
+
+[node name="ConfirmButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2016695351]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+text = "CONFIRMAR"
+
+[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1925431587]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+text = "VOLVER"

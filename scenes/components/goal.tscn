@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cb4rt66tgf3u"]
+
+[ext_resource type="Script" uid="uid://rvxgybpp3t0a" path="res://scenes/components/goal.gd" id="1_hd7a5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2fut"]
+size = Vector2(30, 30)
+
+[node name="Goal" type="Area2D" unique_id=155317017]
+script = ExtResource("1_hd7a5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1902088293]
+shape = SubResource("RectangleShape2D_x2fut")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1700653248]
+position = Vector2(-270, 18)
+color = Color(0.5294118, 0, 1, 1)
+polygon = PackedVector2Array(255, -33, 285, -33, 285, -3, 255, -3)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
