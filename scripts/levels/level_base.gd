@@ -3,7 +3,10 @@ extends Node2D
 
 
 @onready var spawn: Marker2D = $Gameplay/PlayerSpawn
-@onready var player2_spawn: Marker2D = $Gameplay/Player2Spawn
+
+@onready var player2_spawn: Marker2D = get_node_or_null(
+	"Gameplay/Player2Spawn"
+) as Marker2D
 
 @onready var exit_area: Area2D = $Gameplay/LevelExit
 @onready var entities: Node2D = $Gameplay/Entities
@@ -18,7 +21,11 @@ var player2: CharacterBody2D
 
 func _ready() -> void:
 	_create_player1()
-	_create_player2()
+
+	if player2_spawn != null:
+		_create_player2()
+	else:
+		print("Este nivel todavía no tiene Player2Spawn")
 
 	exit_area.body_entered.connect(_on_exit_body_entered)
 
@@ -55,7 +62,7 @@ func _create_player2() -> void:
 	player2.set("jump_action", &"p2_jump")
 	player2.set("special_action", &"p2_s_action")
 	player2.set("use_power_action", &"p2_use_power")
-	
+
 	entities.add_child(player2)
 
 	player2.global_position = player2_spawn.global_position
