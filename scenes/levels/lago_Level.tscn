@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://ctkkdbitvxmsc"]
 
+[ext_resource type="Script" uid="uid://ufi7fkxtflpk" path="res://scenes/levels/lago_level.gd" id="1_44vc5"]
 [ext_resource type="PackedScene" uid="uid://dlstrn6m6027j" path="res://scenes/characters/player.tscn" id="1_xyb6k"]
 [ext_resource type="Texture2D" uid="uid://cgnemqe5ycskt" path="res://icon.svg" id="2_r0udl"]
 [ext_resource type="PackedScene" uid="uid://c0wtgnhhq1uow" path="res://scenes/components/static_wall.tscn" id="3_b6ms2"]
@@ -14,70 +15,971 @@
 [ext_resource type="PackedScene" uid="uid://c7be30wumvrmk" path="res://scenes/components/moving_wall.tscn" id="12_larf0"]
 [ext_resource type="PackedScene" uid="uid://xs35ecly2iky" path="res://scenes/components/disappearing_platform.tscn" id="13_bc3j0"]
 [ext_resource type="PackedScene" uid="uid://bijn2j7la7dgc" path="res://scenes/components/disappearing_wall.tscn" id="14_j3d5s"]
+[ext_resource type="PackedScene" uid="uid://wbxlml340p80" path="res://scenes/components/moving_platform_y.tscn" id="15_8xtds"]
+[ext_resource type="PackedScene" uid="uid://dg12ru0sse1gn" path="res://scenes/components/damage_hazard.tscn" id="16_wxqn5"]
+[ext_resource type="PackedScene" uid="uid://b0ejwqmjdqmk2" path="res://scenes/components/moving_hazard.tscn" id="18_ydx4g"]
+[ext_resource type="PackedScene" uid="uid://dtru2qdyfypxf" path="res://scenes/components/moving_hazard_y.tscn" id="19_5jv2m"]
 
 [sub_resource type="TileSet" id="TileSet_moax1"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j3d5s"]
+size = Vector2(9500, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2fut"]
+size = Vector2(400, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iap0w"]
+size = Vector2(300, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xtds"]
+size = Vector2(10, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u6gdr"]
+size = Vector2(200, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1o8nv"]
+size = Vector2(200, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxqn5"]
+size = Vector2(10, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88lk8"]
+size = Vector2(2524, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fx1m3"]
+size = Vector2(298, 10)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_moax1"]
-size = Vector2(9497.5, 39)
+size = Vector2(200, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgbpe"]
+size = Vector2(1200, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44vc5"]
+size = Vector2(10, 359)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_heejs"]
+size = Vector2(800, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cgc8"]
+size = Vector2(300, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6h6jb"]
+size = Vector2(300, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tinbp"]
+size = Vector2(1721, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esxfw"]
+size = Vector2(1721, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydx4g"]
+size = Vector2(10, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1btvg"]
+size = Vector2(700, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7u338"]
+size = Vector2(800, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1a4e"]
+size = Vector2(800, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxfrv"]
+size = Vector2(20, 409)
 
 [node name="MatrizLago" type="Node2D" unique_id=145314678]
+position = Vector2(19, 2)
+script = ExtResource("1_44vc5")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1045499802]
 tile_set = SubResource("TileSet_moax1")
 
-[node name="StaticBody2D_Resource" type="StaticBody2D" parent="." unique_id=897398007]
+[node name="Jugador" type="StaticBody2D" parent="." unique_id=897398007]
 
-[node name="Player" parent="StaticBody2D_Resource" unique_id=1019637794 instance=ExtResource("1_xyb6k")]
+[node name="Player" parent="Jugador" unique_id=1019637794 instance=ExtResource("1_xyb6k")]
 position = Vector2(2, -38)
 collision_layer = 3
 
-[node name="Camera2D2" type="Camera2D" parent="StaticBody2D_Resource/Player" unique_id=87608274]
+[node name="Camera2D2" type="Camera2D" parent="Jugador/Player" unique_id=87608274]
 position = Vector2(-2, 38)
 
-[node name="CollisionShape2D_Piso" type="CollisionShape2D" parent="StaticBody2D_Resource" unique_id=343681732]
-position = Vector2(4749.25, 22)
-shape = SubResource("RectangleShape2D_moax1")
-
-[node name="Icon" type="Sprite2D" parent="StaticBody2D_Resource" unique_id=986980021]
-position = Vector2(155, -100)
-texture = ExtResource("2_r0udl")
-
 [node name="Icon7" type="Sprite2D" parent="." unique_id=78681718]
-position = Vector2(9568, -65)
+position = Vector2(9505, -71)
 texture = ExtResource("2_r0udl")
 
 [node name="StaticPlatform" parent="." unique_id=24034259 instance=ExtResource("3_lxlq5")]
-position = Vector2(-87, -29)
-
-[node name="StaticWall" parent="." unique_id=1375735958 instance=ExtResource("3_b6ms2")]
-position = Vector2(-147, -65)
-
-[node name="One_Way_Wall" parent="." unique_id=2146761323 instance=ExtResource("5_jw5hu")]
-position = Vector2(-94, -183)
-
-[node name="One_Way_Platform" parent="." unique_id=1016971854 instance=ExtResource("6_87p77")]
-position = Vector2(-148, -131)
+position = Vector2(549, -10)
 
 [node name="WaterHazard" parent="." unique_id=1927835633 instance=ExtResource("7_87p77")]
-position = Vector2(100, -14)
+position = Vector2(12, 13)
+
+[node name="CollisionShape2D" parent="WaterHazard" index="0" unique_id=1514746929]
+position = Vector2(4673, 27)
+shape = SubResource("RectangleShape2D_j3d5s")
+
+[node name="Polygon2D" parent="WaterHazard" index="1" unique_id=1146249396]
+position = Vector2(4673, 168)
+scale = Vector2(1, 4.525)
+polygon = PackedVector2Array(-4750, -40, -4750, 40, 4750, 40, 4750, -40)
 
 [node name="Checkpoint" parent="." unique_id=548853422 instance=ExtResource("8_dwos0")]
-position = Vector2(196, -19)
+position = Vector2(1174, -33)
+
+[node name="Piso1Bajo" type="StaticBody2D" parent="." unique_id=1057407396]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Piso1Bajo" unique_id=504522802]
+position = Vector2(135, -8)
+shape = SubResource("RectangleShape2D_x2fut")
+
+[node name="Polygon2D" type="Polygon2D" parent="Piso1Bajo" unique_id=1147448974]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-65, -13, -65, -3, 335, -3, 335, -13)
+
+[node name="StaticPlatform2" parent="." unique_id=1754180981 instance=ExtResource("3_lxlq5")]
+position = Vector2(751, -11)
+
+[node name="Piso2Bajo" type="StaticBody2D" parent="." unique_id=214049670]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Piso2Bajo" unique_id=394488900]
+position = Vector2(1042, -9)
+shape = SubResource("RectangleShape2D_iap0w")
+
+[node name="Polygon2D" type="Polygon2D" parent="Piso2Bajo" unique_id=1770855893]
+position = Vector2(-40, 1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(932, -5, 932, -15, 1232, -15, 1232, -5)
+
+[node name="DisappearingPlatform2" parent="." unique_id=245765207 instance=ExtResource("13_bc3j0")]
+position = Vector2(1330, -47)
+
+[node name="DisappearingPlatform3" parent="." unique_id=427503721 instance=ExtResource("13_bc3j0")]
+position = Vector2(1502, -88)
+
+[node name="DisappearingPlatform4" parent="." unique_id=939996079 instance=ExtResource("13_bc3j0")]
+position = Vector2(1707, -148)
+
+[node name="DisappearingPlatform5" parent="." unique_id=1583051913 instance=ExtResource("13_bc3j0")]
+position = Vector2(1701, -30)
+
+[node name="StaticPlatform3" parent="." unique_id=2127078490 instance=ExtResource("3_lxlq5")]
+position = Vector2(1882, -34)
+
+[node name="DisappearingWall2" parent="." unique_id=1476919690 instance=ExtResource("14_j3d5s")]
+position = Vector2(2011, -116)
+
+[node name="CollisionShape2D" parent="DisappearingWall2" index="0" unique_id=883802000]
+shape = SubResource("RectangleShape2D_8xtds")
+
+[node name="Polygon2D" parent="DisappearingWall2" index="1" unique_id=1377698723]
+position = Vector2(77, -90)
+scale = Vector2(1, 1.875)
+
+[node name="Piso3Bajo" type="StaticBody2D" parent="." unique_id=883038716]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Piso3Bajo" unique_id=952503482]
+position = Vector2(2173, -34)
+shape = SubResource("RectangleShape2D_u6gdr")
+
+[node name="Polygon2D" type="Polygon2D" parent="Piso3Bajo" unique_id=1335598553]
+position = Vector2(-43, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(2116, -39, 2116, -29, 2316, -29, 2316, -39)
+
+[node name="DisappearingWall3" parent="." unique_id=1000810639 instance=ExtResource("14_j3d5s")]
+position = Vector2(2796, -118)
+
+[node name="StaticPlatform4" parent="." unique_id=571988068 instance=ExtResource("3_lxlq5")]
+position = Vector2(2929, -38)
+
+[node name="Piso4Bajo" type="StaticBody2D" parent="." unique_id=559747684]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Piso4Bajo" unique_id=755687904]
+position = Vector2(2630, -32)
+shape = SubResource("RectangleShape2D_1o8nv")
+
+[node name="Polygon2D" type="Polygon2D" parent="Piso4Bajo" unique_id=1622286195]
+position = Vector2(37, 6)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(2493, -43, 2493, -33, 2693, -33, 2693, -43)
+
+[node name="DisappearingWall4" parent="." unique_id=1874483309 instance=ExtResource("14_j3d5s")]
+position = Vector2(2998, -214)
+
+[node name="StaticPlatform5" parent="." unique_id=919100632 instance=ExtResource("3_lxlq5")]
+position = Vector2(3236, -262)
+
+[node name="DisappearingPlatform6" parent="." unique_id=1363112493 instance=ExtResource("13_bc3j0")]
+position = Vector2(3365, -300)
+
+[node name="DisappearingPlatform7" parent="." unique_id=1588494987 instance=ExtResource("13_bc3j0")]
+position = Vector2(3298, -129)
+
+[node name="Trampoline2" parent="." unique_id=1729581267 instance=ExtResource("10_kd1n6")]
+position = Vector2(3593, -427)
+
+[node name="One_Way_Wall2" parent="." unique_id=64475360 instance=ExtResource("5_jw5hu")]
+position = Vector2(3661, -225)
+
+[node name="CollisionShape2D" parent="One_Way_Wall2" index="0" unique_id=1626770353]
+shape = SubResource("RectangleShape2D_wxqn5")
+
+[node name="Polygon2D" parent="One_Way_Wall2" index="1" unique_id=798567967]
+position = Vector2(54, 322.50003)
+scale = Vector2(1, 3.7500002)
+
+[node name="StaticPlatform6" parent="." unique_id=418017869 instance=ExtResource("3_lxlq5")]
+position = Vector2(3124, -244)
+
+[node name="DisappearingPlatform8" parent="." unique_id=179488691 instance=ExtResource("13_bc3j0")]
+position = Vector2(3561, -246)
+
+[node name="StaticWall2" parent="." unique_id=713705331 instance=ExtResource("3_b6ms2")]
+position = Vector2(3661, -415)
+
+[node name="TechoLab" type="StaticBody2D" parent="." unique_id=1032046170]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TechoLab" unique_id=1004015432]
+position = Vector2(4928, -445)
+shape = SubResource("RectangleShape2D_88lk8")
+
+[node name="Polygon2D" type="Polygon2D" parent="TechoLab" unique_id=1587491188]
+position = Vector2(-5586.9844, 0)
+scale = Vector2(2.5240002, 1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(3666, -455, 3666, -435, 4666, -435, 4666, -455)
+
+[node name="PisoLab1" type="StaticBody2D" parent="." unique_id=1155071150]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PisoLab1" unique_id=1888066449]
+position = Vector2(3815, -80)
+shape = SubResource("RectangleShape2D_fx1m3")
+
+[node name="Polygon2D" type="Polygon2D" parent="PisoLab1" unique_id=1954349195]
+position = Vector2(2573.5308, 0)
+scale = Vector2(0.29800034, 1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(3666, -85, 3666, -75, 4666, -75, 4666, -85)
+
+[node name="Checkpoint2" parent="." unique_id=277150884 instance=ExtResource("8_dwos0")]
+position = Vector2(1884, -68)
+
+[node name="MovingPlatform3" parent="." unique_id=926419656 instance=ExtResource("11_b1b5a")]
+position = Vector2(2304, -71)
+
+[node name="StaticWall3" parent="." unique_id=1807007030 instance=ExtResource("3_b6ms2")]
+position = Vector2(3072, -104)
+
+[node name="StaticPlatform7" parent="." unique_id=1942394162 instance=ExtResource("3_lxlq5")]
+position = Vector2(3501, -107)
+
+[node name="StaticPlatform8" parent="." unique_id=966340444 instance=ExtResource("3_lxlq5")]
+position = Vector2(3727, -260)
+
+[node name="DisappearingPlatform9" parent="." unique_id=88430670 instance=ExtResource("13_bc3j0")]
+position = Vector2(3824, -357)
+
+[node name="DisappearingWall5" parent="." unique_id=1101152870 instance=ExtResource("14_j3d5s")]
+position = Vector2(3859, -312)
+
+[node name="DisappearingPlatform10" parent="." unique_id=621458218 instance=ExtResource("13_bc3j0")]
+position = Vector2(3977, -182)
+
+[node name="DisappearingWall6" parent="." unique_id=760406845 instance=ExtResource("14_j3d5s")]
+position = Vector2(4012, -137)
+
+[node name="MovingPlatformY" parent="." unique_id=1457645284 instance=ExtResource("15_8xtds")]
+position = Vector2(4079, -218)
+
+[node name="MovingPlatformY2" parent="." unique_id=1531210108 instance=ExtResource("15_8xtds")]
+position = Vector2(3487, -443)
+
+[node name="One_Way_Platform2" parent="." unique_id=116888635 instance=ExtResource("6_87p77")]
+position = Vector2(4217, -240)
+
+[node name="StaticPlatform9" parent="." unique_id=1480729173 instance=ExtResource("3_lxlq5")]
+position = Vector2(3925, -257)
+
+[node name="StaticPlatform10" parent="." unique_id=1901664573 instance=ExtResource("3_lxlq5")]
+position = Vector2(4262, -77)
+
+[node name="DisappearingWall7" parent="." unique_id=1673473011 instance=ExtResource("14_j3d5s")]
+position = Vector2(4318, -326)
+rotation = -0.36826447
+
+[node name="CollisionShape2D" parent="DisappearingWall7" index="0" unique_id=883802000]
+rotation = -0.36826447
+
+[node name="Polygon2D" parent="DisappearingWall7" index="1" unique_id=1377698723]
+position = Vector2(54.64352, -72.16705)
+rotation = -0.36826447
+
+[node name="DisappearingWall8" parent="." unique_id=1436493049 instance=ExtResource("14_j3d5s")]
+position = Vector2(4493, -345.99988)
+rotation = 0.38397244
+
+[node name="CollisionShape2D" parent="DisappearingWall8" index="0" unique_id=883802000]
+position = Vector2(5.983011, 12.657157)
+rotation = 0.38397244
+
+[node name="Polygon2D" parent="DisappearingWall8" index="1" unique_id=1377698723]
+position = Vector2(95.808815, -3.1175108)
+rotation = 0.38397244
+
+[node name="StaticPlatform11" parent="." unique_id=818672043 instance=ExtResource("3_lxlq5")]
+position = Vector2(4407, -263)
+
+[node name="StaticPlatform12" parent="." unique_id=548882376 instance=ExtResource("3_lxlq5")]
+position = Vector2(4585, -290)
+
+[node name="DisappearingWall9" parent="." unique_id=520555365 instance=ExtResource("14_j3d5s")]
+position = Vector2(4670, -348.00024)
+rotation = -0.78016216
+
+[node name="StaticPlatform13" parent="." unique_id=127758396 instance=ExtResource("3_lxlq5")]
+position = Vector2(4781, -316)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1711443952]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1391015507]
+position = Vector2(4542, -74)
+shape = SubResource("RectangleShape2D_moax1")
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=1484125806]
+position = Vector2(-8, 3)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(4450, -72, 4450, -82, 4650, -82, 4650, -72)
+
+[node name="MovingPlatformY3" parent="." unique_id=1623095118 instance=ExtResource("15_8xtds")]
+position = Vector2(4811, -232)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=159270285]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=708158210]
+position = Vector2(5591, -71)
+shape = SubResource("RectangleShape2D_mgbpe")
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D2" unique_id=189660831]
+position = Vector2(-2498.503, 7)
+scale = Vector2(1.5000006, 1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(4993, -73, 4993, -83, 5793, -83, 5793, -73)
+
+[node name="DisappearingWall10" parent="." unique_id=958497506 instance=ExtResource("14_j3d5s")]
+position = Vector2(5294, -118)
+
+[node name="DisappearingWall11" parent="." unique_id=364376182 instance=ExtResource("14_j3d5s")]
+position = Vector2(5294, -204)
+
+[node name="DisappearingPlatform11" parent="." unique_id=1495757185 instance=ExtResource("13_bc3j0")]
+position = Vector2(5339, -251)
+
+[node name="DisappearingPlatform12" parent="." unique_id=533632784 instance=ExtResource("13_bc3j0")]
+position = Vector2(5419, -251)
+
+[node name="DisappearingPlatform13" parent="." unique_id=1811139537 instance=ExtResource("13_bc3j0")]
+position = Vector2(5499, -251)
+
+[node name="DisappearingPlatform14" parent="." unique_id=1061106715 instance=ExtResource("13_bc3j0")]
+position = Vector2(5579, -251)
+
+[node name="DisappearingWall12" parent="." unique_id=1818515349 instance=ExtResource("14_j3d5s")]
+position = Vector2(5624, -204)
+
+[node name="DisappearingWall13" parent="." unique_id=889731386 instance=ExtResource("14_j3d5s")]
+position = Vector2(5625, -118)
+
+[node name="DisappearingPlatform15" parent="." unique_id=671362111 instance=ExtResource("13_bc3j0")]
+position = Vector2(5339, -164)
+
+[node name="DisappearingPlatform16" parent="." unique_id=2125591844 instance=ExtResource("13_bc3j0")]
+position = Vector2(5419, -164)
+
+[node name="DisappearingWall14" parent="." unique_id=1074070076 instance=ExtResource("14_j3d5s")]
+position = Vector2(5379, -118)
+
+[node name="DisappearingPlatform17" parent="." unique_id=2080258112 instance=ExtResource("13_bc3j0")]
+position = Vector2(5499, -164)
+
+[node name="DisappearingPlatform18" parent="." unique_id=1782600803 instance=ExtResource("13_bc3j0")]
+position = Vector2(5580, -164)
+
+[node name="DisappearingWall15" parent="." unique_id=369494152 instance=ExtResource("14_j3d5s")]
+position = Vector2(5458, -118)
+
+[node name="DisappearingWall16" parent="." unique_id=1062953283 instance=ExtResource("14_j3d5s")]
+position = Vector2(5540, -118)
+
+[node name="DisappearingWall17" parent="." unique_id=419719685 instance=ExtResource("14_j3d5s")]
+position = Vector2(5379, -207)
+
+[node name="DisappearingWall18" parent="." unique_id=18088319 instance=ExtResource("14_j3d5s")]
+position = Vector2(5458, -207)
+
+[node name="DisappearingWall19" parent="." unique_id=1231541811 instance=ExtResource("14_j3d5s")]
+position = Vector2(5539, -207)
+
+[node name="StaticPlatform14" parent="." unique_id=1903860722 instance=ExtResource("3_lxlq5")]
+position = Vector2(5775, -127)
+
+[node name="DisappearingPlatform19" parent="." unique_id=107981930 instance=ExtResource("13_bc3j0")]
+position = Vector2(5983, -173)
+
+[node name="One_Way_Wall3" parent="." unique_id=1993127443 instance=ExtResource("5_jw5hu")]
+position = Vector2(6185, -395)
+
+[node name="CollisionShape2D" parent="One_Way_Wall3" index="0" unique_id=1626770353]
+position = Vector2(0, 139.5)
+shape = SubResource("RectangleShape2D_44vc5")
+
+[node name="Polygon2D" parent="One_Way_Wall3" index="1" unique_id=798567967]
+position = Vector2(54, 525.425)
+scale = Vector2(1, 4.4874997)
+
+[node name="Piso5" type="StaticBody2D" parent="." unique_id=1700960183]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Piso5" unique_id=325868135]
+position = Vector2(6754, -67)
+shape = SubResource("RectangleShape2D_heejs")
+
+[node name="Polygon2D" type="Polygon2D" parent="Piso5" unique_id=33727734]
+position = Vector2(-17, 1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(6371, -73, 6371, -63, 7171, -63, 7171, -73)
+
+[node name="One_Way_Platform3" parent="." unique_id=944118503 instance=ExtResource("6_87p77")]
+position = Vector2(96, -89)
+
+[node name="One_Way_Platform4" parent="." unique_id=151697132 instance=ExtResource("6_87p77")]
+position = Vector2(209, -127)
+
+[node name="One_Way_Platform5" parent="." unique_id=1498865896 instance=ExtResource("6_87p77")]
+position = Vector2(322, -148)
+
+[node name="One_Way_Platform6" parent="." unique_id=721260690 instance=ExtResource("6_87p77")]
+position = Vector2(397, -227)
+
+[node name="MovingPlatformY4" parent="." unique_id=328313940 instance=ExtResource("15_8xtds")]
+position = Vector2(422, -171)
+
+[node name="One_Way_Platform7" parent="." unique_id=398743006 instance=ExtResource("6_87p77")]
+position = Vector2(476, -227)
+
+[node name="StaticPlatform16" parent="." unique_id=961690912 instance=ExtResource("3_lxlq5")]
+position = Vector2(556, -227)
+
+[node name="MovingPlatformY5" parent="." unique_id=2037203504 instance=ExtResource("15_8xtds")]
+position = Vector2(732, -303)
+
+[node name="StaticPlatform17" parent="." unique_id=1281313650 instance=ExtResource("3_lxlq5")]
+position = Vector2(920, -222)
+
+[node name="PlataformaParte1" type="StaticBody2D" parent="." unique_id=549508091]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaParte1" unique_id=1278518372]
+position = Vector2(1204, -290)
+shape = SubResource("RectangleShape2D_5cgc8")
+
+[node name="Polygon2D" type="Polygon2D" parent="PlataformaParte1" unique_id=319354597]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(1054, -295, 1054, -285, 1354, -285, 1354, -295)
+
+[node name="DisappearingWall20" parent="." unique_id=934190988 instance=ExtResource("14_j3d5s")]
+position = Vector2(1205, -336)
+
+[node name="DisappearingWall21" parent="." unique_id=1155712708 instance=ExtResource("14_j3d5s")]
+position = Vector2(1205, -416)
+
+[node name="MovingPlatformY6" parent="." unique_id=1311166940 instance=ExtResource("15_8xtds")]
+position = Vector2(1467, -471)
+
+[node name="MovingWall2" parent="." unique_id=1589029259 instance=ExtResource("12_larf0")]
+position = Vector2(1599, -231)
+
+[node name="MovingWall3" parent="." unique_id=1582769917 instance=ExtResource("12_larf0")]
+position = Vector2(1533, -570)
+
+[node name="StaticPlatform18" parent="." unique_id=1443745516 instance=ExtResource("3_lxlq5")]
+position = Vector2(1613, -506)
+
+[node name="StaticPlatform19" parent="." unique_id=2051021492 instance=ExtResource("3_lxlq5")]
+position = Vector2(1789, -508)
+
+[node name="DisappearingWall22" parent="." unique_id=420487817 instance=ExtResource("14_j3d5s")]
+position = Vector2(1901, -567)
+
+[node name="DisappearingWall23" parent="." unique_id=110539027 instance=ExtResource("14_j3d5s")]
+position = Vector2(1901, -645)
+
+[node name="StaticPlatform20" parent="." unique_id=1407822232 instance=ExtResource("3_lxlq5")]
+position = Vector2(2006, -507)
+
+[node name="StaticPlatform21" parent="." unique_id=599527657 instance=ExtResource("3_lxlq5")]
+position = Vector2(2137, -559)
+
+[node name="DisappearingWall24" parent="." unique_id=999851589 instance=ExtResource("14_j3d5s")]
+position = Vector2(2278, -650)
+
+[node name="StaticWall4" parent="." unique_id=1528299457 instance=ExtResource("3_b6ms2")]
+position = Vector2(2186, -733)
+
+[node name="DisappearingWall25" parent="." unique_id=1032364318 instance=ExtResource("14_j3d5s")]
+position = Vector2(2283, -833)
+
+[node name="StaticPlatform22" parent="." unique_id=110653448 instance=ExtResource("3_lxlq5")]
+position = Vector2(2356, -884)
+
+[node name="StaticPlatform23" parent="." unique_id=1659594321 instance=ExtResource("3_lxlq5")]
+position = Vector2(2579, -888)
+
+[node name="DisappearingPlatform20" parent="." unique_id=141462320 instance=ExtResource("13_bc3j0")]
+position = Vector2(2468, -838)
+
+[node name="Trampoline3" parent="." unique_id=850469655 instance=ExtResource("10_kd1n6")]
+position = Vector2(2686, -989)
+
+[node name="Trampoline4" parent="." unique_id=536587790 instance=ExtResource("10_kd1n6")]
+position = Vector2(2675, -820.0001)
+rotation = 0.7853982
+
+[node name="PlataformaParte2" type="StaticBody2D" parent="." unique_id=1013208070]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaParte2" unique_id=568699700]
+position = Vector2(2911, -797)
+shape = SubResource("RectangleShape2D_6h6jb")
+
+[node name="Polygon2D" type="Polygon2D" parent="PlataformaParte2" unique_id=131764513]
+position = Vector2(-24, -61)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(2785, -731, 2785, -741, 3085, -741, 3085, -731)
+
+[node name="DisappearingPlatform21" parent="." unique_id=548581400 instance=ExtResource("13_bc3j0")]
+position = Vector2(2274, -903.0001)
+rotation = 0.7853982
+
+[node name="DisappearingWall26" parent="." unique_id=1509048854 instance=ExtResource("14_j3d5s")]
+position = Vector2(3143, -868)
+
+[node name="StaticPlatform24" parent="." unique_id=802102405 instance=ExtResource("3_lxlq5")]
+position = Vector2(3278, -794)
+
+[node name="DisappearingWall27" parent="." unique_id=917555605 instance=ExtResource("14_j3d5s")]
+position = Vector2(3143, -947)
+
+[node name="DisappearingPlatform22" parent="." unique_id=290072859 instance=ExtResource("13_bc3j0")]
+position = Vector2(3438, -731)
+
+[node name="DisappearingPlatform23" parent="." unique_id=1739717364 instance=ExtResource("13_bc3j0")]
+position = Vector2(3601, -645)
+
+[node name="DisappearingPlatform24" parent="." unique_id=1424736969 instance=ExtResource("13_bc3j0")]
+position = Vector2(3615, -788)
+
+[node name="StaticPlatform25" parent="." unique_id=1289081840 instance=ExtResource("3_lxlq5")]
+position = Vector2(3815, -789)
+
+[node name="StaticPlatform26" parent="." unique_id=2099694079 instance=ExtResource("3_lxlq5")]
+position = Vector2(3786, -566)
+
+[node name="DisappearingWall28" parent="." unique_id=1403311637 instance=ExtResource("14_j3d5s")]
+position = Vector2(4418, -581)
+
+[node name="DisappearingWall29" parent="." unique_id=82165991 instance=ExtResource("14_j3d5s")]
+position = Vector2(4418, -661)
+
+[node name="One_Way_Wall4" parent="." unique_id=1189654660 instance=ExtResource("5_jw5hu")]
+position = Vector2(4474, -583)
+
+[node name="One_Way_Wall5" parent="." unique_id=91078268 instance=ExtResource("5_jw5hu")]
+position = Vector2(4474, -663)
+
+[node name="PlataformaParte3" type="StaticBody2D" parent="." unique_id=42620702]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaParte3" unique_id=1577340274]
+position = Vector2(5329.5, -708)
+shape = SubResource("RectangleShape2D_tinbp")
+
+[node name="Polygon2D" type="Polygon2D" parent="PlataformaParte3" unique_id=759199931]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(6190, -703, 6190, -713, 4469, -713, 4469, -703)
+
+[node name="DisappearingPlatform25" parent="." unique_id=291651298 instance=ExtResource("13_bc3j0")]
+position = Vector2(3982, -564)
+
+[node name="StaticWall5" parent="." unique_id=1182272490 instance=ExtResource("3_b6ms2")]
+position = Vector2(4157, -618)
+
+[node name="DisappearingPlatform26" parent="." unique_id=1285437011 instance=ExtResource("13_bc3j0")]
+position = Vector2(4296, -554)
+
+[node name="PisoDelTecho" type="StaticBody2D" parent="." unique_id=48563578]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PisoDelTecho" unique_id=74798070]
+position = Vector2(5329.5, -538)
+shape = SubResource("RectangleShape2D_esxfw")
+
+[node name="Polygon2D" type="Polygon2D" parent="PisoDelTecho" unique_id=306521571]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(4469, -533, 4469, -543, 6190, -543, 6190, -533)
+
+[node name="One_Way_Wall6" parent="." unique_id=1486733611 instance=ExtResource("5_jw5hu")]
+position = Vector2(6184, -583)
+
+[node name="CollisionShape2D" parent="One_Way_Wall6" index="0" unique_id=1626770353]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_ydx4g")
+
+[node name="Polygon2D" parent="One_Way_Wall6" index="1" unique_id=798567967]
+position = Vector2(54, 132.00002)
+scale = Vector2(1, 2)
+
+[node name="DisappearingWall30" parent="." unique_id=2039013906 instance=ExtResource("14_j3d5s")]
+position = Vector2(3940, -846)
+
+[node name="DisappearingPlatform27" parent="." unique_id=774819728 instance=ExtResource("13_bc3j0")]
+position = Vector2(3905, -892)
+
+[node name="StaticPlatform27" parent="." unique_id=31073888 instance=ExtResource("3_lxlq5")]
+position = Vector2(4045, -786)
+
+[node name="MovingPlatform2" parent="." unique_id=1421066196 instance=ExtResource("11_b1b5a")]
+position = Vector2(4227, -829)
+
+[node name="Trampoline5" parent="." unique_id=43358607 instance=ExtResource("10_kd1n6")]
+position = Vector2(4524, -988)
+
+[node name="One_Way_Platform8" parent="." unique_id=1196963770 instance=ExtResource("6_87p77")]
+position = Vector2(4372, -919)
+
+[node name="StaticPlatform28" parent="." unique_id=930802632 instance=ExtResource("3_lxlq5")]
+position = Vector2(4683, -1139)
+
+[node name="StaticPlatform29" parent="." unique_id=679923973 instance=ExtResource("3_lxlq5")]
+position = Vector2(4763, -1139)
+
+[node name="PlataformaParte4" type="StaticBody2D" parent="." unique_id=1297122928]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaParte4" unique_id=1632494783]
+position = Vector2(4892, -801)
+shape = SubResource("RectangleShape2D_1btvg")
+
+[node name="Polygon2D" type="Polygon2D" parent="PlataformaParte4" unique_id=712071598]
+position = Vector2(-757.0025, 0)
+scale = Vector2(1.1666671, 1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(4542, -796, 4542, -806, 5142, -806, 5142, -796)
+
+[node name="DisappearingWall31" parent="." unique_id=926352467 instance=ExtResource("14_j3d5s")]
+position = Vector2(4507, -857)
+
+[node name="DisappearingWall32" parent="." unique_id=1913972651 instance=ExtResource("14_j3d5s")]
+position = Vector2(2380, -121)
+
+[node name="DisappearingPlatform28" parent="." unique_id=1464242849 instance=ExtResource("13_bc3j0")]
+position = Vector2(4798, -869)
+
+[node name="DisappearingPlatform29" parent="." unique_id=1758333656 instance=ExtResource("13_bc3j0")]
+position = Vector2(4972, -868)
+
+[node name="DisappearingPlatform30" parent="." unique_id=1445297599 instance=ExtResource("13_bc3j0")]
+position = Vector2(5423, -802)
+
+[node name="DisappearingPlatform31" parent="." unique_id=1244766415 instance=ExtResource("13_bc3j0")]
+position = Vector2(5643, -805)
+
+[node name="DisappearingWall33" parent="." unique_id=505510180 instance=ExtResource("14_j3d5s")]
+position = Vector2(5539, -885)
+
+[node name="DisappearingWall34" parent="." unique_id=1417151615 instance=ExtResource("14_j3d5s")]
+position = Vector2(5321, -879)
+
+[node name="DisappearingPlatform32" parent="." unique_id=1864700724 instance=ExtResource("13_bc3j0")]
+position = Vector2(5856, -818)
+
+[node name="DisappearingPlatform33" parent="." unique_id=1921483718 instance=ExtResource("13_bc3j0")]
+position = Vector2(6065, -860)
+
+[node name="PlataformaParte6" type="StaticBody2D" parent="." unique_id=726749382]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaParte6" unique_id=2005149138]
+position = Vector2(6755, -538)
+shape = SubResource("RectangleShape2D_7u338")
+
+[node name="Polygon2D" type="Polygon2D" parent="PlataformaParte6" unique_id=1690506119]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(6355, -533, 6355, -543, 7155, -543, 7155, -533)
+
+[node name="MovingPlatformY7" parent="." unique_id=998611456 instance=ExtResource("15_8xtds")]
+position = Vector2(6240, -920)
+
+[node name="MovingPlatformY8" parent="." unique_id=59819499 instance=ExtResource("15_8xtds")]
+position = Vector2(6394, -845)
+
+[node name="DisappearingPlatform35" parent="." unique_id=1243041339 instance=ExtResource("13_bc3j0")]
+position = Vector2(7278, -471)
+
+[node name="DisappearingPlatform37" parent="." unique_id=776284322 instance=ExtResource("13_bc3j0")]
+position = Vector2(7313, -119)
+
+[node name="DisappearingWall35" parent="." unique_id=1848919188 instance=ExtResource("14_j3d5s")]
+position = Vector2(7425, -169)
+
+[node name="DisappearingWall36" parent="." unique_id=720366974 instance=ExtResource("14_j3d5s")]
+position = Vector2(7425, -249)
+
+[node name="DisappearingWall37" parent="." unique_id=655953245 instance=ExtResource("14_j3d5s")]
+position = Vector2(7384, -475)
+
+[node name="DisappearingWall38" parent="." unique_id=1736648734 instance=ExtResource("14_j3d5s")]
+position = Vector2(7384, -556)
+
+[node name="DisappearingPlatform39" parent="." unique_id=2045149364 instance=ExtResource("13_bc3j0")]
+position = Vector2(7697, -212)
+
+[node name="DisappearingPlatform40" parent="." unique_id=1748343767 instance=ExtResource("13_bc3j0")]
+position = Vector2(7692, -359)
+
+[node name="StaticPlatform30" parent="." unique_id=2138829366 instance=ExtResource("3_lxlq5")]
+position = Vector2(7494, -413)
+
+[node name="StaticPlatform31" parent="." unique_id=925984678 instance=ExtResource("3_lxlq5")]
+position = Vector2(7515, -170)
+
+[node name="MovingWall4" parent="." unique_id=1279282529 instance=ExtResource("12_larf0")]
+position = Vector2(7600, -529)
+
+[node name="MovingWall5" parent="." unique_id=1132483 instance=ExtResource("12_larf0")]
+position = Vector2(7597, -333)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=218346532]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1685547979]
+position = Vector2(8214, -265)
+shape = SubResource("RectangleShape2D_v1a4e")
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D3" unique_id=1411520129]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(7814, -260, 7814, -270, 8614, -270, 8614, -260)
+
+[node name="Checkpoint3" parent="." unique_id=1584386021 instance=ExtResource("8_dwos0")]
+position = Vector2(2929, -59)
+
+[node name="Checkpoint4" parent="." unique_id=111666257 instance=ExtResource("8_dwos0")]
+position = Vector2(1114, -311)
+
+[node name="Checkpoint5" parent="." unique_id=1335294715 instance=ExtResource("8_dwos0")]
+position = Vector2(2138, -580)
+
+[node name="Checkpoint6" parent="." unique_id=272203649 instance=ExtResource("8_dwos0")]
+position = Vector2(3875, -101)
+
+[node name="Checkpoint7" parent="." unique_id=662709412 instance=ExtResource("8_dwos0")]
+position = Vector2(5043, -92)
+
+[node name="Checkpoint8" parent="." unique_id=1213875723 instance=ExtResource("8_dwos0")]
+position = Vector2(3281, -815)
+
+[node name="Checkpoint9" parent="." unique_id=638521007 instance=ExtResource("8_dwos0")]
+position = Vector2(4591, -558)
+
+[node name="Checkpoint10" parent="." unique_id=1200688408 instance=ExtResource("8_dwos0")]
+position = Vector2(5225, -821)
+
+[node name="Checkpoint11" parent="." unique_id=715557859 instance=ExtResource("8_dwos0")]
+position = Vector2(6697, -558)
+
+[node name="Checkpoint12" parent="." unique_id=1217847557 instance=ExtResource("8_dwos0")]
+position = Vector2(6477, -87)
+
+[node name="DamageHazard" parent="." unique_id=928643238 instance=ExtResource("16_wxqn5")]
+position = Vector2(246, -23)
+
+[node name="DamageHazard2" parent="." unique_id=1447590519 instance=ExtResource("16_wxqn5")]
+position = Vector2(1001, -24)
+
+[node name="DamageHazard3" parent="." unique_id=30341231 instance=ExtResource("16_wxqn5")]
+position = Vector2(1272, -305)
+
+[node name="DamageHazard4" parent="." unique_id=614739934 instance=ExtResource("16_wxqn5")]
+position = Vector2(2923, -812)
+
+[node name="DamageHazard6" parent="." unique_id=1426281694 instance=ExtResource("16_wxqn5")]
+position = Vector2(3779, -96)
+
+[node name="DamageHazard8" parent="." unique_id=1775645843 instance=ExtResource("16_wxqn5")]
+position = Vector2(4688, -816)
+
+[node name="DamageHazard9" parent="." unique_id=1074018814 instance=ExtResource("16_wxqn5")]
+position = Vector2(4808, -816)
+
+[node name="DamageHazard10" parent="." unique_id=2144991874 instance=ExtResource("16_wxqn5")]
+position = Vector2(4928, -816)
+
+[node name="DamageHazard11" parent="." unique_id=1490110507 instance=ExtResource("16_wxqn5")]
+position = Vector2(5048, -816)
+
+[node name="DamageHazard12" parent="." unique_id=1667606225 instance=ExtResource("16_wxqn5")]
+position = Vector2(4724, -1155)
+
+[node name="DamageHazard13" parent="." unique_id=1585794753 instance=ExtResource("16_wxqn5")]
+position = Vector2(4530, -723)
+
+[node name="DamageHazard14" parent="." unique_id=1112456661 instance=ExtResource("16_wxqn5")]
+position = Vector2(4650, -723)
+
+[node name="DamageHazard15" parent="." unique_id=1901032543 instance=ExtResource("16_wxqn5")]
+position = Vector2(4770, -723)
+
+[node name="DamageHazard16" parent="." unique_id=1628064860 instance=ExtResource("16_wxqn5")]
+position = Vector2(4890, -723)
+
+[node name="DamageHazard17" parent="." unique_id=1007700181 instance=ExtResource("16_wxqn5")]
+position = Vector2(5010, -723)
+
+[node name="DamageHazard18" parent="." unique_id=1377703425 instance=ExtResource("16_wxqn5")]
+position = Vector2(5130, -723)
+
+[node name="DamageHazard19" parent="." unique_id=812890582 instance=ExtResource("16_wxqn5")]
+position = Vector2(5250, -723)
+
+[node name="DamageHazard20" parent="." unique_id=728587942 instance=ExtResource("16_wxqn5")]
+position = Vector2(5370, -723)
+
+[node name="DamageHazard21" parent="." unique_id=537490890 instance=ExtResource("16_wxqn5")]
+position = Vector2(5490, -723)
+
+[node name="DamageHazard22" parent="." unique_id=469973652 instance=ExtResource("16_wxqn5")]
+position = Vector2(5610, -723)
+
+[node name="DamageHazard23" parent="." unique_id=874284572 instance=ExtResource("16_wxqn5")]
+position = Vector2(5730, -723)
+
+[node name="DamageHazard24" parent="." unique_id=2036569048 instance=ExtResource("16_wxqn5")]
+position = Vector2(5850, -723)
+
+[node name="DamageHazard25" parent="." unique_id=1065564427 instance=ExtResource("16_wxqn5")]
+position = Vector2(5970, -723)
+
+[node name="DamageHazard26" parent="." unique_id=1310797925 instance=ExtResource("16_wxqn5")]
+position = Vector2(6090, -723)
+
+[node name="DamageHazard27" parent="." unique_id=403913116 instance=ExtResource("16_wxqn5")]
+position = Vector2(5176, -86)
+
+[node name="DamageHazard28" parent="." unique_id=189757662 instance=ExtResource("16_wxqn5")]
+position = Vector2(5834, -86)
+
+[node name="DamageHazard29" parent="." unique_id=1090109686 instance=ExtResource("16_wxqn5")]
+position = Vector2(5954, -86)
+
+[node name="DamageHazard30" parent="." unique_id=1496270492 instance=ExtResource("16_wxqn5")]
+position = Vector2(6074, -86)
 
 [node name="Goal" parent="." unique_id=155317017 instance=ExtResource("9_0rwyd")]
-position = Vector2(329, -29)
+position = Vector2(8551, -285)
 
-[node name="Trampoline" parent="." unique_id=363516580 instance=ExtResource("10_kd1n6")]
-position = Vector2(-34, -208)
+[node name="DamageHazard31" parent="." unique_id=1607790614 instance=ExtResource("16_wxqn5")]
+position = Vector2(3716, -465)
 
-[node name="MovingPlatform" parent="." unique_id=50198809 instance=ExtResource("11_b1b5a")]
-position = Vector2(0, -133)
+[node name="DamageHazard32" parent="." unique_id=938968372 instance=ExtResource("16_wxqn5")]
+position = Vector2(3836, -465)
 
-[node name="MovingWall" parent="." unique_id=1440188068 instance=ExtResource("12_larf0")]
-position = Vector2(81, -284)
+[node name="DamageHazard33" parent="." unique_id=1788616238 instance=ExtResource("16_wxqn5")]
+position = Vector2(3956, -465)
 
-[node name="DisappearingPlatform" parent="." unique_id=1835266962 instance=ExtResource("13_bc3j0")]
-position = Vector2(188, -194)
+[node name="DamageHazard34" parent="." unique_id=1667739883 instance=ExtResource("16_wxqn5")]
+position = Vector2(4076, -465)
 
-[node name="DisappearingWall" parent="." unique_id=1366774306 instance=ExtResource("14_j3d5s")]
-position = Vector2(244, -271)
+[node name="DamageHazard35" parent="." unique_id=1331834422 instance=ExtResource("16_wxqn5")]
+position = Vector2(4196, -465)
+
+[node name="DamageHazard36" parent="." unique_id=2100724237 instance=ExtResource("16_wxqn5")]
+position = Vector2(4316, -465)
+
+[node name="DamageHazard37" parent="." unique_id=1961269285 instance=ExtResource("16_wxqn5")]
+position = Vector2(4436, -465)
+
+[node name="DamageHazard38" parent="." unique_id=1927185150 instance=ExtResource("16_wxqn5")]
+position = Vector2(6130, -465)
+
+[node name="MovingHazard" parent="." unique_id=1425887476 instance=ExtResource("18_ydx4g")]
+position = Vector2(392, -270)
+
+[node name="MovingHazardY" parent="." unique_id=401636075 instance=ExtResource("19_5jv2m")]
+position = Vector2(651, -132)
+
+[node name="MovingHazardY2" parent="." unique_id=1395204083 instance=ExtResource("19_5jv2m")]
+position = Vector2(832, -133)
+
+[node name="MovingHazardY3" parent="." unique_id=1239910536 instance=ExtResource("19_5jv2m")]
+position = Vector2(1707, -636)
+
+[node name="MovingHazard2" parent="." unique_id=294056602 instance=ExtResource("18_ydx4g")]
+position = Vector2(2474, -933)
+
+[node name="MovingHazard3" parent="." unique_id=1642311201 instance=ExtResource("18_ydx4g")]
+position = Vector2(3391, -187)
+
+[node name="MovingHazard4" parent="." unique_id=922491524 instance=ExtResource("18_ydx4g")]
+position = Vector2(3891, -613)
+
+[node name="MovingHazardY5" parent="." unique_id=453417784 instance=ExtResource("19_5jv2m")]
+position = Vector2(3523, -831)
+
+[node name="MovingHazard5" parent="." unique_id=799030245 instance=ExtResource("18_ydx4g")]
+position = Vector2(4777, -571)
+
+[node name="MovingHazardY6" parent="." unique_id=586218792 instance=ExtResource("19_5jv2m")]
+position = Vector2(5763, -935)
+
+[node name="MovingHazardY7" parent="." unique_id=634364963 instance=ExtResource("19_5jv2m")]
+position = Vector2(5958, -1001)
+
+[node name="MovingHazard6" parent="." unique_id=222258095 instance=ExtResource("18_ydx4g")]
+position = Vector2(5294, -209)
+
+[node name="MovingHazardY8" parent="." unique_id=912922928 instance=ExtResource("19_5jv2m")]
+position = Vector2(5458, -295)
+
+[node name="MovingHazardY9" parent="." unique_id=1718736220 instance=ExtResource("19_5jv2m")]
+position = Vector2(4156, -214)
+
+[node name="MovingHazardY10" parent="." unique_id=1381672753 instance=ExtResource("19_5jv2m")]
+position = Vector2(4360, -212)
+
+[node name="MovingHazard7" parent="." unique_id=1977717575 instance=ExtResource("18_ydx4g")]
+position = Vector2(2132, -736)
+
+[node name="MovingHazard8" parent="." unique_id=1461519583 instance=ExtResource("18_ydx4g")]
+position = Vector2(4291, -746)
+
+[node name="MovingHazard9" parent="." unique_id=1590366239 instance=ExtResource("18_ydx4g")]
+position = Vector2(4223, -747)
+
+[node name="MovingHazardY4" parent="." unique_id=1890023997 instance=ExtResource("19_5jv2m")]
+position = Vector2(4444, -690)
+
+[node name="MovingHazard10" parent="." unique_id=387954885 instance=ExtResource("18_ydx4g")]
+position = Vector2(3820, -753)
+
+[node name="StaticPlatform15" parent="." unique_id=1991644585 instance=ExtResource("3_lxlq5")]
+position = Vector2(4458, -849)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=1430607279]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" unique_id=415786119]
+position = Vector2(-55, -217.5)
+shape = SubResource("RectangleShape2D_wxfrv")
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D4" unique_id=2095758995]
+position = Vector2(0, 1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-65, -423, -45, -423, -45, -14, -65, -14)
+
+[editable path="WaterHazard"]
+[editable path="DisappearingWall2"]
+[editable path="One_Way_Wall2"]
+[editable path="DisappearingWall7"]
+[editable path="DisappearingWall8"]
+[editable path="One_Way_Wall3"]
+[editable path="One_Way_Wall6"]
