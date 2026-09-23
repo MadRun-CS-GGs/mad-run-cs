@@ -10,7 +10,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-@export var offset: Vector2 = Vector2(0, 200)
+@export var offset: Vector2 = Vector2(0, 150)
 @export var speed: float = 100.0
 
 var start_position: Vector2
