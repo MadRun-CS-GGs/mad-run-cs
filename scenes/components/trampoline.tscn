@@ -6,6 +6,7 @@
 size = Vector2(80, 10)
 
 [node name="Trampoline" type="Area2D" unique_id=363516580]
+collision_mask = 3
 script = ExtResource("1_3tmql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1737251636]

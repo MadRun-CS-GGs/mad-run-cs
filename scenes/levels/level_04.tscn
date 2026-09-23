@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://blxtk7s576hhl"]
 
 [ext_resource type="Script" uid="uid://lf262d3wojx2" path="res://scripts/levels/level_base.gd" id="1_level_base"]
-[ext_resource type="PackedScene" path="res://scenes/components/MovingPlatform.tscn" id="2_moving_platform"]
-[ext_resource type="PackedScene" path="res://scenes/components/disappearing_platform.tscn" id="3_intermittent_platform"]
-[ext_resource type="PackedScene" path="res://scenes/components/Checkpoint.tscn" id="4_checkpoint"]
-[ext_resource type="Script" uid="uid://1b2wxs3d1f8s" path="res://scripts/components/hazard.gd" id="5_hazard"]
-[ext_resource type="PackedScene" path="res://scenes/components/Trampoline.tscn" id="6_trampoline"]
+[ext_resource type="PackedScene" uid="uid://c1o4lmdx1hd33" path="res://scenes/components/moving_platform.tscn" id="2_moving_platform"]
+[ext_resource type="PackedScene" uid="uid://sp0p4a23bpl4" path="res://scenes/components/one_way_platform.tscn" id="2_ypi4k"]
+[ext_resource type="PackedScene" uid="uid://besfl7d2phw21" path="res://scenes/components/static_platform.tscn" id="3_a0uur"]
+[ext_resource type="PackedScene" uid="uid://xs35ecly2iky" path="res://scenes/components/disappearing_platform.tscn" id="3_intermittent_platform"]
+[ext_resource type="PackedScene" uid="uid://bqi0c782p2gu3" path="res://scenes/components/checkpoint.tscn" id="4_checkpoint"]
+[ext_resource type="PackedScene" uid="uid://pbiqh2w7icjd" path="res://scenes/components/trampoline.tscn" id="6_trampoline"]
+[ext_resource type="PackedScene" uid="uid://c7be30wumvrmk" path="res://scenes/components/moving_wall.tscn" id="9_07dqf"]
+[ext_resource type="PackedScene" uid="uid://c0wtgnhhq1uow" path="res://scenes/components/static_wall.tscn" id="10_yy4na"]
+[ext_resource type="PackedScene" uid="uid://bijn2j7la7dgc" path="res://scenes/components/disappearing_wall.tscn" id="11_07dqf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_conduit_hazard"]
 size = Vector2(16, 260)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hazard"]
-size = Vector2(35, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
 size = Vector2(45, 90)
@@ -22,15 +23,21 @@ script = ExtResource("1_level_base")
 [node name="Environment" type="Node2D" parent="." unique_id=1699172289]
 
 [node name="Background" type="Polygon2D" parent="Environment" unique_id=811000278]
-position = Vector2(7, 179)
+position = Vector2(-1233, -240)
 color = Color(0.0470588, 0.0901961, 0.160784, 1)
 polygon = PackedVector2Array(0, 0, 1000, 0, 1000, 3100, 0, 3100)
 
 [node name="LanternGlow" type="Polygon2D" parent="Environment" unique_id=1640103584]
-position = Vector2(31.297302, 0)
-scale = Vector2(0.7391892, 1)
+position = Vector2(77.78379, 0)
+scale = Vector2(0.6851352, 1)
 color = Color(0.996078, 0.941176, 0.478431, 0.2)
 polygon = PackedVector2Array(120, 350, 860, 350, 760, 220, 220, 220)
+
+[node name="StaticPlatform" parent="Environment" unique_id=24034259 instance=ExtResource("3_a0uur")]
+position = Vector2(666, 2360)
+
+[node name="StaticPlatform2" parent="Environment" unique_id=1603455894 instance=ExtResource("3_a0uur")]
+position = Vector2(626, 2360)
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=1287426144]
 
@@ -38,7 +45,9 @@ polygon = PackedVector2Array(120, 350, 860, 350, 760, 220, 220, 220)
 collision_mask = 2
 
 [node name="LeftWallUpper" type="Line2D" parent="TileMaps/Terrain" unique_id=294960300]
-points = PackedVector2Array(190, 450, 190, 840)
+position = Vector2(0, -27.999962)
+scale = Vector2(1, 1.0255814)
+points = PackedVector2Array(190, 450, 190, 507.48007, 190, 840)
 width = 20.0
 default_color = Color(0.396078, 0.509804, 0.627451, 1)
 
@@ -58,18 +67,6 @@ points = PackedVector2Array(100, 3025, 900, 3025)
 width = 50.0
 default_color = Color(0.0588235, 0.0941176, 0.156863, 1)
 
-[node name="JumpBox" type="Line2D" parent="TileMaps/Terrain" unique_id=901058076]
-points = PackedVector2Array(330, 2960, 430, 2960)
-width = 8.0
-default_color = Color(0.0588235, 0.0941176, 0.156863, 1)
-
-[node name="LowerSprintFloorRight" type="Line2D" parent="TileMaps/Terrain" unique_id=198858410]
-position = Vector2(44.893616, 0)
-scale = Vector2(0.89361703, 1)
-points = PackedVector2Array(430, 2360, 790, 2360)
-width = 8.0
-default_color = Color(0.0588235, 0.0941176, 0.156863, 1)
-
 [node name="ClockRoomFloor" type="Line2D" parent="TileMaps/Terrain" unique_id=1470215989]
 points = PackedVector2Array(200, 2060, 550, 2060)
 width = 8.0
@@ -85,37 +82,10 @@ points = PackedVector2Array(298, 1420, 298, 1740)
 width = 16.0
 default_color = Color(0.396078, 0.509804, 0.627451, 1)
 
-[node name="UpperSprintFloor" type="Line2D" parent="TileMaps/Terrain" unique_id=1018724297]
-points = PackedVector2Array(350, 1380, 790, 1380)
-width = 8.0
-default_color = Color(0.0588235, 0.0941176, 0.156863, 1)
-
-[node name="DecisionFloor" type="Line2D" parent="TileMaps/Terrain" unique_id=314195788]
-position = Vector2(38.65773, 0)
-scale = Vector2(0.7986577, 1)
-points = PackedVector2Array(200, 940, 780, 940)
-width = 8.0
-default_color = Color(0.0588235, 0.0941176, 0.156863, 1)
-
-[node name="ExteriorBalcony" type="Line2D" parent="TileMaps/Terrain" unique_id=1460981596]
-position = Vector2(-2, 16)
-points = PackedVector2Array(70, 880, 180, 880)
-width = 6.0
-default_color = Color(0.0588235, 0.0941176, 0.156863, 1)
-
-[node name="InnerChimneyWall" type="Line2D" parent="TileMaps/Terrain" unique_id=675941585]
-points = PackedVector2Array(678, 520, 678, 750)
-width = 16.0
-default_color = Color(0.396078, 0.509804, 0.627451, 1)
-
-[node name="DomeFloor" type="Line2D" parent="TileMaps/Terrain" unique_id=276531395]
-position = Vector2(37.27941, 0)
-scale = Vector2(0.75147057, 1)
-points = PackedVector2Array(160, 350, 820, 350)
-default_color = Color(0.0588235, 0.0941176, 0.156863, 1)
-
 [node name="LeftWallUpperCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=1329370478]
-polygon = PackedVector2Array(180, 450, 200, 450, 200, 840, 180, 840)
+position = Vector2(1, -31.039898)
+scale = Vector2(1, 1.026165)
+polygon = PackedVector2Array(180, 450, 200, 450, 200, 530.2756, 200, 840, 180, 840)
 
 [node name="LeftWallLowerCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=1193701633]
 polygon = PackedVector2Array(180, 920, 200, 920, 200, 3000, 180, 3000)
@@ -127,278 +97,47 @@ polygon = PackedVector2Array(800, 200, 820, 200, 820, 3000, 800, 3000)
 [node name="BaseFloorCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=599972728]
 polygon = PackedVector2Array(100, 3000, 900, 3000, 900, 3050, 100, 3050)
 
-[node name="JumpBoxCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=1591716567]
-polygon = PackedVector2Array(330, 2956, 430, 2956, 430, 2964, 330, 2964)
-
-[node name="LowerSprintFloorRightCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=991653199]
-position = Vector2(22.920135, -0.0087890625)
-scale = Vector2(0.9288194, 1.0000038)
-polygon = PackedVector2Array(430, 2356, 790, 2356, 790, 2364, 430, 2364)
-
-[node name="ClockRoomFloorCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=242304877]
-polygon = PackedVector2Array(200, 2056, 550, 2056, 550, 2064, 200, 2064)
-
 [node name="LowerChimneyWallCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=235861409]
 polygon = PackedVector2Array(680, 2420, 696, 2420, 696, 2700, 680, 2700)
 
 [node name="UpperChimneyWallCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=29495756]
 polygon = PackedVector2Array(290, 1420, 306, 1420, 306, 1740, 290, 1740)
 
-[node name="UpperSprintFloorCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=673892722]
-position = Vector2(-4.644882, -0.0052490234)
-scale = Vector2(1.0213069, 1.0000038)
-polygon = PackedVector2Array(350, 1376, 790, 1376, 790, 1384, 350, 1384)
+[node name="StaticPlatform" parent="TileMaps/Terrain" unique_id=1988998101 instance=ExtResource("3_a0uur")]
+position = Vector2(469, 2360)
 
-[node name="DecisionFloorCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=1971669563]
-position = Vector2(4.2866383, 0.0008544922)
-scale = Vector2(0.8351293, 0.99999905)
-polygon = PackedVector2Array(200, 936, 780, 936, 780, 944, 200, 944)
+[node name="StaticPlatform2" parent="TileMaps/Terrain" unique_id=2049657129 instance=ExtResource("3_a0uur")]
+position = Vector2(549, 2360)
 
-[node name="ExteriorBalconyCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=1405760644]
-position = Vector2(-2, 16)
-polygon = PackedVector2Array(70, 877, 100, 877, 137, 877, 180, 877, 180, 883, 70, 883)
+[node name="StaticPlatform3" parent="TileMaps/Terrain" unique_id=628678507 instance=ExtResource("3_a0uur")]
+position = Vector2(241, 2061)
 
-[node name="InnerChimneyWallCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=858177502]
-polygon = PackedVector2Array(670, 520, 686, 520, 686, 750, 670, 750)
+[node name="StaticPlatform4" parent="TileMaps/Terrain" unique_id=18453349 instance=ExtResource("3_a0uur")]
+position = Vector2(318, 2061)
 
-[node name="DomeFloorCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=1208301179]
-position = Vector2(-6.87311, -0.00024414063)
-scale = Vector2(0.8191288, 1.0000007)
-polygon = PackedVector2Array(160, 345, 820, 345, 820, 355, 758.84607, 355.00003, 160, 355)
+[node name="StaticPlatform5" parent="TileMaps/Terrain" unique_id=1774881666 instance=ExtResource("3_a0uur")]
+position = Vector2(398, 2061)
+
+[node name="StaticPlatform6" parent="TileMaps/Terrain" unique_id=1142146442 instance=ExtResource("3_a0uur")]
+position = Vector2(476, 2061)
+
+[node name="StaticPlatform7" parent="TileMaps/Terrain" unique_id=2058787595 instance=ExtResource("3_a0uur")]
+position = Vector2(549, 2061)
 
 [node name="OneWayPlatforms" type="StaticBody2D" parent="TileMaps" unique_id=89659716]
 collision_mask = 2
 
-[node name="StartOneWayA" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=2053501740]
-points = PackedVector2Array(450, 2900, 560, 2900)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
+[node name="One_Way_Platform" parent="TileMaps/OneWayPlatforms" unique_id=84512894 instance=ExtResource("2_ypi4k")]
+position = Vector2(454, 1830)
 
-[node name="StartOneWayB" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=1626211115]
-points = PackedVector2Array(570, 2840, 680, 2840)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="StartOneWayC" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=481275795]
-points = PackedVector2Array(650, 2770, 760, 2770)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="StartOneWayD" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=1953137034]
-points = PackedVector2Array(330, 2710, 450, 2710)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="LeftLaunchStepLow" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=1375179143]
-points = PackedVector2Array(300, 2900, 410, 2900)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="LeftLaunchStepMiddle" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=1513017550]
-points = PackedVector2Array(360, 2835, 470, 2835)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="LeftLaunchStepHigh" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=1935587804]
-points = PackedVector2Array(300, 2770, 410, 2770)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="ChimneyApproachOneWay" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=852176722]
-position = Vector2(-108, 14)
-points = PackedVector2Array(650, 2710, 780, 2710)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="LowerOneWayA" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=1797861267]
-points = PackedVector2Array(410, 2200, 530, 2200)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="LowerOneWayB" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=1255067838]
-points = PackedVector2Array(620, 2140, 740, 2140)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="ClockOneWayA" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=2028131448]
-points = PackedVector2Array(240, 1870, 360, 1870)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="ClockOneWayB" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=813464330]
-points = PackedVector2Array(450, 1810, 580, 1810)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="ClockOneWayC" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=1124217221]
-points = PackedVector2Array(660, 1760, 780, 1760)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="SprintEntryGuide" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=1035273073]
-position = Vector2(-2, 5)
-points = PackedVector2Array(350, 1436, 430, 1436)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="AntechamberOneWayA" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=291696605]
-position = Vector2(70, 172)
-points = PackedVector2Array(450, 1070, 538, 1070, 570, 1070)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="AntechamberOneWayA4" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=1887783898]
-position = Vector2(107, -36)
-points = PackedVector2Array(450, 1070, 570, 1070)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="AntechamberOneWayA3" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=153454881]
-position = Vector2(-94, 40)
-points = PackedVector2Array(450, 1070, 570, 1070)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="AntechamberOneWayA2" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=2122051607]
-position = Vector2(-195.16428, 133)
-scale = Vector2(1.1791047, 1)
-points = PackedVector2Array(448, 1070, 476, 1070, 570, 1070)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="AntechamberOneWayB" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=1164149534]
-points = PackedVector2Array(640, 1000, 760, 1000)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="InteriorOneWayA" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=72337501]
-points = PackedVector2Array(330, 860, 430, 860)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="InteriorOneWayB" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=1550609014]
-points = PackedVector2Array(530, 800, 630, 800)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="LanternSafeStepOne" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=1872376742]
-points = PackedVector2Array(700, 500, 780, 500)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="LanternSafeStepTwo" type="Line2D" parent="TileMaps/OneWayPlatforms" unique_id=1403228719]
-points = PackedVector2Array(700, 425, 780, 425)
-width = 6.0
-default_color = Color(0.0862745, 0.639216, 0.290196, 1)
-
-[node name="StartOneWayACollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=77751225]
-polygon = PackedVector2Array(450, 2897, 560, 2897, 560, 2903, 450, 2903)
-one_way_collision = true
-
-[node name="StartOneWayBCollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=202861771]
-polygon = PackedVector2Array(570, 2837, 680, 2837, 680, 2843, 570, 2843)
-one_way_collision = true
-
-[node name="StartOneWayCCollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=1261224585]
-polygon = PackedVector2Array(650, 2767, 760, 2767, 760, 2773, 650, 2773)
-one_way_collision = true
-
-[node name="StartOneWayCCollision2" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=1930102052]
-position = Vector2(-99, -44)
-polygon = PackedVector2Array(642, 2766, 675, 2766, 694, 2766, 708, 2766, 718, 2766, 739, 2766, 769, 2766, 770, 2770, 760, 2770, 686, 2770, 643, 2770)
-one_way_collision = true
-
-[node name="StartOneWayDCollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=1723799889]
-polygon = PackedVector2Array(330, 2707, 450, 2707, 450, 2713, 330, 2713)
-one_way_collision = true
-
-[node name="LeftLaunchStepLowCollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=175880609]
-polygon = PackedVector2Array(300, 2897, 410, 2897, 410, 2903, 300, 2903)
-one_way_collision = true
-
-[node name="LeftLaunchStepMiddleCollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=1176952739]
-polygon = PackedVector2Array(360, 2832, 470, 2832, 470, 2838, 360, 2838)
-one_way_collision = true
-
-[node name="LeftLaunchStepHighCollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=1664191530]
-polygon = PackedVector2Array(300, 2767, 410, 2767, 410, 2773, 300, 2773)
-one_way_collision = true
-
-[node name="LowerOneWayACollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=1106883704]
-polygon = PackedVector2Array(410, 2197, 530, 2197, 530, 2203, 410, 2203)
-one_way_collision = true
-
-[node name="LowerOneWayBCollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=845285019]
-polygon = PackedVector2Array(620, 2137, 740, 2137, 740, 2143, 620, 2143)
-one_way_collision = true
-
-[node name="ClockOneWayACollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=103193421]
-polygon = PackedVector2Array(240, 1867, 360, 1867, 360, 1873, 240, 1873)
-one_way_collision = true
-
-[node name="ClockOneWayBCollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=182429545]
-polygon = PackedVector2Array(450, 1807, 580, 1807, 580, 1813, 450, 1813)
-one_way_collision = true
-
-[node name="ClockOneWayCCollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=954788557]
-polygon = PackedVector2Array(660, 1757, 780, 1757, 780, 1763, 660, 1763)
-one_way_collision = true
-
-[node name="SprintEntryGuideCollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=864772245]
-position = Vector2(-3, 5)
-polygon = PackedVector2Array(350, 1433, 377, 1433, 430, 1433, 430, 1439, 350, 1439)
-one_way_collision = true
-
-[node name="AntechamberOneWayACollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=1924603563]
-position = Vector2(-197.3125, 133.0028)
-scale = Vector2(1.1770834, 0.99999744)
-polygon = PackedVector2Array(450, 1067, 481.16656, 1067, 551, 1067, 570, 1067, 570, 1073, 551.1207, 1073, 531, 1073, 450, 1073)
-one_way_collision = true
-
-[node name="AntechamberOneWayACollision2" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=260678924]
-position = Vector2(71, 172)
-polygon = PackedVector2Array(450, 1067, 464, 1067, 475, 1067, 512, 1067, 530, 1067, 551, 1067, 560, 1067, 570, 1067, 570, 1073, 551.1207, 1073, 531, 1073, 450, 1073)
-one_way_collision = true
-
-[node name="AntechamberOneWayACollision4" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=2076024270]
-position = Vector2(108, -36)
-polygon = PackedVector2Array(450, 1067, 464, 1067, 475, 1067, 512, 1067, 530, 1067, 551, 1067, 560, 1067, 570, 1067, 570, 1073, 551.1207, 1073, 531, 1073, 450, 1073)
-one_way_collision = true
-
-[node name="AntechamberOneWayACollision3" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=519528660]
-position = Vector2(-94, 40)
-polygon = PackedVector2Array(450, 1067, 464, 1067, 475, 1067, 512, 1067, 530, 1067, 551, 1067, 560, 1067, 570, 1067, 570, 1073, 551.1207, 1073, 531, 1073, 450, 1073)
-one_way_collision = true
-
-[node name="AntechamberOneWayBCollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=1545736908]
-polygon = PackedVector2Array(640, 997, 760, 997, 760, 1003, 640, 1003)
-one_way_collision = true
-
-[node name="InteriorOneWayACollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=1548286569]
-polygon = PackedVector2Array(330, 857, 430, 857, 430, 863, 330, 863)
-one_way_collision = true
-
-[node name="InteriorOneWayBCollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=1812279450]
-polygon = PackedVector2Array(530, 797, 630, 797, 630, 803, 530, 803)
-one_way_collision = true
-
-[node name="LanternSafeStepOneCollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=547471222]
-polygon = PackedVector2Array(700, 497, 780, 497, 780, 503, 700, 503)
-one_way_collision = true
-
-[node name="LanternSafeStepTwoCollision" type="CollisionPolygon2D" parent="TileMaps/OneWayPlatforms" unique_id=1888879777]
-polygon = PackedVector2Array(700, 422, 780, 422, 780, 428, 700, 428)
-one_way_collision = true
-
-[node name="interior" parent="TileMaps/OneWayPlatforms" unique_id=670815478 instance=ExtResource("2_moving_platform")]
-position = Vector2(35, 383)
-scale = Vector2(0.666667, 1)
-offset = Vector2(-20, -40)
-speed = 49.69
+[node name="One_Way_Platform3" parent="TileMaps/OneWayPlatforms" unique_id=2077692746 instance=ExtResource("2_ypi4k")]
+position = Vector2(589, 1783)
 
 [node name="Markers" type="Node2D" parent="TileMaps" unique_id=47175292]
 
 [node name="SpawnMarker" type="Polygon2D" parent="TileMaps/Markers" unique_id=273698776]
+position = Vector2(29.625, 15)
+scale = Vector2(0.875, 1)
 color = Color(0.133333, 0.545098, 0.133333, 0.45)
 polygon = PackedVector2Array(229, 2952, 261, 2952, 261, 2984, 229, 2984)
 
@@ -410,80 +149,29 @@ polygon = PackedVector2Array(710, 260, 755, 260, 755, 350, 710, 350)
 [node name="Gameplay" type="Node2D" parent="." unique_id=1592076227]
 
 [node name="PlayerSpawn" type="Marker2D" parent="Gameplay" unique_id=1844472798]
-position = Vector2(245, 2972)
+position = Vector2(246, 898)
 
 [node name="Checkpoints" type="Node2D" parent="Gameplay" unique_id=78385538]
 
-[node name="CheckpointLowerSprint" parent="Gameplay/Checkpoints" unique_id=173210604 instance=ExtResource("4_checkpoint")]
-position = Vector2(735, 2332)
-
-[node name="CheckpointUpperSprint" parent="Gameplay/Checkpoints" unique_id=1827561801 instance=ExtResource("4_checkpoint")]
-position = Vector2(760, 1352)
+[node name="Checkpoint" parent="Gameplay/Checkpoints" unique_id=548853422 instance=ExtResource("4_checkpoint")]
+position = Vector2(581, 2340)
 
 [node name="Entities" type="Node2D" parent="Gameplay" unique_id=2113375034]
 
-[node name="ClockLift" parent="Gameplay/Entities" unique_id=1660781338 instance=ExtResource("2_moving_platform")]
-position = Vector2(645, 2060)
-offset = Vector2(0, -100)
-speed = 55.556
-
 [node name="ClockCrossbeam" parent="Gameplay/Entities" unique_id=925015695 instance=ExtResource("2_moving_platform")]
-position = Vector2(370, 1940)
+position = Vector2(386, 1930)
 speed = 83.333
-
-[node name="LowerFlicker" parent="Gameplay/Entities" unique_id=56403363 instance=ExtResource("3_intermittent_platform")]
-position = Vector2(295, 2270)
-scale = Vector2(1.375, 1)
-visible_time = 1.3
-hidden_time = 0.9
 
 [node name="SpawnSprintGate" parent="Gameplay/Entities" unique_id=492645762 instance=ExtResource("3_intermittent_platform")]
 position = Vector2(316, 2360)
 scale = Vector2(2.875, 1)
 visible_time = 1.0
 hidden_time = 1.2
-start_delay = 0.2
-
-[node name="SpawnLauncher" parent="Gameplay/Entities" unique_id=57448255 instance=ExtResource("6_trampoline")]
-position = Vector2(370, 2702)
-launch_velocity = Vector2(90, -1000)
-
-[node name="UpperFlicker" parent="Gameplay/Entities" unique_id=133477545 instance=ExtResource("3_intermittent_platform")]
-position = Vector2(520, 1067)
-scale = Vector2(1.375, 1)
-visible_time = 1.1
-hidden_time = 1.0
-start_delay = 0.45
-
-[node name="UpperFlicker2" parent="Gameplay/Entities" unique_id=1723761520 instance=ExtResource("3_intermittent_platform")]
-position = Vector2(276, 1165)
-scale = Vector2(1.375, 1)
-visible_time = 1.1
-hidden_time = 1.0
-start_delay = 0.45
-
-[node name="TopFlicker" parent="Gameplay/Entities" unique_id=1176702098 instance=ExtResource("3_intermittent_platform")]
-position = Vector2(695, 1290)
-scale = Vector2(1.375, 1)
-visible_time = 1.0
-hidden_time = 1.1
-start_delay = 0.9
-
-[node name="ConduitLauncher" parent="Gameplay/Entities" unique_id=1547075346 instance=ExtResource("6_trampoline")]
-position = Vector2(720, 1752)
-
-[node name="SprintFallback" parent="Gameplay/Entities" unique_id=174218294 instance=ExtResource("3_intermittent_platform")]
-position = Vector2(499, 1497)
-scale = Vector2(1.5, 1)
-visible_time = 1.5
-hidden_time = 1.0
-start_delay = 0.35
 
 [node name="ConduitOuterSpikes" type="Area2D" parent="Gameplay/Entities" unique_id=1731306693]
 position = Vector2(316, 1580)
 collision_layer = 16
 collision_mask = 2
-script = ExtResource("5_hazard")
 
 [node name="SpikeVisual" type="Polygon2D" parent="Gameplay/Entities/ConduitOuterSpikes" unique_id=800014133]
 color = Color(0.862745, 0.14902, 0.14902, 1)
@@ -492,74 +180,13 @@ polygon = PackedVector2Array(-8, -130, 8, -120, -8, -110, 8, -100, -8, -90, 8, -
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/Entities/ConduitOuterSpikes" unique_id=2019593505]
 shape = SubResource("RectangleShape2D_conduit_hazard")
 
-[node name="ExteriorStepOne" parent="Gameplay/Entities" unique_id=1794340225 instance=ExtResource("2_moving_platform")]
-position = Vector2(63, 772)
-scale = Vector2(0.666667, 1)
-offset = Vector2(20, 0)
-speed = 16.667
-
-[node name="ExteriorStepTwo" parent="Gameplay/Entities" unique_id=2145055788 instance=ExtResource("2_moving_platform")]
-position = Vector2(147, 690)
-scale = Vector2(0.611111, 1)
-offset = Vector2(-20, 0)
-speed = 18.182
-
-[node name="ExteriorStepThree" parent="Gameplay/Entities" unique_id=1196482006 instance=ExtResource("2_moving_platform")]
-position = Vector2(50, 608)
-scale = Vector2(0.666667, 1)
-offset = Vector2(20, 0)
-speed = 20.0
-
-[node name="ExteriorStepThree2" parent="Gameplay/Entities" unique_id=1170706669 instance=ExtResource("2_moving_platform")]
-position = Vector2(126, 529)
-scale = Vector2(0.666667, 1)
-offset = Vector2(20, 0)
-speed = 20.0
-
-[node name="ExteriorStepFour" parent="Gameplay/Entities" unique_id=805884943 instance=ExtResource("2_moving_platform")]
-position = Vector2(91, 439)
-scale = Vector2(0.666667, 1)
-offset = Vector2(-20, -40)
-speed = 49.69
-
-[node name="ExteriorStepFive" parent="Gameplay/Entities" unique_id=304206757 instance=ExtResource("2_moving_platform")]
-position = Vector2(763, 2405)
-scale = Vector2(0.666667, 1)
-offset = Vector2(-20, -40)
-speed = 49.69
-
 [node name="GlassHazard" type="Area2D" parent="Gameplay/Entities" unique_id=304626925]
 position = Vector2(500, 2346)
 collision_layer = 16
 collision_mask = 2
-script = ExtResource("5_hazard")
 
-[node name="HazardVisual" type="Polygon2D" parent="Gameplay/Entities/GlassHazard" unique_id=1324164931]
-color = Color(0.862745, 0.14902, 0.14902, 1)
-polygon = PackedVector2Array(-20, 14, -10, -6, 0, 14, 10, -6, 20, 14)
-
-[node name="HazardVisual2" type="Polygon2D" parent="Gameplay/Entities/GlassHazard" unique_id=2062118308]
-position = Vector2(8, -551)
-color = Color(0.862745, 0.14902, 0.14902, 1)
-polygon = PackedVector2Array(-20, 14, -10, -6, 0, 14, 8, -6, 8.878769, -7.8857746, 14, 2, 20, 14)
-
-[node name="HazardVisual3" type="Polygon2D" parent="Gameplay/Entities/GlassHazard" unique_id=1413951135]
-position = Vector2(-93, -1156.5952)
-scale = Vector2(0.9, 0.6853767)
-color = Color(0.862745, 0.14902, 0.14902, 1)
-polygon = PackedVector2Array(-20, 14, -10, -6, -4.874634, 4.2507477, 0, 14, 3.7589722, 4.6026306, 8, -6, 8, -6, 8.878769, -7.8857746, 11, -4, 14, 2, 20, 14)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/Entities/GlassHazard" unique_id=881104089]
-position = Vector2(0, 3)
-shape = SubResource("RectangleShape2D_hazard")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Gameplay/Entities/GlassHazard" unique_id=1697125814]
-position = Vector2(7, -547)
-shape = SubResource("RectangleShape2D_hazard")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Gameplay/Entities/GlassHazard" unique_id=305638161]
-position = Vector2(-93.5, -1155.5)
-shape = SubResource("RectangleShape2D_hazard")
+[node name="MovingPlatform" parent="Gameplay/Entities" unique_id=50198809 instance=ExtResource("2_moving_platform")]
+position = Vector2(568, 1981)
 
 [node name="LevelExit" type="Area2D" parent="Gameplay" unique_id=350628228]
 position = Vector2(730, 303)
@@ -570,6 +197,9 @@ collision_mask = 2
 position = Vector2(-281, -4)
 shape = SubResource("RectangleShape2D_exit")
 
+[node name="Trampoline" parent="Gameplay" unique_id=363516580 instance=ExtResource("6_trampoline")]
+position = Vector2(361, 2581)
+
 [node name="CameraLimits" type="Node2D" parent="." unique_id=1000894841]
 
 [node name="TopLeft" type="Marker2D" parent="CameraLimits" unique_id=1149551964]
@@ -578,3 +208,195 @@ shape = SubResource("RectangleShape2D_exit")
 position = Vector2(1000, 3100)
 
 [node name="Debug" type="Node2D" parent="." unique_id=1378911889]
+
+[node name="One_Way_Platform" parent="." unique_id=1899730115 instance=ExtResource("2_ypi4k")]
+position = Vector2(361, 2953)
+
+[node name="One_Way_Platform2" parent="." unique_id=320005223 instance=ExtResource("2_ypi4k")]
+position = Vector2(486, 2894)
+
+[node name="One_Way_Platform3" parent="." unique_id=31030711 instance=ExtResource("2_ypi4k")]
+position = Vector2(362, 2823)
+
+[node name="One_Way_Platform4" parent="." unique_id=144173161 instance=ExtResource("2_ypi4k")]
+position = Vector2(361, 2591)
+
+[node name="One_Way_Platform5" parent="." unique_id=105985483 instance=ExtResource("2_ypi4k")]
+position = Vector2(437, 2591)
+
+[node name="One_Way_Platform6" parent="." unique_id=1713504934 instance=ExtResource("2_ypi4k")]
+position = Vector2(618, 2837)
+
+[node name="One_Way_Platform7" parent="." unique_id=1614657974 instance=ExtResource("2_ypi4k")]
+position = Vector2(721, 2778)
+
+[node name="One_Way_Platform8" parent="." unique_id=1903834198 instance=ExtResource("2_ypi4k")]
+position = Vector2(478, 2756)
+
+[node name="One_Way_Platform9" parent="." unique_id=241399364 instance=ExtResource("2_ypi4k")]
+position = Vector2(586, 2689)
+
+[node name="One_Way_Platform10" parent="." unique_id=1008265270 instance=ExtResource("2_ypi4k")]
+position = Vector2(513, 2633)
+
+[node name="DisappearingPlatform" parent="." unique_id=1835266962 instance=ExtResource("3_intermittent_platform")]
+position = Vector2(337, 2289)
+
+[node name="One_Way_Platform11" parent="." unique_id=1699341473 instance=ExtResource("2_ypi4k")]
+position = Vector2(451, 2248)
+
+[node name="One_Way_Platform12" parent="." unique_id=1223203013 instance=ExtResource("2_ypi4k")]
+position = Vector2(563, 2205)
+
+[node name="One_Way_Platform13" parent="." unique_id=1903051845 instance=ExtResource("2_ypi4k")]
+position = Vector2(670, 2159)
+
+[node name="One_Way_Platform14" parent="." unique_id=2137310185 instance=ExtResource("2_ypi4k")]
+position = Vector2(596, 2115)
+
+[node name="One_Way_Platform15" parent="." unique_id=936161646 instance=ExtResource("2_ypi4k")]
+position = Vector2(297, 1873)
+
+[node name="One_Way_Platform16" parent="." unique_id=1982676972 instance=ExtResource("2_ypi4k")]
+position = Vector2(703, 1737)
+
+[node name="Trampoline" parent="." unique_id=1824414234 instance=ExtResource("6_trampoline")]
+position = Vector2(721, 1727)
+
+[node name="One_Way_Platform17" parent="." unique_id=279771551 instance=ExtResource("2_ypi4k")]
+position = Vector2(756, 1737)
+
+[node name="DisappearingPlatform2" parent="." unique_id=685506706 instance=ExtResource("3_intermittent_platform")]
+position = Vector2(562, 1532)
+
+[node name="One_Way_Platform18" parent="." unique_id=1748870349 instance=ExtResource("2_ypi4k")]
+position = Vector2(454, 1496)
+
+[node name="One_Way_Platform19" parent="." unique_id=274010758 instance=ExtResource("2_ypi4k")]
+position = Vector2(372, 1455)
+
+[node name="StaticPlatform" parent="." unique_id=1002279783 instance=ExtResource("3_a0uur")]
+position = Vector2(478, 1398)
+
+[node name="StaticPlatform2" parent="." unique_id=1778054840 instance=ExtResource("3_a0uur")]
+position = Vector2(505, 1398)
+
+[node name="StaticPlatform3" parent="." unique_id=1424270699 instance=ExtResource("3_a0uur")]
+position = Vector2(584, 1398)
+
+[node name="StaticPlatform4" parent="." unique_id=1541032101 instance=ExtResource("3_a0uur")]
+position = Vector2(661, 1398)
+
+[node name="StaticPlatform5" parent="." unique_id=1122859865 instance=ExtResource("3_a0uur")]
+position = Vector2(736, 1398)
+
+[node name="Checkpoint" parent="." unique_id=1083948720 instance=ExtResource("4_checkpoint")]
+position = Vector2(605, 1376)
+
+[node name="DisappearingPlatform3" parent="." unique_id=256604853 instance=ExtResource("3_intermittent_platform")]
+position = Vector2(699, 1310)
+
+[node name="One_Way_Platform20" parent="." unique_id=533697395 instance=ExtResource("2_ypi4k")]
+position = Vector2(570, 1265)
+
+[node name="One_Way_Platform22" parent="." unique_id=97166939 instance=ExtResource("2_ypi4k")]
+position = Vector2(440, 1226)
+
+[node name="DisappearingPlatform4" parent="." unique_id=552067330 instance=ExtResource("3_intermittent_platform")]
+position = Vector2(309, 1180)
+
+[node name="MovingPlatform2" parent="." unique_id=1788757175 instance=ExtResource("2_moving_platform")]
+position = Vector2(471, 1119)
+
+[node name="One_Way_Platform23" parent="." unique_id=1708828891 instance=ExtResource("2_ypi4k")]
+position = Vector2(657, 1056)
+
+[node name="StaticPlatform6" parent="." unique_id=306681660 instance=ExtResource("3_a0uur")]
+position = Vector2(240, 940)
+
+[node name="StaticPlatform7" parent="." unique_id=1122711597 instance=ExtResource("3_a0uur")]
+position = Vector2(320, 940)
+
+[node name="StaticPlatform8" parent="." unique_id=76524182 instance=ExtResource("3_a0uur")]
+position = Vector2(395, 940)
+
+[node name="StaticPlatform9" parent="." unique_id=811206964 instance=ExtResource("3_a0uur")]
+position = Vector2(472, 940)
+
+[node name="StaticPlatform10" parent="." unique_id=1928321069 instance=ExtResource("3_a0uur")]
+position = Vector2(549, 940)
+
+[node name="StaticPlatform11" parent="." unique_id=59109101 instance=ExtResource("3_a0uur")]
+position = Vector2(622, 940)
+
+[node name="One_Way_Platform21" parent="." unique_id=1016971854 instance=ExtResource("2_ypi4k")]
+position = Vector2(347, 869)
+
+[node name="MovingPlatform" parent="." unique_id=1419583710 instance=ExtResource("2_moving_platform")]
+position = Vector2(498, 819)
+
+[node name="StaticWall" parent="." unique_id=1375735958 instance=ExtResource("10_yy4na")]
+position = Vector2(634, 703)
+
+[node name="StaticWall2" parent="." unique_id=1757775926 instance=ExtResource("10_yy4na")]
+position = Vector2(634, 651)
+
+[node name="StaticWall3" parent="." unique_id=1082129270 instance=ExtResource("10_yy4na")]
+position = Vector2(634, 586)
+
+[node name="StaticWall4" parent="." unique_id=293248510 instance=ExtResource("10_yy4na")]
+position = Vector2(634, 517)
+
+[node name="StaticWall5" parent="." unique_id=429966175 instance=ExtResource("10_yy4na")]
+position = Vector2(634, 448)
+
+[node name="One_Way_Platform24" parent="." unique_id=1115672690 instance=ExtResource("2_ypi4k")]
+position = Vector2(405, 472)
+
+[node name="StaticPlatform12" parent="." unique_id=1461779273 instance=ExtResource("3_a0uur")]
+position = Vector2(199, 356)
+
+[node name="StaticPlatform13" parent="." unique_id=1068252370 instance=ExtResource("3_a0uur")]
+position = Vector2(241, 355)
+
+[node name="StaticPlatform14" parent="." unique_id=1187709809 instance=ExtResource("3_a0uur")]
+position = Vector2(320, 355)
+
+[node name="StaticPlatform15" parent="." unique_id=1495259020 instance=ExtResource("3_a0uur")]
+position = Vector2(398, 355)
+
+[node name="StaticPlatform16" parent="." unique_id=287869578 instance=ExtResource("3_a0uur")]
+position = Vector2(473, 355)
+
+[node name="StaticPlatform17" parent="." unique_id=1027212922 instance=ExtResource("3_a0uur")]
+position = Vector2(552, 355)
+
+[node name="StaticPlatform18" parent="." unique_id=665641567 instance=ExtResource("3_a0uur")]
+position = Vector2(632, 355)
+
+[node name="StaticPlatform19" parent="." unique_id=896873390 instance=ExtResource("3_a0uur")]
+position = Vector2(160, 921)
+
+[node name="StaticPlatform20" parent="." unique_id=454538450 instance=ExtResource("3_a0uur")]
+position = Vector2(81, 921)
+
+[node name="MovingWall4" parent="." unique_id=701024185 instance=ExtResource("9_07dqf")]
+position = Vector2(79, 683)
+
+[node name="MovingWall5" parent="." unique_id=1479028784 instance=ExtResource("9_07dqf")]
+position = Vector2(74, 375)
+
+[node name="DisappearingWall" parent="." unique_id=1366774306 instance=ExtResource("11_07dqf")]
+position = Vector2(795, 741)
+visible_time = 4.0
+
+[node name="DisappearingWall2" parent="." unique_id=856382778 instance=ExtResource("11_07dqf")]
+position = Vector2(689, 649)
+visible_time = 4.0
+
+[node name="DisappearingWall3" parent="." unique_id=1621935728 instance=ExtResource("11_07dqf")]
+position = Vector2(79, 595)
+visible_time = 3.0
+
+[node name="MovingWall" parent="." unique_id=1440188068 instance=ExtResource("9_07dqf")]
+position = Vector2(687, 357)
