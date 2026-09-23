@@ -10,12 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://c7be30wumvrmk" path="res://scenes/components/moving_wall.tscn" id="9_07dqf"]
 [ext_resource type="PackedScene" uid="uid://c0wtgnhhq1uow" path="res://scenes/components/static_wall.tscn" id="10_yy4na"]
 [ext_resource type="PackedScene" uid="uid://bijn2j7la7dgc" path="res://scenes/components/disappearing_wall.tscn" id="11_07dqf"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_conduit_hazard"]
-size = Vector2(16, 260)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
-size = Vector2(45, 90)
+[ext_resource type="PackedScene" uid="uid://dg12ru0sse1gn" path="res://scenes/components/damage_hazard.tscn" id="11_tdc43"]
+[ext_resource type="PackedScene" uid="uid://cb4rt66tgf3u" path="res://scenes/components/goal.tscn" id="12_03g8n"]
+[ext_resource type="PackedScene" uid="uid://bxj0i54ijwm30" path="res://scenes/components/water_hazard.tscn" id="13_d1lip"]
 
 [node name="Level04" type="Node2D" unique_id=324814317]
 script = ExtResource("1_level_base")
@@ -23,9 +20,10 @@ script = ExtResource("1_level_base")
 [node name="Environment" type="Node2D" parent="." unique_id=1699172289]
 
 [node name="Background" type="Polygon2D" parent="Environment" unique_id=811000278]
-position = Vector2(-1233, -240)
+position = Vector2(-1130, 256.00003)
+scale = Vector2(1.108, 0.98)
 color = Color(0.0470588, 0.0901961, 0.160784, 1)
-polygon = PackedVector2Array(0, 0, 1000, 0, 1000, 3100, 0, 3100)
+polygon = PackedVector2Array(0, 0, 1000, 0, 1000, 3100, 504.51263, 3100, 0, 3100)
 
 [node name="LanternGlow" type="Polygon2D" parent="Environment" unique_id=1640103584]
 position = Vector2(77.78379, 0)
@@ -63,6 +61,8 @@ width = 20.0
 default_color = Color(0.396078, 0.509804, 0.627451, 1)
 
 [node name="BaseFloor" type="Line2D" parent="TileMaps/Terrain" unique_id=385001981]
+position = Vector2(-44.833332, 0)
+scale = Vector2(1.0366666, 1)
 points = PackedVector2Array(100, 3025, 900, 3025)
 width = 50.0
 default_color = Color(0.0588235, 0.0941176, 0.156863, 1)
@@ -73,7 +73,9 @@ width = 8.0
 default_color = Color(0.0588235, 0.0941176, 0.156863, 1)
 
 [node name="LowerChimneyWall" type="Line2D" parent="TileMaps/Terrain" unique_id=615078856]
-points = PackedVector2Array(688, 2420, 688, 2700)
+position = Vector2(0, -7.705078)
+scale = Vector2(1, 1.0032052)
+points = PackedVector2Array(688, 2420, 688, 2691.7969, 688, 2700)
 width = 16.0
 default_color = Color(0.396078, 0.509804, 0.627451, 1)
 
@@ -95,9 +97,12 @@ position = Vector2(1, 1)
 polygon = PackedVector2Array(800, 200, 820, 200, 820, 3000, 800, 3000)
 
 [node name="BaseFloorCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=599972728]
-polygon = PackedVector2Array(100, 3000, 900, 3000, 900, 3050, 100, 3050)
+position = Vector2(-45, -1)
+scale = Vector2(1.0375, 1)
+polygon = PackedVector2Array(100, 3000, 900, 3000, 900, 3050, 116.287674, 3050, 100, 3050)
 
 [node name="LowerChimneyWallCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=235861409]
+position = Vector2(0, 1)
 polygon = PackedVector2Array(680, 2420, 696, 2420, 696, 2700, 680, 2700)
 
 [node name="UpperChimneyWallCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=29495756]
@@ -141,15 +146,10 @@ scale = Vector2(0.875, 1)
 color = Color(0.133333, 0.545098, 0.133333, 0.45)
 polygon = PackedVector2Array(229, 2952, 261, 2952, 261, 2984, 229, 2984)
 
-[node name="ExitMarker" type="Polygon2D" parent="TileMaps/Markers" unique_id=1339027176]
-position = Vector2(-284, -7)
-color = Color(0.92549, 0.282353, 0.6, 0.55)
-polygon = PackedVector2Array(710, 260, 755, 260, 755, 350, 710, 350)
-
 [node name="Gameplay" type="Node2D" parent="." unique_id=1592076227]
 
 [node name="PlayerSpawn" type="Marker2D" parent="Gameplay" unique_id=1844472798]
-position = Vector2(246, 898)
+position = Vector2(245, 2979)
 
 [node name="Checkpoints" type="Node2D" parent="Gameplay" unique_id=78385538]
 
@@ -168,18 +168,6 @@ scale = Vector2(2.875, 1)
 visible_time = 1.0
 hidden_time = 1.2
 
-[node name="ConduitOuterSpikes" type="Area2D" parent="Gameplay/Entities" unique_id=1731306693]
-position = Vector2(316, 1580)
-collision_layer = 16
-collision_mask = 2
-
-[node name="SpikeVisual" type="Polygon2D" parent="Gameplay/Entities/ConduitOuterSpikes" unique_id=800014133]
-color = Color(0.862745, 0.14902, 0.14902, 1)
-polygon = PackedVector2Array(-8, -130, 8, -120, -8, -110, 8, -100, -8, -90, 8, -80, -8, -70, 8, -60, -8, -50, 8, -40, -8, -30, 8, -20, -8, -10, 8, 0, -8, 10, 8, 20, -8, 30, 8, 40, -8, 50, 8, 60, -8, 70, 8, 80, -8, 90, 8, 100, -8, 110, 8, 120, -8, 130)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/Entities/ConduitOuterSpikes" unique_id=2019593505]
-shape = SubResource("RectangleShape2D_conduit_hazard")
-
 [node name="GlassHazard" type="Area2D" parent="Gameplay/Entities" unique_id=304626925]
 position = Vector2(500, 2346)
 collision_layer = 16
@@ -189,13 +177,9 @@ collision_mask = 2
 position = Vector2(568, 1981)
 
 [node name="LevelExit" type="Area2D" parent="Gameplay" unique_id=350628228]
-position = Vector2(730, 303)
+position = Vector2(410, 329)
 collision_layer = 32
 collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/LevelExit" unique_id=1153262100]
-position = Vector2(-281, -4)
-shape = SubResource("RectangleShape2D_exit")
 
 [node name="Trampoline" parent="Gameplay" unique_id=363516580 instance=ExtResource("6_trampoline")]
 position = Vector2(361, 2581)
@@ -204,10 +188,11 @@ position = Vector2(361, 2581)
 
 [node name="TopLeft" type="Marker2D" parent="CameraLimits" unique_id=1149551964]
 
-[node name="BottomRight" type="Marker2D" parent="CameraLimits" unique_id=543549564]
-position = Vector2(1000, 3100)
+[node name="BottomRight" type="Marker2D" parent="CameraLimits" unique_id=1602300168]
+position = Vector2(991, 3504)
 
 [node name="Debug" type="Node2D" parent="." unique_id=1378911889]
+position = Vector2(-6, -1)
 
 [node name="One_Way_Platform" parent="." unique_id=1899730115 instance=ExtResource("2_ypi4k")]
 position = Vector2(361, 2953)
@@ -400,3 +385,94 @@ visible_time = 3.0
 
 [node name="MovingWall" parent="." unique_id=1440188068 instance=ExtResource("9_07dqf")]
 position = Vector2(687, 357)
+
+[node name="DamageHazard" parent="." unique_id=928643238 instance=ExtResource("11_tdc43")]
+position = Vector2(378, 2045)
+
+[node name="Goal" parent="." unique_id=155317017 instance=ExtResource("12_03g8n")]
+position = Vector2(408, 331)
+
+[node name="DamageHazard3" parent="." unique_id=1293836963 instance=ExtResource("11_tdc43")]
+position = Vector2(316, 2376)
+rotation = 3.1415927
+
+[node name="DamageHazard4" parent="." unique_id=1875152405 instance=ExtResource("11_tdc43")]
+position = Vector2(119, 2989)
+
+[node name="DamageHazard5" parent="." unique_id=1926057246 instance=ExtResource("11_tdc43")]
+position = Vector2(579, 1971)
+
+[node name="DamageHazard6" parent="." unique_id=725672548 instance=ExtResource("11_tdc43")]
+position = Vector2(586, 2105)
+
+[node name="DamageHazard11" parent="." unique_id=877430777 instance=ExtResource("11_tdc43")]
+position = Vector2(698, 2685)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+
+[node name="DamageHazard15" parent="." unique_id=1840922911 instance=ExtResource("11_tdc43")]
+position = Vector2(698, 2571)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+
+[node name="DamageHazard16" parent="." unique_id=254381487 instance=ExtResource("11_tdc43")]
+position = Vector2(699, 2478)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+
+[node name="DamageHazard12" parent="." unique_id=959390824 instance=ExtResource("11_tdc43")]
+position = Vector2(799, 2629)
+rotation = 4.712389
+scale = Vector2(0.5, 0.5)
+
+[node name="DamageHazard17" parent="." unique_id=1824758105 instance=ExtResource("11_tdc43")]
+position = Vector2(799, 2528)
+rotation = 4.712389
+scale = Vector2(0.5, 0.5)
+
+[node name="DamageHazard7" parent="." unique_id=1584507593 instance=ExtResource("11_tdc43")]
+position = Vector2(444, 1485)
+
+[node name="DamageHazard13" parent="." unique_id=325294617 instance=ExtResource("11_tdc43")]
+position = Vector2(206, 1714)
+rotation = 1.5707964
+
+[node name="DamageHazard14" parent="." unique_id=2112817862 instance=ExtResource("11_tdc43")]
+position = Vector2(206, 1515)
+rotation = 1.5707964
+
+[node name="DamageHazard9" parent="." unique_id=676599852 instance=ExtResource("11_tdc43")]
+position = Vector2(512, 1388)
+
+[node name="DamageHazard10" parent="." unique_id=470958208 instance=ExtResource("11_tdc43")]
+position = Vector2(710, 1388)
+
+[node name="DamageHazard8" parent="." unique_id=1526837465 instance=ExtResource("11_tdc43")]
+position = Vector2(529, 924)
+
+[node name="WaterHazard" parent="." unique_id=1927835633 instance=ExtResource("13_d1lip")]
+position = Vector2(8, 3010)
+
+[node name="WaterHazard2" parent="." unique_id=773548173 instance=ExtResource("13_d1lip")]
+position = Vector2(-93, 3010)
+
+[node name="WaterHazard3" parent="." unique_id=1713952658 instance=ExtResource("13_d1lip")]
+position = Vector2(-93, 3030)
+
+[node name="WaterHazard4" parent="." unique_id=825800337 instance=ExtResource("13_d1lip")]
+position = Vector2(8, 3030)
+
+[node name="WaterHazard5" parent="." unique_id=1977960306 instance=ExtResource("13_d1lip")]
+position = Vector2(8, 3039)
+
+[node name="WaterHazard6" parent="." unique_id=909001636 instance=ExtResource("13_d1lip")]
+position = Vector2(-93, 3039)
+
+[node name="WaterHazard7" parent="." unique_id=1879979809 instance=ExtResource("13_d1lip")]
+position = Vector2(941, 3009)
+
+[node name="WaterHazard8" parent="." unique_id=1611326068 instance=ExtResource("13_d1lip")]
+position = Vector2(941, 3025)
+
+[node name="WaterHazard9" parent="." unique_id=906779930 instance=ExtResource("13_d1lip")]
+position = Vector2(941, 3040)

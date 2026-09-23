@@ -87,7 +87,7 @@ func _apply_limits() -> void:
 
 	if camera != null:
 		camera.limit_left = int(limit_top_left.global_position.x)
-		camera.limit_top = int(limit_top_left.global_position.y)
+		camera.limit_top = int(limit_top_left.global_position.y) 			
 		camera.limit_right = int(limit_bottom_right.global_position.x)
 		camera.limit_bottom = int(limit_bottom_right.global_position.y)
 
