@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dg12ru0sse1gn"]
+
+[ext_resource type="Script" uid="uid://byx8hx0e7hjho" path="res://scenes/components/damage_hazard.gd" id="1_lu8dh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfgns"]
+size = Vector2(120, 20)
+
+[node name="DamageHazard" type="Area2D" unique_id=928643238]
+script = ExtResource("1_lu8dh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=931632714]
+shape = SubResource("RectangleShape2D_wfgns")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1369073718]
+position = Vector2(396, 29)
+color = Color(0.5921569, 0, 0, 1)
+polygon = PackedVector2Array(-441, -39, -456, -19, -336, -19, -348, -39, -359, -25, -369, -39, -380, -25, -394, -39, -409, -25, -419, -39, -429, -25)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
