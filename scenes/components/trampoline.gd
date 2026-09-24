@@ -1,17 +1,17 @@
 extends Area2D
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	if not body_entered.is_connected(_on_body_entered):
+		body_entered.connect(_on_body_entered)
 
 @export var bounce_velocity: float = -700.0
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player") and body.has_method("bounce"):
-		body.bounce(bounce_velocity)
+	if not (body.is_in_group("player") or body is CharacterBody2D):
+		return
+
+	if body.has_method("bounce"):
+		body.call("bounce", bounce_velocity)
+	elif body is CharacterBody2D:
+		var character := body as CharacterBody2D
+		character.velocity.y = bounce_velocity

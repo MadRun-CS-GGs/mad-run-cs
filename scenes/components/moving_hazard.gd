@@ -12,13 +12,26 @@ func _ready() -> void:
 func move_loop() -> void:
 	while true:
 		var tween = create_tween()
-		tween.tween_property(self, "global_position", start_position + offset, travel_time)
+		tween.tween_property(
+			self,
+			"global_position",
+			start_position + offset,
+			travel_time
+		)
 		await tween.finished
 
 		tween = create_tween()
-		tween.tween_property(self, "global_position", start_position, travel_time)
+		tween.tween_property(
+			self,
+			"global_position",
+			start_position,
+			travel_time
+		)
 		await tween.finished
 
 func _on_damage_area_body_entered(body: Node2D) -> void:
+	print("MOVING HAZARD DETECTÓ:", body.name)
+
 	if body.is_in_group("player") and body.has_method("respawn"):
+		print("MATANDO PLAYER")
 		body.respawn()

@@ -15,8 +15,3 @@ signal player_reached_goal(player)
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		player_reached_goal.emit(body)
-
-
-func _on_player_reached_goal(player: Variant) -> void:
-	print("NIVEL COMPLETADO")
-	get_tree().paused = true

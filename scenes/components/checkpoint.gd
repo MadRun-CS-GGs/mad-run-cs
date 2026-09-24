@@ -2,14 +2,12 @@ extends Area2D
 @onready var respawn_point: Marker2D = $Marker2D
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	# Trigger layer, listening exclusively for players on Layer 2.
+	collision_layer = 32
+	collision_mask = 2
+	if not body_entered.is_connected(_on_body_entered):
+		body_entered.connect(_on_body_entered)
 
 
 func _on_body_entered(body: Node2D) -> void:

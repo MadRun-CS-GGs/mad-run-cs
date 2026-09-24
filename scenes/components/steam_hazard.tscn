@@ -1,0 +1,45 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/components/steam_hazard.gd" id="1_steam"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_steam"]
+size = Vector2(36, 76)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_steam"]
+direction = Vector3(0, -1, 0)
+spread = 18.0
+gravity = Vector3(0, -18, 0)
+initial_velocity_min = 34.0
+initial_velocity_max = 56.0
+scale_min = 2.0
+scale_max = 4.0
+
+[node name="SteamHazard" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_steam")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0)
+shape = SubResource("RectangleShape2D_steam")
+
+[node name="ConduitVisual" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-18, 38, -18, 25, -10, 25, -10, 18, 10, 18, 10, 25, 18, 25, 18, 38)
+color = Color(0.35, 0.45, 0.52, 1)
+
+[node name="WarningVisual" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-18, 18, -12, -38, -5, 10, 0, -38, 5, 10, 12, -38, 18, 18)
+color = Color(1, 0.62, 0.16, 0.75)
+
+[node name="SteamParticles" type="GPUParticles2D" parent="."]
+amount = 18
+lifetime = 0.65
+process_material = SubResource("ParticleProcessMaterial_steam")
+emitting = false
+visibility_rect = Rect2(-36, -88, 72, 128)
+
+[node name="CycleTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="WarningTimer" type="Timer" parent="."]
+one_shot = true

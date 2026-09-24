@@ -42,6 +42,7 @@ func _create_player1() -> void:
 	entities.add_child(player)
 
 	player.global_position = spawn.global_position
+	_set_initial_checkpoint(player)
 
 	print(
 		"Personaje P1 cargado: ",
@@ -66,6 +67,7 @@ func _create_player2() -> void:
 	entities.add_child(player2)
 
 	player2.global_position = player2_spawn.global_position
+	_set_initial_checkpoint(player2)
 
 	# Solamente Player 1 controla la cámara por ahora.
 	var player2_camera := player2.get_node_or_null("Camera2D") as Camera2D
@@ -92,6 +94,13 @@ func _apply_limits() -> void:
 		camera.limit_bottom = int(limit_bottom_right.global_position.y)
 
 		camera.reset_smoothing()
+
+
+func _set_initial_checkpoint(character: CharacterBody2D) -> void:
+	# Player._ready() happens when add_child() is called, before this level
+	# assigns the spawn position. Store the actual spawn as the first checkpoint.
+	if character.has_method("set_checkpoint"):
+		character.call("set_checkpoint", character.global_position)
 
 
 func _on_exit_body_entered(body: Node2D) -> void:
