@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://crw873vwe3287"]
+
+[ext_resource type="Texture2D" uid="uid://cgnemqe5ycskt" path="res://icon.svg" id="1_44513"]
+[ext_resource type="Script" uid="uid://c3w6o57lhgwyw" path="res://scripts/components/lucky_block.gd" id="1_i12sc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8w0r3"]
+size = Vector2(32, 29)
+
+[node name="LuckyBlock" type="StaticBody2D" unique_id=972587277]
+script = ExtResource("1_i12sc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1732388012]
+position = Vector2(-2.3841858e-07, -5.684342e-14)
+scale = Vector2(0.2421875, 0.24824218)
+texture = ExtResource("1_44513")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1008954281]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_8w0r3")

@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://b37qifvrgbier"]
+
+[ext_resource type="Script" uid="uid://cg0xwfcgbokxq" path="res://scripts/ui/level_select.gd" id="1_x15a5"]
+
+[node name="LevelSelect" type="Control" unique_id=697604689]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x15a5")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1422902146]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1496265960]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer" unique_id=480190499]
+layout_mode = 2
+text = "SELECCIONAR NIVEL"
+
+[node name="Level1Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1129857771]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+text = "NIVEL 1"
+
+[node name="Level2Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=457634920]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+text = "NIVEL 2"
+
+[node name="Level3Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=695902496]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+text = "NIVEL 3"
+
+[node name="Level4Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=72234540]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+text = "NIVEL 4"
+
+[node name="RandomButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1980058346]
+layout_mode = 2
+text = "RANDOM"
+
+[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1755864143]
+layout_mode = 2
+text = "VOLVER"

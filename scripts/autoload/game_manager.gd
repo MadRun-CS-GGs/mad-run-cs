@@ -1,23 +1,18 @@
 extends Node
 
-signal lives_changed(lives: int)
-signal game_over
-signal level_completed(index: int)
+const CHARACTER_SCENES: Array[PackedScene] = [
+	preload("res://scenes/characters/player.tscn"),
+	preload("res://scenes/characters/player.tscn"),
+	preload("res://scenes/characters/player.tscn")
+]
 
-const MAX_LIVES: int = 3
-
-var lives: int = MAX_LIVES
-var current_level: int = 0
-
-
-func reset_game() -> void:
-	lives = MAX_LIVES
-	current_level = 0
-	lives_changed.emit(lives)
+var player1_character_index: int = 0
+var player2_character_index: int = 0
+var selected_level_index: int = 0
 
 
-func lose_life() -> void:
-	lives -= 1
-	lives_changed.emit(lives)
-	if lives <= 0:
-		game_over.emit()
+func get_character_scene(character_index: int) -> PackedScene:
+	if character_index < 0 or character_index >= CHARACTER_SCENES.size():
+		return CHARACTER_SCENES[0]
+
+	return CHARACTER_SCENES[character_index]

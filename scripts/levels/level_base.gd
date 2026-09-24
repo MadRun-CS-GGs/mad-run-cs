@@ -1,26 +1,82 @@
 class_name LevelBase
 extends Node2D
 
-const PLAYER_SCENE := preload("res://scenes/characters/player.tscn")
 
 @onready var spawn: Marker2D = $Gameplay/PlayerSpawn
+
+@onready var player2_spawn: Marker2D = get_node_or_null(
+	"Gameplay/Player2Spawn"
+) as Marker2D
+
 @onready var exit_area: Area2D = $Gameplay/LevelExit
 @onready var entities: Node2D = $Gameplay/Entities
 
 @onready var limit_top_left: Marker2D = $CameraLimits/TopLeft
 @onready var limit_bottom_right: Marker2D = $CameraLimits/BottomRight
 
+
 var player: CharacterBody2D
+var player2: CharacterBody2D
 
 
 func _ready() -> void:
-	player = PLAYER_SCENE.instantiate()
-	entities.add_child(player)
-	player.global_position = spawn.global_position
+	_create_player1()
+
+	if player2_spawn != null:
+		_create_player2()
+	else:
+		print("Este nivel todavía no tiene Player2Spawn")
 
 	exit_area.body_entered.connect(_on_exit_body_entered)
 
 	_apply_limits()
+
+
+func _create_player1() -> void:
+	var player_scene: PackedScene = GameManager.get_character_scene(
+		GameManager.player1_character_index
+	)
+
+	player = player_scene.instantiate() as CharacterBody2D
+
+	entities.add_child(player)
+
+	player.global_position = spawn.global_position
+
+	print(
+		"Personaje P1 cargado: ",
+		GameManager.player1_character_index
+	)
+
+
+func _create_player2() -> void:
+	var player_scene: PackedScene = GameManager.get_character_scene(
+		GameManager.player2_character_index
+	)
+
+	player2 = player_scene.instantiate() as CharacterBody2D
+
+	# Controles exclusivos de Player 2.
+	player2.set("move_left_action", &"p2_move_left")
+	player2.set("move_right_action", &"p2_move_right")
+	player2.set("jump_action", &"p2_jump")
+	player2.set("special_action", &"p2_s_action")
+	player2.set("use_power_action", &"p2_use_power")
+
+	entities.add_child(player2)
+
+	player2.global_position = player2_spawn.global_position
+
+	# Solamente Player 1 controla la cámara por ahora.
+	var player2_camera := player2.get_node_or_null("Camera2D") as Camera2D
+
+	if player2_camera != null:
+		player2_camera.enabled = false
+
+	print(
+		"Personaje P2 cargado: ",
+		GameManager.player2_character_index
+	)
 
 
 func _apply_limits() -> void:
