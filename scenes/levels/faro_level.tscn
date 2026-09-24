@@ -1,0 +1,512 @@
+[gd_scene format=3 uid="uid://blxtk7s576hhl"]
+
+[ext_resource type="Script" uid="uid://lf262d3wojx2" path="res://scripts/levels/level_base.gd" id="1_level_base"]
+[ext_resource type="PackedScene" uid="uid://c1o4lmdx1hd33" path="res://scenes/components/moving_platform.tscn" id="2_moving_platform"]
+[ext_resource type="PackedScene" uid="uid://sp0p4a23bpl4" path="res://scenes/components/one_way_platform.tscn" id="2_ypi4k"]
+[ext_resource type="PackedScene" uid="uid://besfl7d2phw21" path="res://scenes/components/static_platform.tscn" id="3_a0uur"]
+[ext_resource type="PackedScene" uid="uid://xs35ecly2iky" path="res://scenes/components/disappearing_platform.tscn" id="3_intermittent_platform"]
+[ext_resource type="PackedScene" uid="uid://bqi0c782p2gu3" path="res://scenes/components/checkpoint.tscn" id="4_checkpoint"]
+[ext_resource type="PackedScene" uid="uid://pbiqh2w7icjd" path="res://scenes/components/trampoline.tscn" id="6_trampoline"]
+[ext_resource type="PackedScene" uid="uid://c7be30wumvrmk" path="res://scenes/components/moving_wall.tscn" id="9_07dqf"]
+[ext_resource type="PackedScene" uid="uid://c0wtgnhhq1uow" path="res://scenes/components/static_wall.tscn" id="10_yy4na"]
+[ext_resource type="PackedScene" uid="uid://bijn2j7la7dgc" path="res://scenes/components/disappearing_wall.tscn" id="11_07dqf"]
+[ext_resource type="PackedScene" uid="uid://dg12ru0sse1gn" path="res://scenes/components/damage_hazard.tscn" id="11_tdc43"]
+[ext_resource type="PackedScene" uid="uid://cb4rt66tgf3u" path="res://scenes/components/goal.tscn" id="12_03g8n"]
+[ext_resource type="PackedScene" uid="uid://bxj0i54ijwm30" path="res://scenes/components/water_hazard.tscn" id="13_d1lip"]
+[ext_resource type="PackedScene" uid="uid://doho8cbodkwp1" path="res://scenes/components/power_bubble.tscn" id="14_power_bubble"]
+[ext_resource type="PackedScene" path="res://scenes/components/steam_hazard.tscn" id="15_steam_hazard"]
+
+[node name="Level04" type="Node2D" unique_id=324814317]
+script = ExtResource("1_level_base")
+
+[node name="Environment" type="Node2D" parent="." unique_id=1699172289]
+
+[node name="Background" type="Polygon2D" parent="Environment" unique_id=811000278]
+position = Vector2(-161, 166)
+scale = Vector2(1.185, 0.9941936)
+color = Color(0.27898848, 0.112489656, 0.167119, 1)
+polygon = PackedVector2Array(0, 0, 1000, 0, 1000, 3100, 504.51263, 3100, 0, 3100)
+
+[node name="LanternGlow" type="Polygon2D" parent="Environment" unique_id=1640103584]
+position = Vector2(72, 1)
+scale = Vector2(0.6851352, 1)
+color = Color(0.996078, 0.941176, 0.478431, 0.2)
+polygon = PackedVector2Array(120, 350, 860, 350, 760, 220, 220, 220)
+
+[node name="StaticPlatform" parent="Environment" unique_id=24034259 instance=ExtResource("3_a0uur")]
+position = Vector2(666, 2360)
+
+[node name="StaticPlatform2" parent="Environment" unique_id=1603455894 instance=ExtResource("3_a0uur")]
+position = Vector2(626, 2360)
+
+[node name="Checkpoint" parent="Environment" unique_id=548853422 instance=ExtResource("4_checkpoint")]
+position = Vector2(492, 2040)
+
+[node name="TileMaps" type="Node2D" parent="." unique_id=1287426144]
+
+[node name="Terrain" type="StaticBody2D" parent="TileMaps" unique_id=278252128]
+collision_mask = 2
+
+[node name="LeftWallUpper" type="Line2D" parent="TileMaps/Terrain" unique_id=294960300]
+position = Vector2(0, -27.999962)
+scale = Vector2(1, 1.0255814)
+points = PackedVector2Array(190, 450, 190, 507.48007, 190, 840)
+width = 20.0
+default_color = Color(0.913725, 0.188235, 0.286275, 1)
+
+[node name="LeftWallLower" type="Line2D" parent="TileMaps/Terrain" unique_id=658868724]
+points = PackedVector2Array(190, 920, 190, 3000)
+width = 20.0
+default_color = Color(0.913725, 0.188235, 0.286275, 1)
+
+[node name="RightWall" type="Line2D" parent="TileMaps/Terrain" unique_id=1739645893]
+position = Vector2(3, 6)
+points = PackedVector2Array(810, 200, 810, 3000)
+width = 20.0
+default_color = Color(0.913725, 0.188235, 0.286275, 1)
+
+[node name="BaseFloor" type="Line2D" parent="TileMaps/Terrain" unique_id=385001981]
+position = Vector2(-44.833332, 0)
+scale = Vector2(1.0366666, 1)
+points = PackedVector2Array(100, 3025, 900, 3025)
+width = 50.0
+default_color = Color(0.75457454, 0.1492097, 0.20283519, 1)
+
+[node name="ClockRoomFloor" type="Line2D" parent="TileMaps/Terrain" unique_id=1470215989]
+points = PackedVector2Array(200, 2060, 550, 2060)
+width = 8.0
+default_color = Color(0.0588235, 0.0941176, 0.156863, 1)
+
+[node name="LowerChimneyWall" type="Line2D" parent="TileMaps/Terrain" unique_id=615078856]
+position = Vector2(0, -7.705078)
+scale = Vector2(1, 1.0032052)
+points = PackedVector2Array(688, 2420, 688, 2691.7969, 688, 2700)
+width = 16.0
+default_color = Color(0.913725, 0.188235, 0.286275, 1)
+
+[node name="UpperChimneyWall" type="Line2D" parent="TileMaps/Terrain" unique_id=1366249678]
+points = PackedVector2Array(298, 1420, 298, 1740)
+width = 16.0
+default_color = Color(0.913725, 0.188235, 0.286275, 1)
+
+[node name="LeftWallUpperCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=1329370478]
+position = Vector2(1, -31.039898)
+scale = Vector2(1, 1.026165)
+polygon = PackedVector2Array(180, 450, 200, 450, 200, 530.2756, 200, 840, 180, 840)
+
+[node name="LeftWallLowerCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=1193701633]
+polygon = PackedVector2Array(180, 920, 200, 920, 200, 3000, 180, 3000)
+
+[node name="RightWallCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=1300227705]
+position = Vector2(1, 1)
+polygon = PackedVector2Array(800, 200, 820, 200, 820, 3000, 800, 3000)
+
+[node name="BaseFloorCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=599972728]
+position = Vector2(-24, -80)
+scale = Vector2(1.0375, 1)
+polygon = PackedVector2Array(78.07229, 3080, 877.8312, 3080, 877.8312, 3130, 480, 3130, 94.11902, 3130, 77.83133, 3130)
+
+[node name="LowerChimneyWallCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=235861409]
+position = Vector2(0, 1)
+polygon = PackedVector2Array(680, 2420, 696, 2420, 696, 2700, 680, 2700)
+
+[node name="UpperChimneyWallCollision" type="CollisionPolygon2D" parent="TileMaps/Terrain" unique_id=29495756]
+polygon = PackedVector2Array(290, 1420, 306, 1420, 306, 1740, 290, 1740)
+
+[node name="StaticPlatform" parent="TileMaps/Terrain" unique_id=1988998101 instance=ExtResource("3_a0uur")]
+position = Vector2(469, 2360)
+
+[node name="StaticPlatform2" parent="TileMaps/Terrain" unique_id=2049657129 instance=ExtResource("3_a0uur")]
+position = Vector2(549, 2360)
+
+[node name="StaticPlatform3" parent="TileMaps/Terrain" unique_id=628678507 instance=ExtResource("3_a0uur")]
+position = Vector2(241, 2061)
+
+[node name="StaticPlatform4" parent="TileMaps/Terrain" unique_id=18453349 instance=ExtResource("3_a0uur")]
+position = Vector2(318, 2061)
+
+[node name="StaticPlatform5" parent="TileMaps/Terrain" unique_id=1774881666 instance=ExtResource("3_a0uur")]
+position = Vector2(398, 2061)
+
+[node name="StaticPlatform6" parent="TileMaps/Terrain" unique_id=1142146442 instance=ExtResource("3_a0uur")]
+position = Vector2(476, 2061)
+
+[node name="StaticPlatform7" parent="TileMaps/Terrain" unique_id=2058787595 instance=ExtResource("3_a0uur")]
+position = Vector2(549, 2061)
+
+[node name="OneWayPlatforms" type="StaticBody2D" parent="TileMaps" unique_id=89659716]
+collision_mask = 2
+
+[node name="One_Way_Platform" parent="TileMaps/OneWayPlatforms" unique_id=84512894 instance=ExtResource("2_ypi4k")]
+position = Vector2(454, 1830)
+
+[node name="One_Way_Platform3" parent="TileMaps/OneWayPlatforms" unique_id=2077692746 instance=ExtResource("2_ypi4k")]
+position = Vector2(589, 1783)
+
+[node name="Markers" type="Node2D" parent="TileMaps" unique_id=47175292]
+
+[node name="SpawnMarker" type="Polygon2D" parent="TileMaps/Markers" unique_id=273698776]
+position = Vector2(29.625, 15)
+scale = Vector2(0.875, 1)
+color = Color(0.133333, 0.545098, 0.133333, 0.45)
+polygon = PackedVector2Array(229, 2952, 261, 2952, 261, 2984, 229, 2984)
+
+[node name="Gameplay" type="Node2D" parent="." unique_id=1592076227]
+
+[node name="Platforms" type="Node2D" parent="Gameplay" unique_id=1994236013]
+
+[node name="One_Way_Platform" parent="Gameplay/Platforms" unique_id=1899730115 instance=ExtResource("2_ypi4k")]
+position = Vector2(361, 2953)
+
+[node name="One_Way_Platform2" parent="Gameplay/Platforms" unique_id=320005223 instance=ExtResource("2_ypi4k")]
+position = Vector2(486, 2894)
+
+[node name="One_Way_Platform3" parent="Gameplay/Platforms" unique_id=31030711 instance=ExtResource("2_ypi4k")]
+position = Vector2(362, 2823)
+
+[node name="One_Way_Platform4" parent="Gameplay/Platforms" unique_id=144173161 instance=ExtResource("2_ypi4k")]
+position = Vector2(361, 2591)
+
+[node name="One_Way_Platform5" parent="Gameplay/Platforms" unique_id=105985483 instance=ExtResource("2_ypi4k")]
+position = Vector2(437, 2591)
+
+[node name="One_Way_Platform6" parent="Gameplay/Platforms" unique_id=1713504934 instance=ExtResource("2_ypi4k")]
+position = Vector2(618, 2837)
+
+[node name="One_Way_Platform7" parent="Gameplay/Platforms" unique_id=1614657974 instance=ExtResource("2_ypi4k")]
+position = Vector2(721, 2778)
+
+[node name="One_Way_Platform8" parent="Gameplay/Platforms" unique_id=1903834198 instance=ExtResource("2_ypi4k")]
+position = Vector2(478, 2756)
+
+[node name="One_Way_Platform9" parent="Gameplay/Platforms" unique_id=241399364 instance=ExtResource("2_ypi4k")]
+position = Vector2(586, 2689)
+
+[node name="One_Way_Platform10" parent="Gameplay/Platforms" unique_id=1008265270 instance=ExtResource("2_ypi4k")]
+position = Vector2(513, 2633)
+
+[node name="DisappearingPlatform" parent="Gameplay/Platforms" unique_id=1835266962 instance=ExtResource("3_intermittent_platform")]
+position = Vector2(337, 2289)
+
+[node name="One_Way_Platform11" parent="Gameplay/Platforms" unique_id=1699341473 instance=ExtResource("2_ypi4k")]
+position = Vector2(451, 2248)
+
+[node name="One_Way_Platform12" parent="Gameplay/Platforms" unique_id=1223203013 instance=ExtResource("2_ypi4k")]
+position = Vector2(563, 2205)
+
+[node name="One_Way_Platform13" parent="Gameplay/Platforms" unique_id=1903051845 instance=ExtResource("2_ypi4k")]
+position = Vector2(670, 2159)
+
+[node name="One_Way_Platform14" parent="Gameplay/Platforms" unique_id=2137310185 instance=ExtResource("2_ypi4k")]
+position = Vector2(596, 2115)
+
+[node name="One_Way_Platform15" parent="Gameplay/Platforms" unique_id=936161646 instance=ExtResource("2_ypi4k")]
+position = Vector2(297, 1873)
+
+[node name="One_Way_Platform16" parent="Gameplay/Platforms" unique_id=1982676972 instance=ExtResource("2_ypi4k")]
+position = Vector2(703, 1737)
+
+[node name="One_Way_Platform17" parent="Gameplay/Platforms" unique_id=279771551 instance=ExtResource("2_ypi4k")]
+position = Vector2(756, 1737)
+
+[node name="DisappearingPlatform2" parent="Gameplay/Platforms" unique_id=685506706 instance=ExtResource("3_intermittent_platform")]
+position = Vector2(562, 1547)
+
+[node name="One_Way_Platform18" parent="Gameplay/Platforms" unique_id=1748870349 instance=ExtResource("2_ypi4k")]
+position = Vector2(461, 1510)
+
+[node name="One_Way_Platform19" parent="Gameplay/Platforms" unique_id=274010758 instance=ExtResource("2_ypi4k")]
+position = Vector2(373, 1461)
+
+[node name="StaticPlatform" parent="Gameplay/Platforms" unique_id=1002279783 instance=ExtResource("3_a0uur")]
+position = Vector2(478, 1398)
+
+[node name="StaticPlatform2" parent="Gameplay/Platforms" unique_id=1778054840 instance=ExtResource("3_a0uur")]
+position = Vector2(505, 1398)
+
+[node name="StaticPlatform3" parent="Gameplay/Platforms" unique_id=1424270699 instance=ExtResource("3_a0uur")]
+position = Vector2(584, 1398)
+
+[node name="StaticPlatform4" parent="Gameplay/Platforms" unique_id=1541032101 instance=ExtResource("3_a0uur")]
+position = Vector2(661, 1398)
+
+[node name="StaticPlatform5" parent="Gameplay/Platforms" unique_id=1122859865 instance=ExtResource("3_a0uur")]
+position = Vector2(736, 1398)
+
+[node name="DisappearingPlatform3" parent="Gameplay/Platforms" unique_id=256604853 instance=ExtResource("3_intermittent_platform")]
+position = Vector2(699, 1310)
+
+[node name="One_Way_Platform20" parent="Gameplay/Platforms" unique_id=533697395 instance=ExtResource("2_ypi4k")]
+position = Vector2(570, 1265)
+
+[node name="One_Way_Platform22" parent="Gameplay/Platforms" unique_id=97166939 instance=ExtResource("2_ypi4k")]
+position = Vector2(440, 1226)
+
+[node name="DisappearingPlatform4" parent="Gameplay/Platforms" unique_id=552067330 instance=ExtResource("3_intermittent_platform")]
+position = Vector2(309, 1180)
+
+[node name="MovingPlatform2" parent="Gameplay/Platforms" unique_id=1788757175 instance=ExtResource("2_moving_platform")]
+position = Vector2(471, 1119)
+
+[node name="One_Way_Platform23" parent="Gameplay/Platforms" unique_id=1708828891 instance=ExtResource("2_ypi4k")]
+position = Vector2(657, 1056)
+
+[node name="StaticPlatform6" parent="Gameplay/Platforms" unique_id=306681660 instance=ExtResource("3_a0uur")]
+position = Vector2(240, 940)
+
+[node name="StaticPlatform7" parent="Gameplay/Platforms" unique_id=1122711597 instance=ExtResource("3_a0uur")]
+position = Vector2(320, 940)
+
+[node name="StaticPlatform8" parent="Gameplay/Platforms" unique_id=76524182 instance=ExtResource("3_a0uur")]
+position = Vector2(395, 940)
+
+[node name="StaticPlatform9" parent="Gameplay/Platforms" unique_id=811206964 instance=ExtResource("3_a0uur")]
+position = Vector2(472, 940)
+
+[node name="StaticPlatform10" parent="Gameplay/Platforms" unique_id=1928321069 instance=ExtResource("3_a0uur")]
+position = Vector2(549, 940)
+
+[node name="StaticPlatform11" parent="Gameplay/Platforms" unique_id=59109101 instance=ExtResource("3_a0uur")]
+position = Vector2(622, 940)
+
+[node name="One_Way_Platform21" parent="Gameplay/Platforms" unique_id=1016971854 instance=ExtResource("2_ypi4k")]
+position = Vector2(347, 869)
+
+[node name="MovingPlatform" parent="Gameplay/Platforms" unique_id=1419583710 instance=ExtResource("2_moving_platform")]
+position = Vector2(498, 819)
+
+[node name="StaticPlatform12" parent="Gameplay/Platforms" unique_id=1461779273 instance=ExtResource("3_a0uur")]
+position = Vector2(199, 356)
+
+[node name="StaticPlatform13" parent="Gameplay/Platforms" unique_id=1068252370 instance=ExtResource("3_a0uur")]
+position = Vector2(241, 355)
+
+[node name="StaticPlatform14" parent="Gameplay/Platforms" unique_id=1187709809 instance=ExtResource("3_a0uur")]
+position = Vector2(320, 355)
+
+[node name="StaticPlatform15" parent="Gameplay/Platforms" unique_id=1495259020 instance=ExtResource("3_a0uur")]
+position = Vector2(398, 355)
+
+[node name="StaticPlatform16" parent="Gameplay/Platforms" unique_id=287869578 instance=ExtResource("3_a0uur")]
+position = Vector2(473, 355)
+
+[node name="StaticPlatform17" parent="Gameplay/Platforms" unique_id=1027212922 instance=ExtResource("3_a0uur")]
+position = Vector2(552, 355)
+
+[node name="StaticPlatform18" parent="Gameplay/Platforms" unique_id=665641567 instance=ExtResource("3_a0uur")]
+position = Vector2(632, 355)
+
+[node name="StaticPlatform19" parent="Gameplay/Platforms" unique_id=896873390 instance=ExtResource("3_a0uur")]
+position = Vector2(160, 921)
+
+[node name="StaticPlatform20" parent="Gameplay/Platforms" unique_id=454538450 instance=ExtResource("3_a0uur")]
+position = Vector2(81, 921)
+
+[node name="Obstacles" type="Node2D" parent="Gameplay" unique_id=266572696]
+
+[node name="StaticWall" parent="Gameplay/Obstacles" unique_id=1375735958 instance=ExtResource("10_yy4na")]
+position = Vector2(634, 703)
+
+[node name="StaticWall2" parent="Gameplay/Obstacles" unique_id=1757775926 instance=ExtResource("10_yy4na")]
+position = Vector2(634, 651)
+
+[node name="StaticWall3" parent="Gameplay/Obstacles" unique_id=1082129270 instance=ExtResource("10_yy4na")]
+position = Vector2(634, 586)
+
+[node name="StaticWall4" parent="Gameplay/Obstacles" unique_id=293248510 instance=ExtResource("10_yy4na")]
+position = Vector2(634, 517)
+
+[node name="StaticWall5" parent="Gameplay/Obstacles" unique_id=429966175 instance=ExtResource("10_yy4na")]
+position = Vector2(634, 448)
+
+[node name="MovingWall4" parent="Gameplay/Obstacles" unique_id=701024185 instance=ExtResource("9_07dqf")]
+position = Vector2(79, 683)
+
+[node name="MovingWall5" parent="Gameplay/Obstacles" unique_id=1479028784 instance=ExtResource("9_07dqf")]
+position = Vector2(74, 375)
+
+[node name="DisappearingWall" parent="Gameplay/Obstacles" unique_id=1366774306 instance=ExtResource("11_07dqf")]
+position = Vector2(795, 741)
+visible_time = 4.0
+
+[node name="DisappearingWall2" parent="Gameplay/Obstacles" unique_id=856382778 instance=ExtResource("11_07dqf")]
+position = Vector2(689, 649)
+visible_time = 4.0
+
+[node name="DisappearingWall3" parent="Gameplay/Obstacles" unique_id=1621935728 instance=ExtResource("11_07dqf")]
+position = Vector2(79, 595)
+visible_time = 3.0
+
+[node name="MovingWall" parent="Gameplay/Obstacles" unique_id=1440188068 instance=ExtResource("9_07dqf")]
+position = Vector2(687, 357)
+
+[node name="Hazards" type="Node2D" parent="Gameplay" unique_id=282426419]
+
+[node name="GlassHazard" parent="Gameplay/Hazards" unique_id=304626925 instance=ExtResource("11_tdc43")]
+position = Vector2(500, 2348)
+scale = Vector2(0.5, 0.5)
+
+[node name="DamageHazard" parent="Gameplay/Hazards" unique_id=928643238 instance=ExtResource("11_tdc43")]
+position = Vector2(326, 2040)
+
+[node name="DamageHazard4" parent="Gameplay/Hazards" unique_id=1875152405 instance=ExtResource("11_tdc43")]
+position = Vector2(119, 2989)
+
+[node name="DamageHazard11" parent="Gameplay/Hazards" unique_id=877430777 instance=ExtResource("11_tdc43")]
+position = Vector2(700.00006, 2682)
+rotation = 1.5707964
+scale = Vector2(0.3, 0.3)
+
+[node name="DamageHazard16" parent="Gameplay/Hazards" unique_id=254381487 instance=ExtResource("11_tdc43")]
+position = Vector2(701, 2554)
+rotation = 1.5707964
+scale = Vector2(0.3, 0.3)
+
+[node name="DamageHazard12" parent="Gameplay/Hazards" unique_id=959390824 instance=ExtResource("11_tdc43")]
+position = Vector2(795.99994, 2616)
+rotation = 4.712389
+scale = Vector2(0.3, 0.3)
+
+[node name="DamageHazard7" parent="Gameplay/Hazards" unique_id=1584507593 instance=ExtResource("11_tdc43")]
+position = Vector2(439.00003, 1500)
+scale = Vector2(0.3, 0.3)
+
+[node name="DamageHazard13" parent="Gameplay/Hazards" unique_id=325294617 instance=ExtResource("11_tdc43")]
+position = Vector2(204, 1708)
+rotation = 1.5707964
+scale = Vector2(0.3, 0.3)
+
+[node name="DamageHazard14" parent="Gameplay/Hazards" unique_id=2112817862 instance=ExtResource("11_tdc43")]
+position = Vector2(205.00002, 1515)
+rotation = 1.5707964
+scale = Vector2(0.3, 0.3)
+
+[node name="DamageHazard9" parent="Gameplay/Hazards" unique_id=676599852 instance=ExtResource("11_tdc43")]
+position = Vector2(516, 1385)
+scale = Vector2(0.5, 0.5)
+
+[node name="DamageHazard10" parent="Gameplay/Hazards" unique_id=470958208 instance=ExtResource("11_tdc43")]
+position = Vector2(680, 1385)
+scale = Vector2(0.5, 0.5)
+
+[node name="DamageHazard8" parent="Gameplay/Hazards" unique_id=1526837465 instance=ExtResource("11_tdc43")]
+position = Vector2(529, 924)
+
+[node name="WaterHazard" parent="Gameplay/Hazards" unique_id=1927835633 instance=ExtResource("13_d1lip")]
+position = Vector2(8, 3010)
+
+[node name="WaterHazard2" parent="Gameplay/Hazards" unique_id=773548173 instance=ExtResource("13_d1lip")]
+position = Vector2(-93, 3010)
+
+[node name="WaterHazard3" parent="Gameplay/Hazards" unique_id=1713952658 instance=ExtResource("13_d1lip")]
+position = Vector2(-93, 3030)
+
+[node name="WaterHazard4" parent="Gameplay/Hazards" unique_id=825800337 instance=ExtResource("13_d1lip")]
+position = Vector2(8, 3030)
+
+[node name="WaterHazard5" parent="Gameplay/Hazards" unique_id=1977960306 instance=ExtResource("13_d1lip")]
+position = Vector2(8, 3039)
+
+[node name="WaterHazard6" parent="Gameplay/Hazards" unique_id=909001636 instance=ExtResource("13_d1lip")]
+position = Vector2(-93, 3039)
+
+[node name="WaterHazard7" parent="Gameplay/Hazards" unique_id=1879979809 instance=ExtResource("13_d1lip")]
+position = Vector2(941, 3009)
+
+[node name="WaterHazard8" parent="Gameplay/Hazards" unique_id=1611326068 instance=ExtResource("13_d1lip")]
+position = Vector2(941, 3025)
+
+[node name="WaterHazard9" parent="Gameplay/Hazards" unique_id=906779930 instance=ExtResource("13_d1lip")]
+position = Vector2(941, 3040)
+
+[node name="SteamConduit" parent="Gameplay/Hazards" unique_id=865712302 instance=ExtResource("15_steam_hazard")]
+position = Vector2(454, 1785)
+active_duration = 1.1
+inactive_duration = 1.6
+
+[node name="SteamConduit2" parent="Gameplay/Hazards" unique_id=960319627 instance=ExtResource("15_steam_hazard")]
+position = Vector2(347, 824)
+active_duration = 1.1
+inactive_duration = 1.6
+
+[node name="One_Way_Platform" parent="Gameplay/Hazards" unique_id=1926296170 instance=ExtResource("2_ypi4k")]
+position = Vector2(711, 2281)
+
+[node name="PowerBubble" parent="Gameplay/Hazards" unique_id=2076260628 instance=ExtResource("14_power_bubble")]
+position = Vector2(336, 2263)
+
+[node name="SteamHazard" parent="Gameplay/Hazards" unique_id=1259636946 instance=ExtResource("15_steam_hazard")]
+position = Vector2(476, 2713)
+
+[node name="PowerBubble2" parent="Gameplay/Hazards" unique_id=2145313875 instance=ExtResource("14_power_bubble")]
+position = Vector2(355, 2462)
+
+[node name="Trampolines" type="Node2D" parent="Gameplay" unique_id=1145018257]
+
+[node name="Trampoline" parent="Gameplay/Trampolines" unique_id=363516580 instance=ExtResource("6_trampoline")]
+position = Vector2(361, 2581)
+
+[node name="TrampolineUpper" parent="Gameplay/Trampolines" unique_id=1824414234 instance=ExtResource("6_trampoline")]
+position = Vector2(721, 1727)
+
+[node name="Pickups" type="Node2D" parent="Gameplay" unique_id=328511550]
+
+[node name="PowerBubble" parent="Gameplay/Pickups" unique_id=1932757987 instance=ExtResource("14_power_bubble")]
+position = Vector2(748, 2473)
+
+[node name="PowerBubble2" parent="Gameplay/Pickups" unique_id=1584002077 instance=ExtResource("14_power_bubble")]
+position = Vector2(586, 1757)
+
+[node name="PowerBubbleChimney" parent="Gameplay/Pickups" unique_id=2073033381 instance=ExtResource("14_power_bubble")]
+position = Vector2(252, 1600)
+
+[node name="PowerBubbleTransition" parent="Gameplay/Pickups" unique_id=1925157480 instance=ExtResource("14_power_bubble")]
+position = Vector2(568, 1228)
+
+[node name="PowerBubbleBalcony" parent="Gameplay/Pickups" unique_id=1750911460 instance=ExtResource("14_power_bubble")]
+position = Vector2(735, 760)
+
+[node name="PowerBubbleFinalApproach" parent="Gameplay/Pickups" unique_id=496307384 instance=ExtResource("14_power_bubble")]
+position = Vector2(139, 591)
+
+[node name="Goals" type="Node2D" parent="Gameplay" unique_id=686753611]
+position = Vector2(47, 231)
+
+[node name="PlayerSpawn" type="Marker2D" parent="Gameplay" unique_id=1844472798]
+position = Vector2(245, 2979)
+
+[node name="Checkpoints" type="Node2D" parent="Gameplay" unique_id=78385538]
+
+[node name="Checkpoint" parent="Gameplay/Checkpoints" unique_id=1282043594 instance=ExtResource("4_checkpoint")]
+position = Vector2(581, 2340)
+
+[node name="CheckpointUpper" parent="Gameplay/Checkpoints" unique_id=1083948720 instance=ExtResource("4_checkpoint")]
+position = Vector2(605, 1376)
+
+[node name="Entities" type="Node2D" parent="Gameplay" unique_id=2113375034]
+
+[node name="ClockCrossbeam" parent="Gameplay/Entities" unique_id=925015695 instance=ExtResource("2_moving_platform")]
+position = Vector2(386, 1930)
+speed = 83.333
+
+[node name="SpawnSprintGate" parent="Gameplay/Entities" unique_id=492645762 instance=ExtResource("3_intermittent_platform")]
+position = Vector2(316, 2360)
+scale = Vector2(2.875, 1)
+visible_time = 1.0
+hidden_time = 1.2
+
+[node name="MovingPlatform" parent="Gameplay/Entities" unique_id=50198809 instance=ExtResource("2_moving_platform")]
+position = Vector2(568, 1981)
+
+[node name="LevelExit" parent="Gameplay" unique_id=155317017 instance=ExtResource("12_03g8n")]
+position = Vector2(413, 334)
+
+[node name="CameraLimits" type="Node2D" parent="." unique_id=1000894841]
+
+[node name="TopLeft" type="Marker2D" parent="CameraLimits" unique_id=1149551964]
+
+[node name="BottomRight" type="Marker2D" parent="CameraLimits" unique_id=1602300168]
+position = Vector2(991, 3504)
+
+[node name="Debug" type="Node2D" parent="." unique_id=1378911889]
+position = Vector2(-6, -1)

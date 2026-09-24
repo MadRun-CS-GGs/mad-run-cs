@@ -3,9 +3,9 @@ extends Control
 const CHARACTER_SELECT_SCENE := "res://scenes/ui/character_select.tscn"
 
 const LEVEL_SCENES := [
-	"res://scenes/levels/sandbox_malecon.tscn",
-	"res://scenes/levels/lago_level.tscn",
-	"res://scenes/levels/level_03.tscn",
+	"res://scenes/levels/malecon_level.tscn",
+	"res://scenes/levels/lago_Level.tscn",
+	"res://scenes/levels/faro_level.tscn",
 	"res://scenes/levels/level_04.tscn"
 ]
 

@@ -125,7 +125,7 @@ position = Vector2(8551, -285)
 [node name="CameraLimits" type="Node2D" parent="." unique_id=958114425]
 
 [node name="TopLeft" type="Marker2D" parent="CameraLimits" unique_id=7284630]
-position = Vector2(-55, -435)
+position = Vector2(-114, -1583)
 
 [node name="BottomRight" type="Marker2D" parent="CameraLimits" unique_id=1899803386]
 position = Vector2(10176, 587)

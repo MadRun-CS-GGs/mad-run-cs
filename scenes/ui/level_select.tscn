@@ -40,7 +40,7 @@ text = "LAGO"
 [node name="Level3Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=695902496]
 custom_minimum_size = Vector2(220, 40)
 layout_mode = 2
-text = "NIVEL 3"
+text = "FARO"
 
 [node name="Level4Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=72234540]
 custom_minimum_size = Vector2(220, 40)
