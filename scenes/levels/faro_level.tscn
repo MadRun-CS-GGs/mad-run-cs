@@ -472,8 +472,11 @@ position = Vector2(139, 591)
 [node name="Goals" type="Node2D" parent="Gameplay" unique_id=686753611]
 position = Vector2(47, 231)
 
+[node name="Player2Spawn" type="Marker2D" parent="Gameplay" unique_id=1607080253]
+position = Vector2(274, 2983)
+
 [node name="PlayerSpawn" type="Marker2D" parent="Gameplay" unique_id=1844472798]
-position = Vector2(245, 2979)
+position = Vector2(246, 2981)
 
 [node name="Checkpoints" type="Node2D" parent="Gameplay" unique_id=78385538]
 

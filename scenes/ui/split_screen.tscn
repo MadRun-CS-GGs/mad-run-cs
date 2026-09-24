@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://r1stuppqdr53"]
+
+[ext_resource type="Script" uid="uid://7n0sbjlpjdhi" path="res://scripts/ui/split_screen.gd" id="1_8wvpc"]
+
+[node name="SplitScreen" type="CanvasLayer" unique_id=1401842723]
+script = ExtResource("1_8wvpc")
+
+[node name="Screen" type="Control" parent="." unique_id=1881068431]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 2.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen" unique_id=1785097928]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player1Container" type="SubViewportContainer" parent="Screen/VBoxContainer" unique_id=835285623]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="Player1Viewport" type="SubViewport" parent="Screen/VBoxContainer/Player1Container" unique_id=1598500302]
+handle_input_locally = false
+size = Vector2i(640, 174)
+render_target_update_mode = 4
+
+[node name="Player1Camera" type="Camera2D" parent="Screen/VBoxContainer/Player1Container/Player1Viewport" unique_id=1572645466]
+position_smoothing_enabled = true
+
+[node name="Divider" type="ColorRect" parent="Screen/VBoxContainer" unique_id=2093306754]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Player2Container" type="SubViewportContainer" parent="Screen/VBoxContainer" unique_id=1496380744]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="Player2Viewport" type="SubViewport" parent="Screen/VBoxContainer/Player2Container" unique_id=1418153377]
+handle_input_locally = false
+size = Vector2i(640, 175)
+render_target_update_mode = 4
+
+[node name="Player2Camera" type="Camera2D" parent="Screen/VBoxContainer/Player2Container/Player2Viewport" unique_id=993331989]
+position = Vector2(30, 73)
+position_smoothing_enabled = true

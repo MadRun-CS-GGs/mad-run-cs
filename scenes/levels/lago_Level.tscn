@@ -98,7 +98,10 @@ tile_set = SubResource("TileSet_moax1")
 [node name="Gameplay" type="Node2D" parent="." unique_id=858301078]
 
 [node name="PlayerSpawn" type="Marker2D" parent="Gameplay" unique_id=1557467569]
-position = Vector2(0, -78)
+position = Vector2(-18, -80)
+
+[node name="Player2Spawn" type="Marker2D" parent="Gameplay" unique_id=1412114137]
+position = Vector2(25, -80)
 
 [node name="Entities" type="Node2D" parent="Gameplay" unique_id=45023712]
 
