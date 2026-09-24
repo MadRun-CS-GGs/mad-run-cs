@@ -30,7 +30,7 @@ text = "SELECCIONAR NIVEL"
 [node name="Level1Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1129857771]
 custom_minimum_size = Vector2(220, 40)
 layout_mode = 2
-text = "NIVEL 1"
+text = "MALECON"
 
 [node name="Level2Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=457634920]
 custom_minimum_size = Vector2(220, 40)

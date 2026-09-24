@@ -1,0 +1,413 @@
+[gd_scene format=4 uid="uid://dfey4fi6yxhcq"]
+
+[ext_resource type="Script" uid="uid://lf262d3wojx2" path="res://scripts/levels/level_base.gd" id="1_4w4q8"]
+[ext_resource type="TileSet" uid="uid://hnt3m6pen3p0" path="res://resources/tilesets/dev_tileset.tres" id="2_vvkrl"]
+[ext_resource type="PackedScene" uid="uid://besfl7d2phw21" path="res://scenes/components/static_platform.tscn" id="3_3pwgb"]
+[ext_resource type="PackedScene" uid="uid://bqi0c782p2gu3" path="res://scenes/components/checkpoint.tscn" id="3_6otbh"]
+[ext_resource type="PackedScene" uid="uid://bijn2j7la7dgc" path="res://scenes/components/disappearing_wall.tscn" id="3_vvkrl"]
+[ext_resource type="PackedScene" uid="uid://dldic627xq7dl" path="res://scenes/components/one_way_wall.tscn" id="4_d7lkd"]
+[ext_resource type="PackedScene" uid="uid://c0wtgnhhq1uow" path="res://scenes/components/static_wall.tscn" id="4_slc2s"]
+[ext_resource type="PackedScene" uid="uid://pbiqh2w7icjd" path="res://scenes/components/trampoline.tscn" id="5_agwrq"]
+[ext_resource type="PackedScene" uid="uid://bxj0i54ijwm30" path="res://scenes/components/water_hazard.tscn" id="6_e0rwl"]
+[ext_resource type="PackedScene" uid="uid://c7be30wumvrmk" path="res://scenes/components/moving_wall.tscn" id="7_jug6x"]
+[ext_resource type="PackedScene" uid="uid://sp0p4a23bpl4" path="res://scenes/components/one_way_platform.tscn" id="8_bxy00"]
+[ext_resource type="PackedScene" uid="uid://c1o4lmdx1hd33" path="res://scenes/components/moving_platform.tscn" id="9_e0rwl"]
+[ext_resource type="PackedScene" uid="uid://xs35ecly2iky" path="res://scenes/components/disappearing_platform.tscn" id="10_jug6x"]
+[ext_resource type="PackedScene" uid="uid://doho8cbodkwp1" path="res://scenes/components/power_bubble.tscn" id="14_gh22a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ov0la"]
+
+[node name="Level" type="Node2D" unique_id=174878480]
+position = Vector2(126, -208)
+script = ExtResource("1_4w4q8")
+
+[node name="TileMaps" type="Node2D" parent="." unique_id=1084982907]
+
+[node name="Terrain" type="TileMapLayer" parent="TileMaps" unique_id=133861095]
+tile_map_data = PackedByteArray("AAAAABEAAQAAAAAAAAABABEAAQAAAAAAAAACABEAAQAAAAAAAAADABEAAQAAAAAAAAAEABEAAQAAAAAAAAAFABEAAQAAAAAAAAAGABEAAQAAAAAAAAAHABEAAQAAAAAAAAAIABEAAQAAAAAAAAAJABEAAQAAAAAAAAAKABEAAQAAAAAAAAALABEAAQAAAAAAAAAMABEAAQAAAAAAAAANABEAAQAAAAAAAAAOABEAAQAAAAAAAAAPABEAAQAAAAAAAAAQABEAAQAAAAAAAAARABEAAQAAAAAAAAASABEAAQAAAAAAAAATABEAAQAAAAAAAAAUABEAAQAAAAAAAAAVABEAAQAAAAAAAAAWABEAAQAAAAAAAAAXABEAAQAAAAAAAAAYABEAAQAAAAAAAAAZABEAAQAAAAAAAAAaABEAAQAAAAAAAAAbABEAAQAAAAAAAAAcABEAAQAAAAAAAAAdABEAAQAAAAAAAAAeABEAAQAAAAAAAAAfABEAAQAAAAAAAAAgABEAAQAAAAAAAAAhABEAAQAAAAAAAAAiABEAAQAAAAAAAAAjABEAAQAAAAAAAAAkABEAAQAAAAAAAAAlABEAAQAAAAAAAAAmABEAAQAAAAAAAAAnABEAAQAAAAAAAAAoABEAAQAAAAAAAAApABEAAQAAAAAAAAAqABEAAQAAAAAAAAArABEAAQAAAAAAAAAsABEAAQAAAAAAAAAtABEAAQAAAAAAAAAuABEAAQAAAAAAAAAvABEAAQAAAAAAAAAwABEAAQAAAAAAAAAxABEAAQAAAAAAAAAyABEAAQAAAAAAAAAzABEAAQAAAAAAAAA0ABEAAQAAAAAAAAA2ABEAAQAAAAAAAAA3ABEAAQAAAAAAAAA4ABEAAQAAAAAAAAA5ABEAAQAAAAAAAAA6ABEAAQAAAAAAAAA7ABEAAQAAAAAAAAA8ABEAAQAAAAAAAAA9ABEAAQAAAAAAAAA+ABEAAQAAAAAAAAA/ABEAAQAAAAAAAABAABEAAQAAAAAAAABBABEAAQAAAAAAAABCABEAAQAAAAAAAABDABEAAQAAAAAAAABEABEAAQAAAAAAAABFABEAAQAAAAAAAABGABEAAQAAAAAAAABHABEAAQAAAAAAAAA1ABEAAQAAAAAAAABIABEAAQAAAAAAAABKABEAAQAAAAAAAABLABEAAQAAAAAAAABMABEAAQAAAAAAAABNABEAAQAAAAAAAABOABEAAQAAAAAAAABPABEAAQAAAAAAAABQABEAAQAAAAAAAABRABEAAQAAAAAAAABSABEAAQAAAAAAAABTABEAAQAAAAAAAABUABEAAQAAAAAAAABVABEAAQAAAAAAAABWABEAAQAAAAAAAABXABEAAQAAAAAAAABYABEAAQAAAAAAAABZABEAAQAAAAAAAABaABEAAQAAAAAAAABbABEAAQAAAAAAAABcABEAAQAAAAAAAABdABEAAQAAAAAAAABeABEAAQAAAAAAAABfABEAAQAAAAAAAABgABEAAQAAAAAAAABhABEAAQAAAAAAAABiABEAAQAAAAAAAABjABEAAQAAAAAAAABkABEAAQAAAAAAAABlABEAAQAAAAAAAABmABEAAQAAAAAAAABnABEAAQAAAAAAAABoABEAAQAAAAAAAABpABEAAQAAAAAAAABqABEAAQAAAAAAAABrABEAAQAAAAAAAABsABEAAQAAAAAAAABtABEAAQAAAAAAAABuABEAAQAAAAAAAABvABEAAQAAAAAAAABwABEAAQAAAAAAAABxABEAAQAAAAAAAAByABEAAQAAAAAAAABzABEAAQAAAAAAAAB0ABEAAQAAAAAAAAB1ABEAAQAAAAAAAAB2ABEAAQAAAAAAAAB3ABEAAQAAAAAAAAB4ABEAAQAAAAAAAAB5ABEAAQAAAAAAAAB6ABEAAQAAAAAAAAB7ABEAAQAAAAAAAAB8ABEAAQAAAAAAAAB9ABEAAQAAAAAAAAB+ABEAAQAAAAAAAAB/ABEAAQAAAAAAAACAABEAAQAAAAAAAACBABEAAQAAAAAAAACCABEAAQAAAAAAAACDABEAAQAAAAAAAACEABEAAQAAAAAAAACFABEAAQAAAAAAAACGABEAAQAAAAAAAACHABEAAQAAAAAAAACIABEAAQAAAAAAAACJABEAAQAAAAAAAACKABEAAQAAAAAAAACLABEAAQAAAAAAAACMABEAAQAAAAAAAACNABEAAQAAAAAAAACOABEAAQAAAAAAAACPABEAAQAAAAAAAACQABEAAQAAAAAAAACRABEAAQAAAAAAAACSABEAAQAAAAAAAACTABEAAQAAAAAAAACUABEAAQAAAAAAAACVABEAAQAAAAAAAACWABEAAQAAAAAAAACXABEAAQAAAAAAAACYABEAAQAAAAAAAACZABEAAQAAAAAAAACaABEAAQAAAAAAAACbABEAAQAAAAAAAACcABEAAQAAAAAAAACdABEAAQAAAAAAAACeABEAAQAAAAAAAACfABEAAQAAAAAAAACgABEAAQAAAAAAAAChABEAAQAAAAAAAACiABEAAQAAAAAAAACjABEAAQAAAAAAAACkABEAAQAAAAAAAAClABEAAQAAAAAAAACmABEAAQAAAAAAAACnABEAAQAAAAAAAACoABEAAQAAAAAAAACpABEAAQAAAAAAAACqABEAAQAAAAAAAACrABEAAQAAAAAAAACsABEAAQAAAAAAAACtABEAAQAAAAAAAACuABEAAQAAAAAAAACvABEAAQAAAAAAAACwABEAAQAAAAAAAACxABEAAQAAAAAAAACyABEAAQAAAAAAAACzABEAAQAAAAAAAAC4ABEAAQAAAAAAAAC5ABEAAQAAAAAAAAC6ABEAAQAAAAAAAAC7ABEAAQAAAAAAAAC8ABEAAQAAAAAAAAC9ABEAAQAAAAAAAAC+ABEAAQAAAAAAAAC/ABEAAQAAAAAAAADAABEAAQAAAAAAAADBABEAAQAAAAAAAADCABEAAQAAAAAAAADDABEAAQAAAAAAAADEABEAAQAAAAAAAADFABEAAQAAAAAAAADGABEAAQAAAAAAAADHABEAAQAAAAAAAAC0ABEAAQAAAAAAAAC1ABEAAQAAAAAAAAC2ABEAAQAAAAAAAAC3ABEAAQAAAAAAAADIABEAAQAAAAAAAADJABEAAQAAAAAAAADKABEAAQAAAAAAAADLABEAAQAAAAAAAADMABEAAQAAAAAAAADNABEAAQAAAAAAAADOABEAAQAAAAAAAADPABEAAQAAAAAAAADQABEAAQAAAAAAAADRABEAAQAAAAAAAADSABEAAQAAAAAAAADTABEAAQAAAAAAAADVABEAAQAAAAAAAADWABEAAQAAAAAAAADXABEAAQAAAAAAAADYABEAAQAAAAAAAADZABEAAQAAAAAAAADaABEAAQAAAAAAAADbABEAAQAAAAAAAADcABEAAQAAAAAAAADUABEAAQAAAAAAAADdABEAAQAAAAAAAADeABEAAQAAAAAAAADfABEAAQAAAAAAAADgABEAAQAAAAAAAADhABEAAQAAAAAAAADiABEAAQAAAAAAAADjABEAAQAAAAAAAADkABEAAQAAAAAAAADlABEAAQAAAAAAAADmABEAAQAAAAAAAADnABEAAQAAAAAAAADoABEAAQAAAAAAAADpABEAAQAAAAAAAADqABEAAQAAAAAAAADrABEAAQAAAAAAAADsABEAAQAAAAAAAADtABEAAQAAAAAAAADuABEAAQAAAAAAAADvABEAAQAAAAAAAADwABEAAQAAAAAAAADxABEAAQAAAAAAAADyABEAAQAAAAAAAADzABEAAQAAAAAAAAD0ABEAAQAAAAAAAAD1ABEAAQAAAAAAAAD2ABEAAQAAAAAAAAD3ABEAAQAAAAAAAAD4ABEAAQAAAAAAAAD5ABEAAQAAAAAAAAD6ABEAAQAAAAAAAAD7ABEAAQAAAAAAAAD8ABEAAQAAAAAAAAA0AAkAAQAAAAIAADA3AAkAAQAAAAIAADA6AAkAAQAAAAIAADA9AAkAAQAAAAIAADBJABEAAQAAAAAAAABSAAgAAQAAAAIAADBTAAgAAQAAAAIAADBdAAgAAQAAAAIAADBeAAgAAQAAAAIAADBnAAgAAQAAAAIAADBoAAgAAQAAAAIAADCAAAcAAQAAAAAAAACAAAsAAQAAAAAAAACAAAwAAQAAAAAAAACAAA0AAQAAAAAAAACAAA4AAQAAAAAAAACAAA8AAQAAAAAAAACAABAAAQAAAAAAAACBAAwAAQAAAAAAAACBAA0AAQAAAAAAAACBAA4AAQAAAAAAAACBAA8AAQAAAAAAAACBABAAAQAAAAAAAACCAA4AAQAAAAAAAACCAA8AAQAAAAAAAACCABAAAQAAAAAAAACCAA0AAQAAAAAAAACDAA4AAQAAAAAAAACDAA8AAQAAAAAAAACDABAAAQAAAAAAAACEAA8AAQAAAAAAAACEABAAAQAAAAAAAACAAAYAAQAAAAAAAACBAAYAAQAAAAAAAACBAAUAAQAAAAAAAACCAAUAAQAAAAAAAACCAAQAAQAAAAAAAACDAAMAAQAAAAAAAACDAAQAAQAAAAAAAACCAAMAAQAAAAAAAACBAAMAAQAAAAAAAACBAAQAAQAAAAAAAACAAAUAAQAAAAAAAACAAAQAAQAAAAAAAACCAAIAAQAAAAAAAACDAAIAAQAAAAAAAACDAAEAAQAAAAAAAACEAAEAAQAAAAAAAACEAAIAAQAAAAAAAACEAAMAAQAAAAAAAACEAAQAAQAAAAAAAACEAAAAAQAAAAAAAADWABAAAQAAAAAAAADXABAAAQAAAAAAAADYABAAAQAAAAAAAADZABAAAQAAAAAAAADaABAAAQAAAAAAAADbABAAAQAAAAAAAADcABAAAQAAAAAAAADcAA8AAQAAAAAAAADbAA8AAQAAAAAAAADaAA8AAQAAAAAAAADZAA8AAQAAAAAAAADYAA8AAQAAAAAAAADXAA8AAQAAAAAAAADWAA8AAQAAAAAAAADWAA4AAQAAAAAAAADXAA4AAQAAAAAAAADXAA0AAQAAAAAAAADYAA0AAQAAAAAAAADZAA0AAQAAAAAAAADaAA0AAQAAAAAAAADbAA0AAQAAAAAAAADbAA4AAQAAAAAAAADcAA4AAQAAAAAAAADaAA4AAQAAAAAAAADZAA4AAQAAAAAAAADYAA4AAQAAAAAAAADWAA0AAQAAAAAAAADcAA0AAQAAAAAAAADZAAwAAQABAAIAAAA=")
+tile_set = ExtResource("2_vvkrl")
+
+[node name="OneWayPlatforms" type="TileMapLayer" parent="TileMaps" unique_id=264062631]
+tile_set = ExtResource("2_vvkrl")
+
+[node name="Markers" type="TileMapLayer" parent="TileMaps" unique_id=1636901984]
+rotation = 3.3725948
+tile_map_data = PackedByteArray("AAA0AAYAAQAAAAAAAAA0AAcAAQAAAAEAAAA0AAgAAQAAAAIAAAA=")
+tile_set = ExtResource("2_vvkrl")
+
+[node name="Gameplay" type="Node2D" parent="." unique_id=2100626766]
+
+[node name="PlayerSpawn" type="Marker2D" parent="Gameplay" unique_id=1664584639]
+position = Vector2(120, 372)
+
+[node name="LevelExit" type="Area2D" parent="Gameplay" unique_id=1989834360]
+position = Vector2(6914, 397)
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gameplay/LevelExit" unique_id=1012395477]
+position = Vector2(46, 8)
+shape = SubResource("RectangleShape2D_ov0la")
+
+[node name="Pickups" type="Node2D" parent="Gameplay" unique_id=604108404]
+position = Vector2(125, 140)
+
+[node name="Checkpoint" parent="Gameplay/Pickups" unique_id=595910252 instance=ExtResource("3_6otbh")]
+position = Vector2(2178, 159)
+collision_mask = 2
+
+[node name="Checkpoint2" parent="Gameplay/Pickups/Checkpoint" unique_id=548853422 instance=ExtResource("3_6otbh")]
+position = Vector2(1338, 157)
+collision_mask = 2
+
+[node name="Checkpoint3" parent="Gameplay/Pickups/Checkpoint" unique_id=1053407610 instance=ExtResource("3_6otbh")]
+position = Vector2(1817, 30)
+collision_mask = 2
+
+[node name="PowerBubble" parent="Gameplay/Pickups" unique_id=633850574 instance=ExtResource("14_gh22a")]
+position = Vector2(337, -109)
+
+[node name="PowerBubble2" parent="Gameplay/Pickups/PowerBubble" unique_id=1813624493 instance=ExtResource("14_gh22a")]
+position = Vector2(225, 412)
+
+[node name="PowerBubble3" parent="Gameplay/Pickups/PowerBubble" unique_id=887156324 instance=ExtResource("14_gh22a")]
+position = Vector2(193, 412)
+
+[node name="PowerBubble4" parent="Gameplay/Pickups/PowerBubble" unique_id=2009481840 instance=ExtResource("14_gh22a")]
+position = Vector2(817, 229)
+
+[node name="PowerBubble5" parent="Gameplay/Pickups/PowerBubble" unique_id=192328237 instance=ExtResource("14_gh22a")]
+position = Vector2(1268, 341)
+
+[node name="PowerBubble6" parent="Gameplay/Pickups/PowerBubble" unique_id=979271649 instance=ExtResource("14_gh22a")]
+position = Vector2(1365, 348)
+
+[node name="PowerBubble7" parent="Gameplay/Pickups/PowerBubble" unique_id=100140377 instance=ExtResource("14_gh22a")]
+position = Vector2(1460, 346)
+
+[node name="PowerBubble8" parent="Gameplay/Pickups/PowerBubble" unique_id=550171512 instance=ExtResource("14_gh22a")]
+position = Vector2(307, 416)
+
+[node name="PowerBubble9" parent="Gameplay/Pickups/PowerBubble" unique_id=836646174 instance=ExtResource("14_gh22a")]
+position = Vector2(344, 419)
+
+[node name="PowerBubble10" parent="Gameplay/Pickups/PowerBubble" unique_id=1787951410 instance=ExtResource("14_gh22a")]
+position = Vector2(384, 421)
+
+[node name="PowerBubble11" parent="Gameplay/Pickups/PowerBubble" unique_id=936804190 instance=ExtResource("14_gh22a")]
+position = Vector2(2103, 371)
+
+[node name="PowerBubble12" parent="Gameplay/Pickups/PowerBubble" unique_id=1326630870 instance=ExtResource("14_gh22a")]
+position = Vector2(2341, 264)
+
+[node name="PowerBubble13" parent="Gameplay/Pickups/PowerBubble" unique_id=1808008161 instance=ExtResource("14_gh22a")]
+position = Vector2(2404, 266)
+
+[node name="PowerBubble14" parent="Gameplay/Pickups/PowerBubble" unique_id=1985914044 instance=ExtResource("14_gh22a")]
+position = Vector2(2689, 248)
+
+[node name="PowerBubble15" parent="Gameplay/Pickups/PowerBubble" unique_id=879431752 instance=ExtResource("14_gh22a")]
+position = Vector2(2735, 249)
+
+[node name="PowerBubble16" parent="Gameplay/Pickups/PowerBubble" unique_id=28636233 instance=ExtResource("14_gh22a")]
+position = Vector2(3037, 329)
+
+[node name="PowerBubble17" parent="Gameplay/Pickups/PowerBubble" unique_id=2129516614 instance=ExtResource("14_gh22a")]
+position = Vector2(3034, 459)
+
+[node name="PowerBubble18" parent="Gameplay/Pickups/PowerBubble" unique_id=282661011 instance=ExtResource("14_gh22a")]
+position = Vector2(3316, 355)
+
+[node name="PowerBubble19" parent="Gameplay/Pickups/PowerBubble" unique_id=1053638957 instance=ExtResource("14_gh22a")]
+position = Vector2(3317, 461)
+
+[node name="PowerBubble20" parent="Gameplay/Pickups/PowerBubble" unique_id=2059514683 instance=ExtResource("14_gh22a")]
+position = Vector2(3621, 493)
+
+[node name="PowerBubble21" parent="Gameplay/Pickups/PowerBubble" unique_id=1213190630 instance=ExtResource("14_gh22a")]
+position = Vector2(3650, 76)
+
+[node name="PowerBubble22" parent="Gameplay/Pickups/PowerBubble" unique_id=1392010705 instance=ExtResource("14_gh22a")]
+position = Vector2(3852, 476)
+
+[node name="PowerBubble23" parent="Gameplay/Pickups/PowerBubble" unique_id=1331200054 instance=ExtResource("14_gh22a")]
+position = Vector2(4199, 284)
+
+[node name="PowerBubble24" parent="Gameplay/Pickups/PowerBubble" unique_id=1938986003 instance=ExtResource("14_gh22a")]
+position = Vector2(4476, 268)
+
+[node name="PowerBubble25" parent="Gameplay/Pickups/PowerBubble" unique_id=1203766307 instance=ExtResource("14_gh22a")]
+position = Vector2(4796, 294)
+
+[node name="PowerBubble26" parent="Gameplay/Pickups/PowerBubble" unique_id=510190787 instance=ExtResource("14_gh22a")]
+position = Vector2(4396, 202)
+
+[node name="PowerBubble27" parent="Gameplay/Pickups/PowerBubble" unique_id=1122212466 instance=ExtResource("14_gh22a")]
+position = Vector2(4618, 200)
+
+[node name="PowerBubble28" parent="Gameplay/Pickups/PowerBubble" unique_id=380281750 instance=ExtResource("14_gh22a")]
+position = Vector2(4925, 198)
+
+[node name="PowerBubble29" parent="Gameplay/Pickups/PowerBubble" unique_id=745735467 instance=ExtResource("14_gh22a")]
+position = Vector2(4330, 440)
+
+[node name="PowerBubble30" parent="Gameplay/Pickups/PowerBubble" unique_id=985247323 instance=ExtResource("14_gh22a")]
+position = Vector2(4624, 439)
+
+[node name="PowerBubble31" parent="Gameplay/Pickups/PowerBubble" unique_id=861437953 instance=ExtResource("14_gh22a")]
+position = Vector2(4925, 438)
+
+[node name="PowerBubble32" parent="Gameplay/Pickups/PowerBubble" unique_id=420759203 instance=ExtResource("14_gh22a")]
+position = Vector2(5339, 295)
+
+[node name="PowerBubble33" parent="Gameplay/Pickups/PowerBubble" unique_id=257750770 instance=ExtResource("14_gh22a")]
+position = Vector2(5289, 61)
+
+[node name="Entities" type="Node2D" parent="Gameplay" unique_id=428637276]
+position = Vector2(253, 135)
+
+[node name="One_Way_Wall" parent="Gameplay/Entities" unique_id=2146761323 instance=ExtResource("4_d7lkd")]
+position = Vector2(475, 254)
+scale = Vector2(1, 2.3)
+
+[node name="One_Way_Wall" parent="Gameplay/Entities/One_Way_Wall" unique_id=1789498563 instance=ExtResource("4_d7lkd")]
+position = Vector2(2107, -25.217394)
+scale = Vector2(1, 2.5)
+
+[node name="One_Way_Wall2" parent="Gameplay/Entities/One_Way_Wall" unique_id=565820514 instance=ExtResource("4_d7lkd")]
+position = Vector2(2445, -25.652176)
+scale = Vector2(1, 2.5)
+
+[node name="One_Way_Platform" parent="Gameplay/Entities" unique_id=1016971854 instance=ExtResource("8_bxy00")]
+position = Vector2(-137, 336)
+
+[node name="One_Way_Platform" parent="Gameplay/Entities/One_Way_Platform" unique_id=1149027509 instance=ExtResource("8_bxy00")]
+position = Vector2(5400, -157)
+
+[node name="One_Way_Platform3" parent="Gameplay/Entities/One_Way_Platform" unique_id=817423008 instance=ExtResource("8_bxy00")]
+position = Vector2(5555, 10)
+
+[node name="One_Way_Platform5" parent="Gameplay/Entities/One_Way_Platform" unique_id=1760766222 instance=ExtResource("8_bxy00")]
+position = Vector2(5780, -42)
+
+[node name="One_Way_Platform6" parent="Gameplay/Entities/One_Way_Platform" unique_id=2059770465 instance=ExtResource("8_bxy00")]
+position = Vector2(5568, -235)
+
+[node name="One_Way_Platform7" parent="Gameplay/Entities/One_Way_Platform" unique_id=1607191515 instance=ExtResource("8_bxy00")]
+position = Vector2(5756, -306)
+
+[node name="One_Way_Platform8" parent="Gameplay/Entities/One_Way_Platform" unique_id=1860905904 instance=ExtResource("8_bxy00")]
+position = Vector2(5984, 36)
+
+[node name="One_Way_Platform9" parent="Gameplay/Entities/One_Way_Platform" unique_id=300181038 instance=ExtResource("8_bxy00")]
+position = Vector2(5991, -169)
+
+[node name="One_Way_Platform4" parent="Gameplay/Entities/One_Way_Platform" unique_id=915997840 instance=ExtResource("8_bxy00")]
+position = Vector2(516, 8)
+scale = Vector2(6.08, 1.0209805)
+
+[node name="One_Way_Platform2" parent="Gameplay/Entities/One_Way_Platform" unique_id=805105977 instance=ExtResource("8_bxy00")]
+position = Vector2(161, -47)
+
+[node name="MovingWall" parent="Gameplay/Entities" unique_id=1827076657 instance=ExtResource("7_jug6x")]
+position = Vector2(122, 183)
+
+[node name="MovingWall2" parent="Gameplay/Entities/MovingWall" unique_id=9988472 instance=ExtResource("7_jug6x")]
+position = Vector2(-539, 1003)
+
+[node name="MovingWall" parent="Gameplay/Entities/MovingWall" unique_id=1571168650 instance=ExtResource("7_jug6x")]
+position = Vector2(2028, -25)
+
+[node name="MovingWall3" parent="Gameplay/Entities/MovingWall" unique_id=2116119193 instance=ExtResource("7_jug6x")]
+position = Vector2(2111, 38)
+offset = Vector2(0, 75)
+speed = 150.0
+
+[node name="MovingWall4" parent="Gameplay/Entities/MovingWall" unique_id=1407933399 instance=ExtResource("7_jug6x")]
+position = Vector2(2184, -24)
+speed = 50.0
+
+[node name="MovingWall5" parent="Gameplay/Entities/MovingWall" unique_id=1155934784 instance=ExtResource("7_jug6x")]
+position = Vector2(3937, 95)
+
+[node name="MovingWall6" parent="Gameplay/Entities/MovingWall" unique_id=1440188068 instance=ExtResource("7_jug6x")]
+position = Vector2(4417, 40)
+
+[node name="MovingWall7" parent="Gameplay/Entities/MovingWall" unique_id=679124700 instance=ExtResource("7_jug6x")]
+position = Vector2(4709, 43)
+
+[node name="MovingWall8" parent="Gameplay/Entities/MovingWall" unique_id=1867803844 instance=ExtResource("7_jug6x")]
+position = Vector2(5011.4097, 32.78769)
+
+[node name="MovingWall9" parent="Gameplay/Entities/MovingWall" unique_id=560526425 instance=ExtResource("7_jug6x")]
+position = Vector2(5011.4097, 32.78769)
+
+[node name="WaterHazard2" parent="Gameplay/Entities" unique_id=833194307 instance=ExtResource("6_e0rwl")]
+position = Vector2(3748, 416)
+scale = Vector2(100, 1)
+
+[node name="WaterHazard3" parent="Gameplay/Entities/WaterHazard2" unique_id=357973053 instance=ExtResource("6_e0rwl")]
+position = Vector2(-36.46, 405)
+scale = Vector2(0.01, 1)
+
+[node name="WaterHazard" parent="Gameplay/Entities/WaterHazard2/WaterHazard3" unique_id=1927835633 instance=ExtResource("6_e0rwl")]
+position = Vector2(-319, 91)
+
+[node name="Trampoline" parent="Gameplay/Entities" unique_id=363516580 instance=ExtResource("5_agwrq")]
+position = Vector2(209, 142)
+
+[node name="Trampoline2" parent="Gameplay/Entities/Trampoline" unique_id=53586125 instance=ExtResource("5_agwrq")]
+position = Vector2(1635, 240)
+
+[node name="Trampoline3" parent="Gameplay/Entities/Trampoline" unique_id=1439572114 instance=ExtResource("5_agwrq")]
+position = Vector2(2880, 236)
+
+[node name="Trampoline" parent="Gameplay/Entities/Trampoline" unique_id=1166015222 instance=ExtResource("5_agwrq")]
+position = Vector2(2201, 232)
+
+[node name="Trampoline4" parent="Gameplay/Entities/Trampoline" unique_id=1500679264 instance=ExtResource("5_agwrq")]
+position = Vector2(2548, 240)
+
+[node name="Trampoline5" parent="Gameplay/Entities/Trampoline" unique_id=1358232739 instance=ExtResource("5_agwrq")]
+position = Vector2(6192, 44)
+
+[node name="Trampoline6" parent="Gameplay/Entities/Trampoline" unique_id=2076817853 instance=ExtResource("5_agwrq")]
+position = Vector2(6045, 223)
+
+[node name="DisappearingPlatform" parent="Gameplay/Entities" unique_id=1835266962 instance=ExtResource("10_jug6x")]
+position = Vector2(1046, 160)
+visible_time = 1.3
+hidden_time = 0.645
+
+[node name="DisappearingPlatform" parent="Gameplay/Entities/DisappearingPlatform" unique_id=1259587907 instance=ExtResource("10_jug6x")]
+position = Vector2(80, 0)
+visible_time = 1.5699999999999998
+hidden_time = 1.53
+
+[node name="DisappearingPlatform3" parent="Gameplay/Entities/DisappearingPlatform" unique_id=1071225118 instance=ExtResource("10_jug6x")]
+position = Vector2(240, 0)
+visible_time = 1.3
+hidden_time = 0.945
+
+[node name="DisappearingPlatform2" parent="Gameplay/Entities/DisappearingPlatform" unique_id=48521265 instance=ExtResource("10_jug6x")]
+position = Vector2(160, 0)
+visible_time = 1.63
+hidden_time = 2.715
+
+[node name="DisappearingPlatform4" parent="Gameplay/Entities/DisappearingPlatform" unique_id=156240147 instance=ExtResource("10_jug6x")]
+position = Vector2(320, 0)
+visible_time = 0.625
+hidden_time = 0.71
+
+[node name="DisappearingPlatform5" parent="Gameplay/Entities/DisappearingPlatform" unique_id=902596644 instance=ExtResource("10_jug6x")]
+position = Vector2(2200, 221)
+visible_time = 1.09
+hidden_time = 3.18
+
+[node name="DisappearingPlatform7" parent="Gameplay/Entities/DisappearingPlatform" unique_id=252885467 instance=ExtResource("10_jug6x")]
+position = Vector2(2203, 90)
+visible_time = 1.995
+hidden_time = 3.325
+
+[node name="DisappearingPlatform8" parent="Gameplay/Entities/DisappearingPlatform" unique_id=737447551 instance=ExtResource("10_jug6x")]
+position = Vector2(2485, 226)
+visible_time = 1.375
+hidden_time = 2.0
+
+[node name="DisappearingPlatform9" parent="Gameplay/Entities/DisappearingPlatform" unique_id=1407651371 instance=ExtResource("10_jug6x")]
+position = Vector2(2477, 120)
+visible_time = 2.735
+hidden_time = 1.605
+
+[node name="DisappearingPlatform10" parent="Gameplay/Entities/DisappearingPlatform" unique_id=931110463 instance=ExtResource("10_jug6x")]
+position = Vector2(2619, 52)
+visible_time = 1.5
+hidden_time = 3.0
+
+[node name="DisappearingPlatform6" parent="Gameplay/Entities/DisappearingPlatform" unique_id=1076883309 instance=ExtResource("10_jug6x")]
+position = Vector2(3646, 30)
+scale = Vector2(0.5, 1)
+
+[node name="DisappearingPlatform11" parent="Gameplay/Entities/DisappearingPlatform" unique_id=412693642 instance=ExtResource("10_jug6x")]
+position = Vector2(3961.4097, 55.78769)
+scale = Vector2(0.5, 1)
+
+[node name="StaticPlatform3" parent="Gameplay/Entities" unique_id=24034259 instance=ExtResource("3_3pwgb")]
+position = Vector2(3388, 332)
+scale = Vector2(0.2, 1)
+
+[node name="StaticPlatform" parent="Gameplay/Entities/StaticPlatform3" unique_id=298041664 instance=ExtResource("3_3pwgb")]
+position = Vector2(-14185, -174)
+scale = Vector2(10.2, 1)
+
+[node name="StaticPlatform2" parent="Gameplay/Entities/StaticPlatform3" unique_id=1998333828 instance=ExtResource("3_3pwgb")]
+position = Vector2(-9810, 36)
+scale = Vector2(1.5, 1)
+
+[node name="StaticPlatform3" parent="Gameplay/Entities/StaticPlatform3" unique_id=665557722 instance=ExtResource("3_3pwgb")]
+position = Vector2(-8845, 36)
+scale = Vector2(1.5, 1)
+
+[node name="StaticPlatform5" parent="Gameplay/Entities/StaticPlatform3" unique_id=839864075 instance=ExtResource("3_3pwgb")]
+position = Vector2(-9320, 36)
+scale = Vector2(1.5, 1)
+
+[node name="StaticPlatform6" parent="Gameplay/Entities/StaticPlatform3" unique_id=362191538 instance=ExtResource("3_3pwgb")]
+position = Vector2(-6690, -143)
+scale = Vector2(5, 1)
+
+[node name="StaticPlatform4" parent="Gameplay/Entities/StaticPlatform3" unique_id=699443216 instance=ExtResource("3_3pwgb")]
+position = Vector2(-8365, 36)
+scale = Vector2(1.5, 1)
+
+[node name="MovingPlatform2" parent="Gameplay/Entities" unique_id=26093788 instance=ExtResource("9_e0rwl")]
+position = Vector2(4192, 193)
+
+[node name="MovingPlatform" parent="Gameplay/Entities/MovingPlatform2" unique_id=50198809 instance=ExtResource("9_e0rwl")]
+position = Vector2(-3476, -33)
+
+[node name="MovingPlatform2" parent="Gameplay/Entities/MovingPlatform2" unique_id=1777908476 instance=ExtResource("9_e0rwl")]
+position = Vector2(1815, 178)
+offset = Vector2(150, 0)
+
+[node name="DisappearingWall" parent="Gameplay/Entities" unique_id=1366774306 instance=ExtResource("3_vvkrl")]
+position = Vector2(3835, 171)
+
+[node name="StaticWall" parent="Gameplay" unique_id=1375735958 instance=ExtResource("4_slc2s")]
+position = Vector2(2289, 442.00003)
+scale = Vector2(1, 3)
+
+[node name="Trampoline" parent="Gameplay" unique_id=899373794 instance=ExtResource("5_agwrq")]
+position = Vector2(6297, 254)
+
+[node name="PowerBubble" parent="Gameplay" unique_id=2076260628 instance=ExtResource("14_gh22a")]
+position = Vector2(2196, 257)
+
+[node name="PowerBubble2" parent="Gameplay" unique_id=1602797022 instance=ExtResource("14_gh22a")]
+position = Vector2(2401, 401)
+
+[node name="PowerBubble3" parent="Gameplay" unique_id=1750830357 instance=ExtResource("14_gh22a")]
+position = Vector2(2486, 403)
+
+[node name="PowerBubble4" parent="Gameplay" unique_id=1503982538 instance=ExtResource("14_gh22a")]
+position = Vector2(6044, 147)
+
+[node name="PowerBubble5" parent="Gameplay" unique_id=1822439590 instance=ExtResource("14_gh22a")]
+position = Vector2(6294, -5)
+
+[node name="PowerBubble6" parent="Gameplay" unique_id=171614294 instance=ExtResource("14_gh22a")]
+position = Vector2(6479, 276)
+
+[node name="PowerBubble7" parent="Gameplay" unique_id=1694517393 instance=ExtResource("14_gh22a")]
+position = Vector2(6646, 93)
+
+[node name="CameraLimits" type="Node2D" parent="." unique_id=1006121758]
+position = Vector2(-159, 163)
+
+[node name="TopLeft" type="Marker2D" parent="CameraLimits" unique_id=743993755]
+position = Vector2(241, -440)
+
+[node name="BottomRight" type="Marker2D" parent="CameraLimits" unique_id=313011000]
+position = Vector2(7600, 401)
+
+[node name="Debug" type="Node2D" parent="." unique_id=908088984]

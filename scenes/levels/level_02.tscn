@@ -27,8 +27,8 @@ tile_set = ExtResource("2_klce2")
 [node name="PlayerSpawn" type="Marker2D" parent="Gameplay" unique_id=1664584639]
 position = Vector2(-45, 518)
 
-[node name="Player2Spawn" type="Marker2D" parent="Gameplay" unique_id=175891128]
-position = Vector2(-6, 517)
+[node name="Player2Spawn" type="Marker2D" parent="Gameplay" unique_id=1269982199]
+position = Vector2(-15, 518)
 
 [node name="Entities" type="Node2D" parent="Gameplay" unique_id=428637276]
 position = Vector2(253, 135)

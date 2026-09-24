@@ -3,7 +3,7 @@ extends Control
 const CHARACTER_SELECT_SCENE := "res://scenes/ui/character_select.tscn"
 
 const LEVEL_SCENES := [
-	"res://scenes/levels/level_01.tscn",
+	"res://scenes/levels/sandbox_malecon.tscn",
 	"res://scenes/levels/level_02.tscn",
 	"res://scenes/levels/level_03.tscn",
 	"res://scenes/levels/level_04.tscn"
