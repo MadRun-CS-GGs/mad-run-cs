@@ -976,6 +976,15 @@ position = Vector2(0, 1)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-65, -423, -45, -423, -45, -14, -65, -14)
 
+[node name="MovingHazard11" parent="." unique_id=1057999172 instance=ExtResource("18_ydx4g")]
+position = Vector2(5284, -571)
+
+[node name="MovingHazard12" parent="." unique_id=421846724 instance=ExtResource("18_ydx4g")]
+position = Vector2(5745, -573)
+
+[node name="MovingHazardY11" parent="." unique_id=725860801 instance=ExtResource("19_5jv2m")]
+position = Vector2(5046, -696)
+
 [editable path="WaterHazard"]
 [editable path="DisappearingWall2"]
 [editable path="One_Way_Wall2"]
