@@ -43,11 +43,13 @@ func _create_player1() -> void:
 
 	player.global_position = spawn.global_position
 
+	if player.has_method("set_checkpoint"):
+		player.set_checkpoint(spawn.global_position)
+
 	print(
 		"Personaje P1 cargado: ",
 		GameManager.player1_character_index
 	)
-
 
 func _create_player2() -> void:
 	var player_scene: PackedScene = GameManager.get_character_scene(
@@ -65,7 +67,8 @@ func _create_player2() -> void:
 
 	entities.add_child(player2)
 
-	player2.global_position = player2_spawn.global_position
+	if player2.has_method("set_checkpoint"):
+		player2.set_checkpoint(player2_spawn.global_position)
 
 	# Solamente Player 1 controla la cámara por ahora.
 	var player2_camera := player2.get_node_or_null("Camera2D") as Camera2D

@@ -26,7 +26,7 @@ theme_override_constants/separation = 20
 [node name="Title" type="Label" parent="CenterContainer/VBoxContainer" unique_id=2083894669]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "PENE RUN"
+text = "MAD RUN"
 horizontal_alignment = 1
 
 [node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2040748774]

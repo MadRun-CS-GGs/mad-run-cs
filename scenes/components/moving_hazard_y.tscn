@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dtru2qdyfypxf"]
+
+[ext_resource type="Script" uid="uid://bnmdey5mnkm3a" path="res://scenes/components/moving_hazard_y.gd" id="1_4pxur"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hg11w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4pxur"]
+radius = 15.0
+
+[node name="MovingHazardY" type="AnimatableBody2D" unique_id=401636075]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_4pxur")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1747272504]
+shape = SubResource("CircleShape2D_hg11w")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=553886237]
+polygon = PackedVector2Array(-5, -8, 0, -20, 5, -8, 20, -1, 5, 8, 0, 20, -5, 8, -20, 0)
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=975706316]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1750136762]
+shape = SubResource("CircleShape2D_4pxur")
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
