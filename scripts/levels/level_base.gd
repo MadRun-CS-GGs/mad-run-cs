@@ -6,6 +6,13 @@ const SPLIT_SCREEN_SCENE: PackedScene = preload(
 	"res://scenes/ui/split_screen.tscn"
 )
 
+const RACE_RESULT_SCENE: PackedScene = preload(
+	"res://scenes/ui/race_result.tscn"
+)
+
+const RACE_COUNTDOWN_SCENE: PackedScene = preload(
+	"res://scenes/ui/race_countdown.tscn"
+)
 
 @onready var spawn: Marker2D = $Gameplay/PlayerSpawn
 
@@ -24,7 +31,9 @@ var player: CharacterBody2D
 var player2: CharacterBody2D
 
 var split_screen: CanvasLayer
+var race_result: CanvasLayer
 
+var race_finished: bool = false
 
 func _ready() -> void:
 	_create_player1()
@@ -37,9 +46,10 @@ func _ready() -> void:
 
 	exit_area.body_entered.connect(_on_exit_body_entered)
 
-	# Si solamente existe P1, usamos la cámara tradicional.
 	if player2 == null:
 		_apply_limits()
+
+	_start_race_countdown()
 
 
 func _create_player1() -> void:
@@ -48,6 +58,7 @@ func _create_player1() -> void:
 	)
 
 	player = player_scene.instantiate() as CharacterBody2D
+	player.name = "Player1"
 
 	entities.add_child(player)
 
@@ -68,7 +79,11 @@ func _create_player2() -> void:
 	)
 
 	player2 = player_scene.instantiate() as CharacterBody2D
-
+	player2.name = "Player2"
+	
+	# Diferenciación visual temporal para la demo.
+	player2.modulate = Color(0.55, 0.80, 1.0, 1.0)
+	
 	# Controles exclusivos de Player 2.
 	player2.set("move_left_action", &"p2_move_left")
 	player2.set("move_right_action", &"p2_move_right")
@@ -156,7 +171,52 @@ func _apply_limits() -> void:
 
 	camera.reset_smoothing()
 
-
 func _on_exit_body_entered(body: Node2D) -> void:
+	if race_finished:
+		return
+
 	if body == player:
-		SceneLoader.call_deferred("next_level")
+		_finish_race(1)
+	elif body == player2:
+		_finish_race(2)
+		
+func _finish_race(player_number: int) -> void:
+	race_finished = true
+
+	race_result = RACE_RESULT_SCENE.instantiate() as CanvasLayer
+	add_child(race_result)
+
+	race_result.call(
+		"show_winner",
+		player_number
+	)
+
+	get_tree().paused = true
+
+func _start_race_countdown() -> void:
+	_set_players_controls(false)
+
+	var countdown := RACE_COUNTDOWN_SCENE.instantiate()
+	add_child(countdown)
+
+	countdown.countdown_finished.connect(
+		_on_countdown_finished
+	)
+
+	countdown.start_countdown()
+
+
+func _on_countdown_finished() -> void:
+	_set_players_controls(true)
+
+
+func _set_players_controls(enabled: bool) -> void:
+	if player != null and player.has_method(
+		"set_controls_enabled"
+	):
+		player.set_controls_enabled(enabled)
+
+	if player2 != null and player2.has_method(
+		"set_controls_enabled"
+	):
+		player2.set_controls_enabled(enabled)

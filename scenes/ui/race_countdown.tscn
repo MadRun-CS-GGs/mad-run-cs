@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dj5e7g7h1gls3"]
+
+[ext_resource type="Script" uid="uid://dq516xnyiwm4l" path="res://scripts/ui/race_countdown.gd" id="1_37li8"]
+
+[node name="RaceCountdown" type="CanvasLayer" unique_id=2139792244]
+layer = 90
+script = ExtResource("1_37li8")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=230912967]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CountdownLabel" type="Label" parent="CenterContainer" unique_id=1402557795]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 64
+text = "3"
+horizontal_alignment = 1

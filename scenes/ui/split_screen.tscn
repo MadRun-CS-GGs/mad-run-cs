@@ -38,6 +38,12 @@ render_target_update_mode = 4
 [node name="Player1Camera" type="Camera2D" parent="Screen/VBoxContainer/Player1Container/Player1Viewport" unique_id=1572645466]
 position_smoothing_enabled = true
 
+[node name="Player1PowerLabel" type="Label" parent="Screen/VBoxContainer/Player1Container" unique_id=1650045579]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 14
+text = "P1 | Sin poder"
+
 [node name="Divider" type="ColorRect" parent="Screen/VBoxContainer" unique_id=2093306754]
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
@@ -56,3 +62,9 @@ render_target_update_mode = 4
 [node name="Player2Camera" type="Camera2D" parent="Screen/VBoxContainer/Player2Container/Player2Viewport" unique_id=993331989]
 position = Vector2(30, 73)
 position_smoothing_enabled = true
+
+[node name="Player2PowerLabel" type="Label" parent="Screen/VBoxContainer/Player2Container" unique_id=1295073473]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 14
+text = "Text = P2 | Sin poder"

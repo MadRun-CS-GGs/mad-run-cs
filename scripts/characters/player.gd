@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal power_changed(power_name: String)
+
 @export var speed: float = 200.0
 @export var jump_velocity: float = -400.0
 @export var acceleration: float = 1500.0
@@ -32,6 +34,8 @@ extends CharacterBody2D
 # ------------------------------------------------
 # ESTADO DE MOVIMIENTO
 # ------------------------------------------------
+
+var controls_enabled: bool = true
 
 # Dash.
 var s_active: bool = false
@@ -73,6 +77,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_handle_gravity_and_jump_flags(delta)
 
+	if not controls_enabled:
+		_handle_horizontal_movement(0.0, delta)
+		move_and_slide()
+		_update_animation(0.0)
+		return
+
 	var direction: float = Input.get_axis(
 		move_left_action,
 		move_right_action
@@ -84,9 +94,13 @@ func _physics_process(delta: float) -> void:
 	_handle_power_input()
 
 	move_and_slide()
-
 	_update_animation(direction)
 
+func set_controls_enabled(enabled: bool) -> void:
+	controls_enabled = enabled
+
+	if not enabled:
+		velocity.x = 0.0
 
 # ------------------------------------------------
 # MOVIMIENTO
@@ -232,11 +246,17 @@ func _handle_power_input() -> void:
 func give_power(power: int) -> void:
 	held_power = power
 
+	var power_name: String = PowerManager.get_power_name(
+		held_power
+	)
+
 	print(
 		name,
 		" recibió: ",
-		PowerManager.get_power_name(held_power)
+		power_name
 	)
+
+	power_changed.emit(power_name)
 
 
 func use_held_power() -> void:
@@ -252,7 +272,8 @@ func use_held_power() -> void:
 	)
 
 	held_power = PowerManager.PowerType.NONE
-
+	power_changed.emit("Sin poder")
+	
 	match power_to_use:
 		PowerManager.PowerType.SOPA_FIEC:
 			_activate_sopa_fiec()

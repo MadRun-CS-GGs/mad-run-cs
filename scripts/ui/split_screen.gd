@@ -1,5 +1,13 @@
 extends CanvasLayer
 
+@onready var player1_power_label: Label = (
+	$Screen/VBoxContainer/Player1Container/Player1PowerLabel
+)
+
+@onready var player2_power_label: Label = (
+	$Screen/VBoxContainer/Player2Container/Player2PowerLabel
+)
+
 @onready var player1_viewport: SubViewport = (
 	$Screen/VBoxContainer/Player1Container/Player1Viewport
 )
@@ -37,6 +45,16 @@ func setup(
 ) -> void:
 	player1 = p1
 	player2 = p2
+	
+	player1.power_changed.connect(
+	_on_player1_power_changed
+	)
+
+	player2.power_changed.connect(
+	_on_player2_power_changed
+	)
+
+	_update_power_labels()
 
 	_apply_camera_limits(player1_camera, top_left, bottom_right)
 	_apply_camera_limits(player2_camera, top_left, bottom_right)
@@ -67,3 +85,36 @@ func _apply_camera_limits(
 	camera.limit_bottom = int(bottom_right.y)
 
 	camera.reset_smoothing()
+
+func _on_player1_power_changed(
+	power_name: String
+) -> void:
+	player1_power_label.text = (
+		"P1 | " + power_name
+	)
+
+
+func _on_player2_power_changed(
+	power_name: String
+) -> void:
+	player2_power_label.text = (
+		"P2 | " + power_name
+	)
+
+
+func _update_power_labels() -> void:
+	if player1 != null:
+		player1_power_label.text = (
+			"P1 | "
+			+ PowerManager.get_power_name(
+				player1.held_power
+			)
+		)
+
+	if player2 != null:
+		player2_power_label.text = (
+			"P2 | "
+			+ PowerManager.get_power_name(
+				player2.held_power
+			)
+		)
